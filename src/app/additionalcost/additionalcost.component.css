@@ -1,0 +1,25 @@
+.right {
+    right: 0;
+  }
+  
+  /* .match-parent {
+    width: 50%;
+    height: 100%;
+  } */
+  
+  .split {
+    height: 30%;
+    /* width: 50%; */
+    /* flex: 1;
+    float: right; */
+    /* position: fixed; */
+    /* z-index: 1;
+    top: 0;
+    overflow-x: hidden; */
+    padding-top: 20px;
+  }
+  
+  #chart {
+      max-width: 650px;
+      margin: 35px auto;
+    }

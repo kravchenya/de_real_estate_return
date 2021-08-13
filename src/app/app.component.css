@@ -1,0 +1,10 @@
+.wrap {
+    width: 100%;
+    overflow: auto;
+}
+
+.column {
+    flex: 50%;
+    padding: 10px;
+  
+  }

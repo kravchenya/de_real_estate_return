@@ -1,0 +1,2930 @@
+[
+	{
+		"Date": "1991-01",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-01",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1991-02",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-02",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "1991-03",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1991-03",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "1991-04",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-04",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1991-05",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-05",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1991-06",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-06",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "1991-07",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-07",
+		"InflationMoM": "+1.1"
+	},
+	{
+		"Date": "1991-08",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-08",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1991-09",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1991-10",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-10",
+		"InflationMoM": "+1.7"
+	},
+	{
+		"Date": "1991-11",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-11",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1991-12",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "1991-12",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1992-01",
+		"InflationYoY": "+5.6"
+	},
+	{
+		"Date": "1992-01",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "1992-02",
+		"InflationYoY": "+5.8"
+	},
+	{
+		"Date": "1992-02",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "1992-03",
+		"InflationYoY": "+6.2"
+	},
+	{
+		"Date": "1992-03",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "1992-04",
+		"InflationYoY": "+6.2"
+	},
+	{
+		"Date": "1992-04",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1992-05",
+		"InflationYoY": "+6.2"
+	},
+	{
+		"Date": "1992-05",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1992-06",
+		"InflationYoY": "+5.8"
+	},
+	{
+		"Date": "1992-06",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1992-07",
+		"InflationYoY": "+5.0"
+	},
+	{
+		"Date": "1992-07",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1992-08",
+		"InflationYoY": "+5.0"
+	},
+	{
+		"Date": "1992-08",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1992-09",
+		"InflationYoY": "+5.0"
+	},
+	{
+		"Date": "1992-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1992-10",
+		"InflationYoY": "+3.3"
+	},
+	{
+		"Date": "1992-10",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1992-11",
+		"InflationYoY": "+3.4"
+	},
+	{
+		"Date": "1992-11",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "1992-12",
+		"InflationYoY": "+3.4"
+	},
+	{
+		"Date": "1992-12",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1993-01",
+		"InflationYoY": "+4.6"
+	},
+	{
+		"Date": "1993-01",
+		"InflationMoM": "+1.7"
+	},
+	{
+		"Date": "1993-02",
+		"InflationYoY": "+4.7"
+	},
+	{
+		"Date": "1993-02",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "1993-03",
+		"InflationYoY": "+4.5"
+	},
+	{
+		"Date": "1993-03",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1993-04",
+		"InflationYoY": "+4.5"
+	},
+	{
+		"Date": "1993-04",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1993-05",
+		"InflationYoY": "+4.4"
+	},
+	{
+		"Date": "1993-05",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1993-06",
+		"InflationYoY": "+4.4"
+	},
+	{
+		"Date": "1993-06",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1993-07",
+		"InflationYoY": "+4.6"
+	},
+	{
+		"Date": "1993-07",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "1993-08",
+		"InflationYoY": "+4.6"
+	},
+	{
+		"Date": "1993-08",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1993-09",
+		"InflationYoY": "+4.5"
+	},
+	{
+		"Date": "1993-09",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1993-10",
+		"InflationYoY": "+4.5"
+	},
+	{
+		"Date": "1993-10",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1993-11",
+		"InflationYoY": "+4.2"
+	},
+	{
+		"Date": "1993-11",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1993-12",
+		"InflationYoY": "+4.3"
+	},
+	{
+		"Date": "1993-12",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1994-01",
+		"InflationYoY": "+3.0"
+	},
+	{
+		"Date": "1994-01",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "1994-02",
+		"InflationYoY": "+3.1"
+	},
+	{
+		"Date": "1994-02",
+		"InflationMoM": "+0.8"
+	},
+	{
+		"Date": "1994-03",
+		"InflationYoY": "+2.9"
+	},
+	{
+		"Date": "1994-03",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1994-04",
+		"InflationYoY": "+2.8"
+	},
+	{
+		"Date": "1994-04",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1994-05",
+		"InflationYoY": "+2.9"
+	},
+	{
+		"Date": "1994-05",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1994-06",
+		"InflationYoY": "+2.8"
+	},
+	{
+		"Date": "1994-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1994-07",
+		"InflationYoY": "+2.4"
+	},
+	{
+		"Date": "1994-07",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1994-08",
+		"InflationYoY": "+2.6"
+	},
+	{
+		"Date": "1994-08",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1994-09",
+		"InflationYoY": "+2.5"
+	},
+	{
+		"Date": "1994-09",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "1994-10",
+		"InflationYoY": "+2.4"
+	},
+	{
+		"Date": "1994-10",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1994-11",
+		"InflationYoY": "+2.4"
+	},
+	{
+		"Date": "1994-11",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1994-12",
+		"InflationYoY": "+2.3"
+	},
+	{
+		"Date": "1994-12",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1995-01",
+		"InflationYoY": "+2.3"
+	},
+	{
+		"Date": "1995-01",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "1995-02",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "1995-02",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "1995-03",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "1995-03",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1995-04",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "1995-04",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1995-05",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "1995-05",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1995-06",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "1995-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1995-07",
+		"InflationYoY": "+1.8"
+	},
+	{
+		"Date": "1995-07",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1995-08",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "1995-08",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1995-09",
+		"InflationYoY": "+1.8"
+	},
+	{
+		"Date": "1995-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1995-10",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "1995-10",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "1995-11",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "1995-11",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1995-12",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "1995-12",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1996-01",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1996-01",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1996-02",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "1996-02",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "1996-03",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "1996-03",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1996-04",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1996-04",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1996-05",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "1996-05",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1996-06",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "1996-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1996-07",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1996-07",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1996-08",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1996-08",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1996-09",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1996-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1996-10",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "1996-10",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1996-11",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "1996-11",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1996-12",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "1996-12",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "1997-01",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "1997-01",
+		"InflationMoM": "+0.8"
+	},
+	{
+		"Date": "1997-02",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "1997-02",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1997-03",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "1997-03",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1997-04",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "1997-04",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1997-05",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "1997-05",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1997-06",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "1997-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1997-07",
+		"InflationYoY": "+2.4"
+	},
+	{
+		"Date": "1997-07",
+		"InflationMoM": "+0.9"
+	},
+	{
+		"Date": "1997-08",
+		"InflationYoY": "+2.4"
+	},
+	{
+		"Date": "1997-08",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1997-09",
+		"InflationYoY": "+2.2"
+	},
+	{
+		"Date": "1997-09",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1997-10",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "1997-10",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1997-11",
+		"InflationYoY": "+2.2"
+	},
+	{
+		"Date": "1997-11",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1997-12",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "1997-12",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1998-01",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1998-01",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1998-02",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1998-02",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1998-03",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "1998-03",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1998-04",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "1998-04",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1998-05",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1998-05",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1998-06",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1998-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1998-07",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "1998-07",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "1998-08",
+		"InflationYoY": "+0.5"
+	},
+	{
+		"Date": "1998-08",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "1998-09",
+		"InflationYoY": "+0.4"
+	},
+	{
+		"Date": "1998-09",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "1998-10",
+		"InflationYoY": "+0.4"
+	},
+	{
+		"Date": "1998-10",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1998-11",
+		"InflationYoY": "+0.4"
+	},
+	{
+		"Date": "1998-11",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1998-12",
+		"InflationYoY": "+0.3"
+	},
+	{
+		"Date": "1998-12",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1999-01",
+		"InflationYoY": "+0.1"
+	},
+	{
+		"Date": "1999-01",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1999-02",
+		"InflationYoY": "+0.1"
+	},
+	{
+		"Date": "1999-02",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1999-03",
+		"InflationYoY": "+0.3"
+	},
+	{
+		"Date": "1999-03",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1999-04",
+		"InflationYoY": "+0.6"
+	},
+	{
+		"Date": "1999-04",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "1999-05",
+		"InflationYoY": "+0.5"
+	},
+	{
+		"Date": "1999-05",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "1999-06",
+		"InflationYoY": "+0.5"
+	},
+	{
+		"Date": "1999-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "1999-07",
+		"InflationYoY": "+0.6"
+	},
+	{
+		"Date": "1999-07",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "1999-08",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "1999-08",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1999-09",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "1999-09",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "1999-10",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "1999-10",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "1999-11",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "1999-11",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "1999-12",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "1999-12",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2000-01",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2000-01",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2000-02",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2000-02",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2000-03",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2000-03",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2000-04",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2000-04",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2000-05",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2000-05",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2000-06",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2000-06",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2000-07",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2000-07",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2000-08",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2000-08",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2000-09",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2000-09",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2000-10",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2000-10",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2000-11",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2000-11",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2000-12",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2000-12",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "2001-01",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2001-01",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2001-02",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2001-02",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2001-03",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2001-03",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2001-04",
+		"InflationYoY": "+2.4"
+	},
+	{
+		"Date": "2001-04",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2001-05",
+		"InflationYoY": "+2.8"
+	},
+	{
+		"Date": "2001-05",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2001-06",
+		"InflationYoY": "+2.5"
+	},
+	{
+		"Date": "2001-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2001-07",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2001-07",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2001-08",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2001-08",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2001-09",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2001-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2001-10",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2001-10",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2001-11",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2001-11",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2001-12",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2001-12",
+		"InflationMoM": "+1.0"
+	},
+	{
+		"Date": "2002-01",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2002-01",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2002-02",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2002-02",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2002-03",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2002-03",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2002-04",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2002-04",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2002-05",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2002-05",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2002-06",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2002-06",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2002-07",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2002-07",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2002-08",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2002-08",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2002-09",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2002-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2002-10",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2002-10",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2002-11",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2002-11",
+		"InflationMoM": "-0.4"
+	},
+	{
+		"Date": "2002-12",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2002-12",
+		"InflationMoM": "+1.0"
+	},
+	{
+		"Date": "2003-01",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2003-01",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2003-02",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2003-02",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "2003-03",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2003-03",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2003-04",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2003-04",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2003-05",
+		"InflationYoY": "+0.6"
+	},
+	{
+		"Date": "2003-05",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2003-06",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2003-06",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2003-07",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2003-07",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2003-08",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2003-08",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2003-09",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2003-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2003-10",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2003-10",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2003-11",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2003-11",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2003-12",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2003-12",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "2004-01",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2004-01",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2004-02",
+		"InflationYoY": "+0.7"
+	},
+	{
+		"Date": "2004-02",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2004-03",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2004-03",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2004-04",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2004-04",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2004-05",
+		"InflationYoY": "+2.2"
+	},
+	{
+		"Date": "2004-05",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2004-06",
+		"InflationYoY": "+1.8"
+	},
+	{
+		"Date": "2004-06",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2004-07",
+		"InflationYoY": "+1.8"
+	},
+	{
+		"Date": "2004-07",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2004-08",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2004-08",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2004-09",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2004-09",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2004-10",
+		"InflationYoY": "+1.8"
+	},
+	{
+		"Date": "2004-10",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2004-11",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2004-11",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2004-12",
+		"InflationYoY": "+2.3"
+	},
+	{
+		"Date": "2004-12",
+		"InflationMoM": "+1.1"
+	},
+	{
+		"Date": "2005-01",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2005-01",
+		"InflationMoM": "-0.7"
+	},
+	{
+		"Date": "2005-02",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2005-02",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2005-03",
+		"InflationYoY": "+1.8"
+	},
+	{
+		"Date": "2005-03",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2005-04",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2005-04",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2005-05",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2005-05",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2005-06",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2005-06",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2005-07",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2005-07",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2005-08",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2005-08",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2005-09",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2005-09",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2005-10",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2005-10",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2005-11",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2005-11",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "2005-12",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2005-12",
+		"InflationMoM": "+0.8"
+	},
+	{
+		"Date": "2006-01",
+		"InflationYoY": "+1.8"
+	},
+	{
+		"Date": "2006-01",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "2006-02",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2006-02",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2006-03",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2006-03",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2006-04",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2006-04",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2006-05",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2006-05",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2006-06",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2006-06",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2006-07",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2006-07",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2006-08",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2006-08",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2006-09",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2006-09",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "2006-10",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2006-10",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2006-11",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2006-11",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2006-12",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2006-12",
+		"InflationMoM": "+0.8"
+	},
+	{
+		"Date": "2007-01",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2007-01",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2007-02",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2007-02",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2007-03",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2007-03",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2007-04",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2007-04",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2007-05",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2007-05",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2007-06",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2007-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2007-07",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2007-07",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2007-08",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2007-08",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2007-09",
+		"InflationYoY": "+2.6"
+	},
+	{
+		"Date": "2007-09",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2007-10",
+		"InflationYoY": "+2.9"
+	},
+	{
+		"Date": "2007-10",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2007-11",
+		"InflationYoY": "+3.4"
+	},
+	{
+		"Date": "2007-11",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "2007-12",
+		"InflationYoY": "+3.2"
+	},
+	{
+		"Date": "2007-12",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "2008-01",
+		"InflationYoY": "+2.8"
+	},
+	{
+		"Date": "2008-01",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "2008-02",
+		"InflationYoY": "+2.8"
+	},
+	{
+		"Date": "2008-02",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2008-03",
+		"InflationYoY": "+3.1"
+	},
+	{
+		"Date": "2008-03",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2008-04",
+		"InflationYoY": "+2.5"
+	},
+	{
+		"Date": "2008-04",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2008-05",
+		"InflationYoY": "+3.0"
+	},
+	{
+		"Date": "2008-05",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2008-06",
+		"InflationYoY": "+3.2"
+	},
+	{
+		"Date": "2008-06",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2008-07",
+		"InflationYoY": "+3.3"
+	},
+	{
+		"Date": "2008-07",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2008-08",
+		"InflationYoY": "+3.1"
+	},
+	{
+		"Date": "2008-08",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "2008-09",
+		"InflationYoY": "+2.8"
+	},
+	{
+		"Date": "2008-09",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2008-10",
+		"InflationYoY": "+2.3"
+	},
+	{
+		"Date": "2008-10",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2008-11",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2008-11",
+		"InflationMoM": "-0.4"
+	},
+	{
+		"Date": "2008-12",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2008-12",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2009-01",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2009-01",
+		"InflationMoM": "-0.4"
+	},
+	{
+		"Date": "2009-02",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2009-02",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2009-03",
+		"InflationYoY": "+0.3"
+	},
+	{
+		"Date": "2009-03",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2009-04",
+		"InflationYoY": "+0.7"
+	},
+	{
+		"Date": "2009-04",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2009-05",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "2009-05",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2009-06",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "2009-06",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2009-07",
+		"InflationYoY": "-0.5"
+	},
+	{
+		"Date": "2009-07",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2009-08",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "2009-08",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2009-09",
+		"InflationYoY": "-0.2"
+	},
+	{
+		"Date": "2009-09",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "2009-10",
+		"InflationYoY": "+0.1"
+	},
+	{
+		"Date": "2009-10",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2009-11",
+		"InflationYoY": "+0.3"
+	},
+	{
+		"Date": "2009-11",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2009-12",
+		"InflationYoY": "+0.9"
+	},
+	{
+		"Date": "2009-12",
+		"InflationMoM": "+0.9"
+	},
+	{
+		"Date": "2010-01",
+		"InflationYoY": "+0.7"
+	},
+	{
+		"Date": "2010-01",
+		"InflationMoM": "-0.6"
+	},
+	{
+		"Date": "2010-02",
+		"InflationYoY": "+0.5"
+	},
+	{
+		"Date": "2010-02",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2010-03",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2010-03",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2010-04",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2010-04",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2010-05",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2010-05",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2010-06",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2010-06",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2010-07",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2010-07",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2010-08",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2010-08",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2010-09",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2010-09",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2010-10",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2010-10",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2010-11",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2010-11",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2010-12",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2010-12",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2011-01",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2011-01",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2011-02",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2011-02",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "2011-03",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2011-03",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2011-04",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2011-04",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2011-05",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2011-05",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2011-06",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2011-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2011-07",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2011-07",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2011-08",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2011-08",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2011-09",
+		"InflationYoY": "+2.5"
+	},
+	{
+		"Date": "2011-09",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2011-10",
+		"InflationYoY": "+2.4"
+	},
+	{
+		"Date": "2011-10",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2011-11",
+		"InflationYoY": "+2.2"
+	},
+	{
+		"Date": "2011-11",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2011-12",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2011-12",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2012-01",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2012-01",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2012-02",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2012-02",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "2012-03",
+		"InflationYoY": "+2.2"
+	},
+	{
+		"Date": "2012-03",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "2012-04",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2012-04",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2012-05",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2012-05",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2012-06",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2012-06",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2012-07",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2012-07",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2012-08",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2012-08",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2012-09",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2012-09",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2012-10",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2012-10",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2012-11",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2012-11",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2012-12",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2012-12",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2013-01",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2013-01",
+		"InflationMoM": "-0.5"
+	},
+	{
+		"Date": "2013-02",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2013-02",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "2013-03",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2013-03",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2013-04",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2013-04",
+		"InflationMoM": "-0.4"
+	},
+	{
+		"Date": "2013-05",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2013-05",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2013-06",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2013-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2013-07",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2013-07",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2013-08",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2013-08",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2013-09",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2013-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2013-10",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2013-10",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2013-11",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2013-11",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2013-12",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2013-12",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2014-01",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2014-01",
+		"InflationMoM": "-0.5"
+	},
+	{
+		"Date": "2014-02",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2014-02",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2014-03",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2014-03",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2014-04",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2014-04",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2014-05",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "2014-05",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2014-06",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2014-06",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2014-07",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "2014-07",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2014-08",
+		"InflationYoY": "+0.9"
+	},
+	{
+		"Date": "2014-08",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2014-09",
+		"InflationYoY": "+0.9"
+	},
+	{
+		"Date": "2014-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2014-10",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "2014-10",
+		"InflationMoM": "-0.3"
+	},
+	{
+		"Date": "2014-11",
+		"InflationYoY": "+0.6"
+	},
+	{
+		"Date": "2014-11",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2014-12",
+		"InflationYoY": "+0.2"
+	},
+	{
+		"Date": "2014-12",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2015-01",
+		"InflationYoY": "-0.3"
+	},
+	{
+		"Date": "2015-01",
+		"InflationMoM": "-1.0"
+	},
+	{
+		"Date": "2015-02",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "2015-02",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "2015-03",
+		"InflationYoY": "+0.2"
+	},
+	{
+		"Date": "2015-03",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2015-04",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "2015-04",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2015-05",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2015-05",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2015-06",
+		"InflationYoY": "+0.9"
+	},
+	{
+		"Date": "2015-06",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2015-07",
+		"InflationYoY": "+0.9"
+	},
+	{
+		"Date": "2015-07",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2015-08",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "2015-08",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2015-09",
+		"InflationYoY": "+0.6"
+	},
+	{
+		"Date": "2015-09",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2015-10",
+		"InflationYoY": "+0.9"
+	},
+	{
+		"Date": "2015-10",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2015-11",
+		"InflationYoY": "+0.2"
+	},
+	{
+		"Date": "2015-11",
+		"InflationMoM": "-0.7"
+	},
+	{
+		"Date": "2015-12",
+		"InflationYoY": "+0.2"
+	},
+	{
+		"Date": "2015-12",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2016-01",
+		"InflationYoY": "+0.5"
+	},
+	{
+		"Date": "2016-01",
+		"InflationMoM": "-0.7"
+	},
+	{
+		"Date": "2016-02",
+		"InflationYoY": "+0.1"
+	},
+	{
+		"Date": "2016-02",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2016-03",
+		"InflationYoY": "+0.3"
+	},
+	{
+		"Date": "2016-03",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "2016-04",
+		"InflationYoY": "-0.1"
+	},
+	{
+		"Date": "2016-04",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2016-05",
+		"InflationYoY": "+0.2"
+	},
+	{
+		"Date": "2016-05",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2016-06",
+		"InflationYoY": "+0.3"
+	},
+	{
+		"Date": "2016-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2016-07",
+		"InflationYoY": "+0.5"
+	},
+	{
+		"Date": "2016-07",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2016-08",
+		"InflationYoY": "+0.4"
+	},
+	{
+		"Date": "2016-08",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2016-09",
+		"InflationYoY": "+0.6"
+	},
+	{
+		"Date": "2016-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2016-10",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "2016-10",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2016-11",
+		"InflationYoY": "+0.8"
+	},
+	{
+		"Date": "2016-11",
+		"InflationMoM": "-0.7"
+	},
+	{
+		"Date": "2016-12",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2016-12",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "2017-01",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2017-01",
+		"InflationMoM": "-0.6"
+	},
+	{
+		"Date": "2017-02",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2017-02",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "2017-03",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2017-03",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2017-04",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2017-04",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2017-05",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2017-05",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2017-06",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2017-06",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2017-07",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2017-07",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2017-08",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2017-08",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2017-09",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2017-09",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2017-10",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2017-10",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2017-11",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2017-11",
+		"InflationMoM": "-0.4"
+	},
+	{
+		"Date": "2017-12",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2017-12",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2018-01",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2018-01",
+		"InflationMoM": "-0.6"
+	},
+	{
+		"Date": "2018-02",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2018-02",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2018-03",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2018-03",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "2018-04",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2018-04",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2018-05",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2018-05",
+		"InflationMoM": "+0.8"
+	},
+	{
+		"Date": "2018-06",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2018-06",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2018-07",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2018-07",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2018-08",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2018-08",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2018-09",
+		"InflationYoY": "+1.9"
+	},
+	{
+		"Date": "2018-09",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2018-10",
+		"InflationYoY": "+2.3"
+	},
+	{
+		"Date": "2018-10",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2018-11",
+		"InflationYoY": "+2.1"
+	},
+	{
+		"Date": "2018-11",
+		"InflationMoM": "-0.7"
+	},
+	{
+		"Date": "2018-12",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2018-12",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2019-01",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2019-01",
+		"InflationMoM": "-0.8"
+	},
+	{
+		"Date": "2019-02",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2019-02",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2019-03",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2019-03",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2019-04",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2019-04",
+		"InflationMoM": "+1.0"
+	},
+	{
+		"Date": "2019-05",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2019-05",
+		"InflationMoM": "+0.2"
+	},
+	{
+		"Date": "2019-06",
+		"InflationYoY": "+1.6"
+	},
+	{
+		"Date": "2019-06",
+		"InflationMoM": "+0.3"
+	},
+	{
+		"Date": "2019-07",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2019-07",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2019-08",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2019-08",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2019-09",
+		"InflationYoY": "+1.2"
+	},
+	{
+		"Date": "2019-09",
+		"InflationMoM": "0.0"
+	},
+	{
+		"Date": "2019-10",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2019-10",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2019-11",
+		"InflationYoY": "+1.1"
+	},
+	{
+		"Date": "2019-11",
+		"InflationMoM": "-0.8"
+	},
+	{
+		"Date": "2019-12",
+		"InflationYoY": "+1.5"
+	},
+	{
+		"Date": "2019-12",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2020-01",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2020-01",
+		"InflationMoM": "-0.6"
+	},
+	{
+		"Date": "2020-02",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2020-02",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2020-03",
+		"InflationYoY": "+1.4"
+	},
+	{
+		"Date": "2020-03",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2020-04",
+		"InflationYoY": "+0.9"
+	},
+	{
+		"Date": "2020-04",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2020-05",
+		"InflationYoY": "+0.6"
+	},
+	{
+		"Date": "2020-05",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2020-06",
+		"InflationYoY": "+0.9"
+	},
+	{
+		"Date": "2020-06",
+		"InflationMoM": "+0.6"
+	},
+	{
+		"Date": "2020-07",
+		"InflationYoY": "-0.1"
+	},
+	{
+		"Date": "2020-07",
+		"InflationMoM": "-0.5"
+	},
+	{
+		"Date": "2020-08",
+		"InflationYoY": "0.0"
+	},
+	{
+		"Date": "2020-08",
+		"InflationMoM": "-0.1"
+	},
+	{
+		"Date": "2020-09",
+		"InflationYoY": "-0.2"
+	},
+	{
+		"Date": "2020-09",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2020-10",
+		"InflationYoY": "-0.2"
+	},
+	{
+		"Date": "2020-10",
+		"InflationMoM": "+0.1"
+	},
+	{
+		"Date": "2020-11",
+		"InflationYoY": "-0.3"
+	},
+	{
+		"Date": "2020-11",
+		"InflationMoM": "-0.8"
+	},
+	{
+		"Date": "2020-12",
+		"InflationYoY": "-0.3"
+	},
+	{
+		"Date": "2020-12",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2021-01",
+		"InflationYoY": "+1.0"
+	},
+	{
+		"Date": "2021-01",
+		"InflationMoM": "+0.8"
+	},
+	{
+		"Date": "2021-02",
+		"InflationYoY": "+1.3"
+	},
+	{
+		"Date": "2021-02",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "2021-03",
+		"InflationYoY": "+1.7"
+	},
+	{
+		"Date": "2021-03",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2021-04",
+		"InflationYoY": "+2.0"
+	},
+	{
+		"Date": "2021-04",
+		"InflationMoM": "+0.7"
+	},
+	{
+		"Date": "2021-05",
+		"InflationYoY": "+2.5"
+	},
+	{
+		"Date": "2021-05",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2021-06",
+		"InflationYoY": "+2.3"
+	},
+	{
+		"Date": "2021-06",
+		"InflationMoM": "+0.4"
+	}
+]

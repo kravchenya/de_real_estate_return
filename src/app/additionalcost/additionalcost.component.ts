@@ -89,7 +89,8 @@ export class AdditionalCostComponent implements OnInit {
         colors: ["#fff"]
       },
       title: {
-        text: "Kreditnebenkosten"
+        text: "Kreditnebenkosten",
+        align: "center"
       },
       xaxis: {
         categories: this.extraCostDiagram.categories,

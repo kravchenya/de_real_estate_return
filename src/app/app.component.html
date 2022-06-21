@@ -1,11 +1,39 @@
 <div class='wrap'>
-  <div class="column">
+
+  <mat-grid-list cols="2" rowHeight= "2:1">
+    <mat-grid-tile rowspan="4">
+      <app-countrymap></app-countrymap>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <app-additionalcost></app-additionalcost>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <app-creditcost></app-creditcost>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <app-inflation></app-inflation>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+        <app-pricecalculator></app-pricecalculator>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <!-- <div class="column">
     <app-countrymap></app-countrymap>
-  </div>
-  <div class="column">
+  </div> -->
+  <!-- <div class="column">
     <app-additionalcost></app-additionalcost>
     <app-creditcost></app-creditcost>
     <app-inflation></app-inflation>
     <app-pricecalculator></app-pricecalculator>
-  </div>
+  </div> -->
+
 </div>

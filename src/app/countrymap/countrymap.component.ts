@@ -14,6 +14,11 @@ export class CountrymapComponent implements OnInit {
   lat = 51;
   lng = 10;
 
+  public landAcquisition2: string ='';
+  federalState2: string ='';
+  notary2:  string ='';
+  realtor2:  string ='';
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,7 +26,7 @@ export class CountrymapComponent implements OnInit {
       container: 'map',
       accessToken: environment.mapbox.accessToken,
       style: this.style,
-      zoom: 5,
+      zoom: 5.7,
       center: [this.lng, this.lat]
     });
 
@@ -37,7 +42,7 @@ export class CountrymapComponent implements OnInit {
     var notary = document.getElementById('notary');
     var realtor = document.getElementById('realtor');
 
-    map.on('load', function () {
+    map.on('load',  () => {
       map.addSource('bundeslaender', {
         type: 'geojson',
         //data: '../assets/bundeslaender_simplify200.geojson',
@@ -76,7 +81,7 @@ export class CountrymapComponent implements OnInit {
 
       // When the user moves their mouse over the state-fill layer, we'll update the
       // feature state for the feature under the mouse.
-      map.on('mousemove', 'bundeslaender-layer', function (e: any) {
+      map.on('mousemove', 'bundeslaender-layer',  (e: any) => {
         if (e.features.length > 0) {
           if (hoveredStateId !== null) {
             map.setFeatureState(
@@ -91,17 +96,21 @@ export class CountrymapComponent implements OnInit {
             { hover: true }
           );
                     
-          federalState!.textContent = e.features[0].properties.name;
-          landAcquisition!.textContent = additionalCosts[hoveredStateId].properties.landAcquisition  + '%';
-          notary!.textContent = 'rund ' + additionalCosts[hoveredStateId].properties.notary  + '%';
-          realtor!.textContent =  additionalCosts[hoveredStateId].properties.realtor  + '%';
+          // federalState!.textContent = e.features[0].properties.name;
+          this.federalState2 = e.features[0].properties.name;
+          this.landAcquisition2 = additionalCosts[hoveredStateId].properties.landAcquisition  + '%';
+          //landAcquisition!.textContent = additionalCosts[hoveredStateId].properties.landAcquisition  + '%';
+          // notary!.textContent = 'rund ' + additionalCosts[hoveredStateId].properties.notary  + '%';
+          this.notary2! = 'rund ' + additionalCosts[hoveredStateId].properties.notary  + '%';
+          // realtor!.textContent =  additionalCosts[hoveredStateId].properties.realtor  + '%';
+          this.realtor2! =  additionalCosts[hoveredStateId].properties.realtor  + '%';
 
         }
       });
 
       // When the mouse leaves the state-fill layer, update the feature state of the
       // previously hovered feature.
-      map.on('mouseleave', 'bundeslaender-layer', function () {
+      map.on('mouseleave', 'bundeslaender-layer',  () => {
         if (hoveredStateId !== null) {
           map.setFeatureState(
             { source: 'bundeslaender', id: hoveredStateId },
@@ -110,10 +119,15 @@ export class CountrymapComponent implements OnInit {
         }
         hoveredStateId = 0;
 
-        federalState!.textContent = '';
-        landAcquisition!.textContent = '';
-        notary!.textContent = '';
-        realtor!.textContent = '';
+        // federalState!.textContent = '';
+        // landAcquisition!.textContent = '';
+        // notary!.textContent = '';
+        // realtor!.textContent = '';
+
+        this.federalState2 = '';
+        this.landAcquisition2 = '';
+        this.notary2 = '';
+        this.realtor2 = '';
       });
 
       map.on('idle',function(){

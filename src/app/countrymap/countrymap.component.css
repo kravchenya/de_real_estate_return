@@ -18,24 +18,30 @@
     top: 0;
     bottom: 0;
     width: 100%;
+    
 }
 
+mat-card {
+    width: 90%;
+    height: 90%;
+    }
+    
 /* .match-parent {
     width: 50%;
     height: 100%;
 } */
 
-.legendInfo {
+/* .legendInfo {
     position: absolute;
     font-family: sans-serif;
     margin-top: 5px;
     margin-left: 5px;
     padding: 5px;
-    width: 90%;
+    width: 70%;
     border: 2px solid black;
     font-size: 14px;
     color: #222;
     background-color: #fff;
     border-radius: 3px;
 }
-  
+   */

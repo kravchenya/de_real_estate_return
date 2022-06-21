@@ -12,7 +12,8 @@ import {
   ApexLegend,
   ApexDataLabels,
   ApexTitleSubtitle,
-  ApexYAxis
+  ApexYAxis,
+  ApexTheme
 } from "ng-apexcharts";
 
 export type ChartOptions = {
@@ -27,6 +28,7 @@ export type ChartOptions = {
   legend: ApexLegend;
   fill: ApexFill;
   tooltip: ApexTooltip;
+  theme: ApexTheme;
 };
 
 @Component({
@@ -39,7 +41,13 @@ export class InflationComponent implements OnInit {
 
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions> | any;
-  ihistoricalInflation!: IHistoricalInflation;
+  
+  ihistoricalInflation: IHistoricalInflation = {
+    name:'inflation',
+    date: [],
+    inflationChangeYoY: [],
+    VpiIndex: []
+  };
 
 
   constructor() { 
@@ -72,11 +80,7 @@ export class InflationComponent implements OnInit {
       },
       title: {
         text: "Inflation Entwicklung (1991-2020)",
-        align: "left",
-        offsetX: 150,
-        style: {
-          color: "#FF1654"
-        }
+        align: "center"
       },
       xaxis: {
         type: "datetime",
@@ -158,30 +162,32 @@ export class InflationComponent implements OnInit {
       //   }
       // },
       legend: {
-        horizontalAlign: "left",
+        // horizontalAlign: "center",
         offsetX: 40
+      }, 
+      theme:{
+        palette: 'palette10', 
+        mode: 'dark',
       }
     };
   }
 
   getExtraExpenses() : void {
 
-    vpiIflationYear.forEach((element) => {
+  //   var fs = require('fs');
+  //   var t = vpiIflationYear;
+  //   t.reverse();
+  //   fs.writeFile ("src/assets/input.json", JSON.stringify(t), function(err: any) {
+  //     if (err) throw err;
+  //     console.log('complete');
+  //     }
+  // );
 
-      this.ihistoricalInflation = {
-        name:'inflation',
-        date: [],
-        inflationChangeYoY: [],
-        VpiIndex: []
-      };
-
-      vpiIflationYear.forEach((element) => {
+     vpiIflationYear.forEach((element) => {
         this.ihistoricalInflation.date.push(element.Date);
         this.ihistoricalInflation.inflationChangeYoY.push(parseFloat(element.InflationChangeYoY));
         this.ihistoricalInflation.VpiIndex.push(parseFloat(element.VpiIndex));
       });
-
-    });
   }
 
   ngOnInit(): void {

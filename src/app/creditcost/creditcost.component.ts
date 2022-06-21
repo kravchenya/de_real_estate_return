@@ -13,13 +13,15 @@ import {
   ApexXAxis,
   ApexDataLabels,
   ApexTooltip,
-  ApexStroke
+  ApexStroke,
+  ApexTitleSubtitle
 } from "ng-apexcharts";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
+  titel: ApexTitleSubtitle,
   stroke: ApexStroke;
   tooltip: ApexTooltip;
   dataLabels: ApexDataLabels;
@@ -80,7 +82,10 @@ export class CreditcostComponent implements OnInit {
           format: "MM.yyyy"
         }
       },
-      
+      title: {
+        text: "Zinsentwicklung",
+        align: "center"
+      }
     };
   }
 

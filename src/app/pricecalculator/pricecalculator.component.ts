@@ -116,7 +116,6 @@ export class PricecalculatorComponent implements OnInit {
 
     // var inflatedPurchasePrise = this.purchasePrice;
 
-   
     var strYear = this.dateStart.value!.year();
     var strMonth = this.dateStart.value!.month() + 2;
     // var strMonthIndex:string = '';
@@ -136,6 +135,7 @@ export class PricecalculatorComponent implements OnInit {
     inflatedPurchasePrise = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, inflatedPurchasePrise);
 
     var endMonth = this.dateEnd.value!.month() + 1;
+
     var endYearFirstMonthIndex = endMonth === 12 ? strYear + '-' + strMonth :  strYear + '-0' + strMonth;
     var endYearLastMonthIndex = strYear + '-' + '12';
     inflatedPurchasePrise = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, inflatedPurchasePrise);

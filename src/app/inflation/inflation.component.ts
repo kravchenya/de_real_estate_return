@@ -79,7 +79,7 @@ export class InflationComponent implements OnInit {
         // width: [1, 1, 4]
       },
       title: {
-        text: "Inflation Entwicklung (1991-2020)",
+        text: "Inflation Entwicklung (1991-2021)",
         align: "center"
       },
       xaxis: {
@@ -166,8 +166,8 @@ export class InflationComponent implements OnInit {
         offsetX: 40
       }, 
       theme:{
-        palette: 'palette10', 
-        mode: 'dark',
+        palette: 'palette1', 
+        mode: 'light',
       }
     };
   }

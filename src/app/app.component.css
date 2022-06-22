@@ -1,0 +1,22 @@
+/* .wrap {
+    width: 100%;
+    overflow: auto;
+    flex: 100%
+} */
+
+/* .column {
+    flex: 50%;
+    padding: 10px;
+  
+  } */
+
+mat-grid-tile {
+background: lightblue;
+}
+
+
+mat-card {
+width: 80%;
+height: 80%;
+}
+

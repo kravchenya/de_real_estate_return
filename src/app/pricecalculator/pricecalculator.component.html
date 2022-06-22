@@ -1,0 +1,42 @@
+<div class="row">
+    <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Anfang der Kreditsauszahlung</mat-label>
+        <input matInput [matDatepicker]="dpStart" [formControl]="dateStart" [min]="minDate" [max]="maxDate">
+        <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
+        <mat-datepicker #dpStart startView="multi-year" (yearSelected)="chosenStartYearHandler($event)"
+            (monthSelected)="chosenStartMonthHandler($event, dpStart)" panelClass="month-picker">
+        </mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Ende der Kreditsauszahlung</mat-label>
+        <input matInput [matDatepicker]="dpEnd" [formControl]="dateEnd" [min]="minEndDate" [max]="maxDate">
+        <mat-datepicker-toggle matSuffix [for]="dpEnd"></mat-datepicker-toggle>
+        <mat-datepicker #dpEnd startView="multi-year" (yearSelected)="chosenEndYearHandler($event)"
+            (monthSelected)="chosenEndMonthHandler($event, dpEnd)" panelClass="month-picker">
+        </mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+        <mat-label>Kreditrate</mat-label>
+        <input type="number" matInput #postalCode maxlength="4" placeholder="2,00" [(ngModel)]="interestRate">
+        <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+        <mat-label>Kaufpreis</mat-label>
+        <input type="number" matInput placeholder="100000" [(ngModel)]="purchasePrice">
+        <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+
+    <button mat-stroked-button color="primary" (click)="onCalculate()">Berechnen</button>
+
+    <button mat-stroked-button color="primary">Hinzufügen</button>
+
+    <div class="example-button-container">
+        <button mat-fab color="primary" matTooltip="Hinzufügen züsatzlichen Zeitabschnitt" 
+            aria-label="Hinzufügen züsatzlichen Zeitabschnitt">
+          <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

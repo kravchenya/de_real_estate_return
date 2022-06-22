@@ -68,27 +68,27 @@ export class PricecalculatorComponent implements OnInit {
 
   chosenStartYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.dateStart.value;
-    ctrlValue.year(normalizedYear.year());
+    ctrlValue!.year(normalizedYear.year());
     this.dateStart.setValue(ctrlValue);
   }
 
   chosenEndYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.dateEnd.value;
-    ctrlValue.year(normalizedYear.year());
+    ctrlValue!.year(normalizedYear.year());
     this.dateEnd.setValue(ctrlValue);
   }
 
   chosenStartMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.dateStart.value;
-    ctrlValue.month(normalizedMonth.month());
+    ctrlValue!.month(normalizedMonth.month());
     this.dateStart.setValue(ctrlValue);
-    this.minEndDate = new Date(ctrlValue.year(), ctrlValue.month() + 1);
+    this.minEndDate = new Date(ctrlValue!.year(), ctrlValue!.month() + 1);
     datepicker.close();
   }
 
   chosenEndMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.dateEnd.value;
-    ctrlValue.month(normalizedMonth.month());
+    ctrlValue!.month(normalizedMonth!.month());
     this.dateEnd.setValue(ctrlValue);
     datepicker.close();
   }
@@ -117,8 +117,8 @@ export class PricecalculatorComponent implements OnInit {
     // var inflatedPurchasePrise = this.purchasePrice;
 
    
-    var strYear = this.dateStart.value.year();
-    var strMonth = this.dateStart.value.month() + 2;
+    var strYear = this.dateStart.value!.year();
+    var strMonth = this.dateStart.value!.month() + 2;
     // var strMonthIndex:string = '';
     // if (strMonth === 12){
     //   strMonthIndex = strYear + '-' + strMonth;
@@ -131,11 +131,11 @@ export class PricecalculatorComponent implements OnInit {
     var inflatedPurchasePrise = this.calculatePurchasePriceMoM(strMonthIndex, endMonthIndex, this.purchasePrice);
 
     var startYearIndex = strYear + 2 + '-01'; 
-    var endYear = this.dateEnd.value.year();
+    var endYear = this.dateEnd.value!.year();
     var endYearIndex = endYear + '-01'; 
     inflatedPurchasePrise = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, inflatedPurchasePrise);
 
-    var endMonth = this.dateEnd.value.month() + 1;
+    var endMonth = this.dateEnd.value!.month() + 1;
     var endYearFirstMonthIndex = endMonth === 12 ? strYear + '-' + strMonth :  strYear + '-0' + strMonth;
     var endYearLastMonthIndex = strYear + '-' + '12';
     inflatedPurchasePrise = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, inflatedPurchasePrise);

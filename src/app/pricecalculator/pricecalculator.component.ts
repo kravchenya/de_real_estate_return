@@ -50,10 +50,21 @@ export const MY_FORMATS = {
 export class PricecalculatorComponent implements OnInit {
 
   maxDate: Date;
-  minDate: Date;
+  minStartDate: Date;
   minEndDate: Date;
-  public purchasePrice: number = 100000;
-  public interestRate: number = 2.00;
+  dateEnd: FormControl;
+  dateStart: FormControl = new FormControl(moment([1991, 0, 1]));
+  purchasePrice: number = 100000;
+  purchasePricePlaceHolder: string = "100000";
+  purchasePriceAsString: string = "100000";
+  interestRate: number = 2.00;
+  isDateEndFormControllerValid: boolean = false;
+  inflatedPurchasePrise: number = 0.0;
+  inflatedPurchasePriseAsString: string = "";
+  currentMarketPrise: number = 0.0;
+  annualizedReturn: number = 0.0;
+  overallReturn: number = 0.0;
+  
 
   // ihistoricalInflation: IHistoricalInflation = {
   //   name: 'inflation',
@@ -63,8 +74,22 @@ export class PricecalculatorComponent implements OnInit {
   // };
   // maxEndDate: Date;
 
-  dateStart = new FormControl(moment([1991, 0, 1]));
-  dateEnd = new FormControl(moment([2020, 11, 31]));
+  constructor() {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDay();
+
+    this.minStartDate = new Date(1991, 0, 1);
+    this.maxDate = currentDate;
+
+    this.dateEnd = new FormControl(moment([currentYear, currentMonth, currentDay]));
+
+
+    this.minEndDate = new Date(1991, 1, 1);
+
+    this.getExtraExpenses();
+  }
 
   chosenStartYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.dateStart.value;
@@ -91,16 +116,11 @@ export class PricecalculatorComponent implements OnInit {
     ctrlValue!.month(normalizedMonth!.month());
     this.dateEnd.setValue(ctrlValue);
     datepicker.close();
-  }
 
-  constructor() {
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 30, 0, 1);
-    this.maxDate = new Date(currentYear + 1, 11, 31);
-
-    this.minEndDate = new Date(currentYear - 30, 0, 1);
-
-    this.getExtraExpenses();
+    debugger;
+    if (this.dateEnd.value.getFullYear() < this.dateStart.value.getFullYear()){
+      this.isDateEndFormControllerValid = true;
+    }
   }
 
   getExtraExpenses(): void {
@@ -113,9 +133,7 @@ export class PricecalculatorComponent implements OnInit {
   }
 
   onCalculate() {
-
     // var inflatedPurchasePrise = this.purchasePrice;
-
     var strYear = this.dateStart.value!.year();
     var strMonth = this.dateStart.value!.month() + 2;
     // var strMonthIndex:string = '';
@@ -127,22 +145,26 @@ export class PricecalculatorComponent implements OnInit {
     // }
     var strMonthIndex = strMonth === 12 ? strYear + '-' + strMonth :  strYear + '-0' + strMonth;
     var endMonthIndex = strYear + '-' + '12';
-    var inflatedPurchasePrise = this.calculatePurchasePriceMoM(strMonthIndex, endMonthIndex, this.purchasePrice);
+    this.inflatedPurchasePrise = this.calculatePurchasePriceMoM(strMonthIndex, endMonthIndex, this.purchasePrice);
 
     var startYearIndex = strYear + 2 + '-01'; 
     var endYear = this.dateEnd.value!.year();
     var endYearIndex = endYear + '-01'; 
-    inflatedPurchasePrise = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, inflatedPurchasePrise);
+    this.inflatedPurchasePrise = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, this.inflatedPurchasePrise);
 
     var endMonth = this.dateEnd.value!.month() + 1;
 
+    // TODO seems error in the formulat - should be endYear instead of strYear; and endMonth instead of  strMonth
     var endYearFirstMonthIndex = endMonth === 12 ? strYear + '-' + strMonth :  strYear + '-0' + strMonth;
     var endYearLastMonthIndex = strYear + '-' + '12';
-    inflatedPurchasePrise = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, inflatedPurchasePrise);
+    this.inflatedPurchasePrise = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, this.inflatedPurchasePrise);
 
-    console.log(inflatedPurchasePrise);
+    // this.inflatedPurchasePriseAsString = (Math.round(this.inflatedPurchasePrise * 100) / 100).toFixed(2);
 
+    this.inflatedPurchasePrise = Math.round((this.inflatedPurchasePrise + Number.EPSILON) * 100) / 100;
+    this.inflatedPurchasePriseAsString = this.inflatedPurchasePrise.toLocaleString();
 
+    console.log(this.inflatedPurchasePrise);
 
     var t = this. purchasePrice;
     var p = this.interestRate;
@@ -150,6 +172,24 @@ export class PricecalculatorComponent implements OnInit {
     var s = this.dateStart;
     var e = this.dateEnd;
 
+  }
+
+  onCalculateReturn() {
+
+    var strYear = this.dateStart.value!.year();
+    var strMonth = this.dateStart.value!.month() + 1;
+    var strYearMonth = strMonth === 1 ? 0 : strMonth/12;
+    
+    var endMonth = this.dateEnd.value!.month() + 1;
+    var endYear = this.dateEnd.value!.year();
+    var endYearMonth = endMonth === 12 ? 0 : endMonth/12;
+    
+    let duration = (endYear + endYearMonth) - (strYear + strYearMonth); 
+
+    this.overallReturn = (this.currentMarketPrise - this.inflatedPurchasePrise) / this.currentMarketPrise;
+    let propertyReturnFull = (Math.pow(1 + this.overallReturn, 1 / duration) - 1) * 100;  
+    this.annualizedReturn = Math.round((propertyReturnFull + Number.EPSILON) * 100) / 100;
+    this.overallReturn = Math.round((this.overallReturn + Number.EPSILON) * 100);
   }
 
   calculatePurchasePriceYoY(sIndex: string, eIndex: string, purchasePrise: number) : number {

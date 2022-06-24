@@ -26,7 +26,7 @@ export class CountrymapComponent implements OnInit {
       container: 'map',
       accessToken: environment.mapbox.accessToken,
       style: this.style,
-      zoom: 5.7,
+      zoom: 5.4,
       center: [this.lng, this.lat]
     });
 

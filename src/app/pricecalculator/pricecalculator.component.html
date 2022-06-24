@@ -1,11 +1,12 @@
 <div class="row">
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Anfang der Kreditsauszahlung</mat-label>
-        <input matInput [matDatepicker]="dpStart" [formControl]="dateStart" [min]="minDate" [max]="maxDate">
+        <input matInput [matDatepicker]="dpStart" [formControl]="dateStart" [min]="minStartDate" [max]="maxDate">
         <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
         <mat-datepicker #dpStart startView="multi-year" (yearSelected)="chosenStartYearHandler($event)"
             (monthSelected)="chosenStartMonthHandler($event, dpStart)" panelClass="month-picker">
         </mat-datepicker>
+        <mat-error>Anfangsdatum ist gleich oder größer 01.01.1991</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" floatLabel="always">
@@ -15,17 +16,21 @@
         <mat-datepicker #dpEnd startView="multi-year" (yearSelected)="chosenEndYearHandler($event)"
             (monthSelected)="chosenEndMonthHandler($event, dpEnd)" panelClass="month-picker">
         </mat-datepicker>
+        <mat-error>Enddatum ist gleich oder kleiner als aktuelles Datum</mat-error>
+        <mat-error *ngIf="isDateEndFormControllerValid">Min size: 10px</mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
         <mat-label>Kreditrate</mat-label>
-        <input type="number" matInput #postalCode maxlength="4" placeholder="2,00" [(ngModel)]="interestRate">
+        <input type="number" matInput #postalCode maxlength="4" placeholder="2,00" min="0,1" max="20"
+            [(ngModel)]="interestRate">
+        <mat-error>Minimale Rate: 0,1%; maximale Rate: 20%</mat-error>
         <span matPrefix>%&nbsp;</span>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+    <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Kaufpreis</mat-label>
-        <input type="number" matInput placeholder="100000" [(ngModel)]="purchasePrice">
+        <input type="number" matInput placeholder="{{purchasePricePlaceHolder}}" [(ngModel)]="purchasePrice">
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
 
@@ -34,9 +39,37 @@
     <button mat-stroked-button color="primary">Hinzufügen</button>
 
     <div class="example-button-container">
-        <button mat-fab color="primary" matTooltip="Hinzufügen züsatzlichen Zeitabschnitt" 
+        <button mat-fab color="primary" matTooltip="Hinzufügen züsatzlichen Zeitabschnitt"
             aria-label="Hinzufügen züsatzlichen Zeitabschnitt">
-          <mat-icon>add</mat-icon>
+            <mat-icon>add</mat-icon>
         </button>
     </div>
+
+    <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Angepasster Kaufpreis</mat-label>
+        <input matInput [(ngModel)]="inflatedPurchasePrise"
+            matTooltip="Bitte geben Sie den aktuellen Markpreis für vergleichbare Immobilie ein"
+            matTooltipDisabled="false">
+        <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Aktueller Preis von vergleichbarer Immobilie</mat-label>
+        <input type="number" matInput [(ngModel)]="currentMarketPrise">
+        <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+
+    <button mat-stroked-button color="primary" (click)="onCalculateReturn()">Rendite Berechenen</button>
+
+    <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Nominale Immobilienrendite p.a.</mat-label>
+        <input matInput [(ngModel)]="annualizedReturn">
+        <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Gesamtrendite</mat-label>
+        <input matInput [(ngModel)]="overallReturn">
+        <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
 </div>

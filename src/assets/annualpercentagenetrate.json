@@ -1,5 +1,45 @@
 [
 	{
+		"TimePeriod": "2022-04",
+		"InterestRate": 1.99
+	},
+	{
+		"TimePeriod": "2022-03",
+		"InterestRate": 1.69
+	},
+	{
+		"TimePeriod": "2022-02",
+		"InterestRate": 1.49
+	},
+	{
+		"TimePeriod": "2022-01",
+		"InterestRate": 1.39
+	},
+	{
+		"TimePeriod": "2021-12",
+		"InterestRate": 1.37
+	},
+	{
+		"TimePeriod": "2021-11",
+		"InterestRate": 1.36
+	},
+	{
+		"TimePeriod": "2021-10",
+		"InterestRate": 1.32
+	},
+	{
+		"TimePeriod": "2021-09",
+		"InterestRate": 1.31
+	},
+	{
+		"TimePeriod": "2021-08",
+		"InterestRate": 1.31
+	},
+	{
+		"TimePeriod": "2021-07",
+		"InterestRate": 1.36
+	},
+	{
 		"TimePeriod": "2021-06",
 		"InterestRate": 1.34
 	},

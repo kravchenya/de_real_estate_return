@@ -6,7 +6,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDatepicker } from '@angular/material/datepicker';
 import vpiIflationYear from 'src/assets/vpiiflationyear.json';
 import vpiIflationMonthly from 'src/assets/vpiiflationmonthly.json';
-import { IHistoricalInflation } from './ihistoricalinflation';
+import { ICreditData, IHistoricalInflation } from './ihistoricalinflation';
 
 
 import * as _moment from 'moment';
@@ -49,22 +49,21 @@ export const MY_FORMATS = {
 
 export class PricecalculatorComponent implements OnInit {
 
-  maxDate: Date;
-  minStartDate: Date;
-  minEndDate: Date;
-  dateEnd: FormControl;
-  dateStart: FormControl = new FormControl(moment([1991, 0, 1]));
+  // maxDate: Date;
+  // minStartDate: Date = new Date(1991, 0, 1);
+  // minEndDate: Date = new Date(1991, 1, 1);
+  // dateEnd: FormControl;
+  // dateStart: FormControl = new FormControl(moment([1991, 0, 1]));
+  // interestRate: number = 2.00; 
   purchasePrice: number = 100000;
   purchasePricePlaceHolder: string = "100000";
   purchasePriceAsString: string = "100000";
-  interestRate: number = 2.00;
   isDateEndFormControllerValid: boolean = false;
   inflatedPurchasePrise: number = 0.0;
-  inflatedPurchasePriseAsString: string = "";
   currentMarketPrise: number = 0.0;
   annualizedReturn: number = 0.0;
   overallReturn: number = 0.0;
-  
+
 
   // ihistoricalInflation: IHistoricalInflation = {
   //   name: 'inflation',
@@ -74,51 +73,61 @@ export class PricecalculatorComponent implements OnInit {
   // };
   // maxEndDate: Date;
 
+  creditDataItem: ICreditData = {
+    interestRate: 5.0,
+
+    minStartDate: new Date(1991, 0, 1),
+    minEndDate: new Date(1991, 1, 1),
+    startDate: new FormControl(moment([1991, 0, 1])),
+    endDate: new FormControl(moment([new Date().getFullYear(), new Date().getMonth(), 1])),
+    maxDate: new Date(),
+  }
+
+  creditDataList: ICreditData[] = [];
+
   constructor() {
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-    const currentDay = currentDate.getDay();
 
-    this.minStartDate = new Date(1991, 0, 1);
-    this.maxDate = currentDate;
+    this.creditDataList.push(this.creditDataItem);
 
-    this.dateEnd = new FormControl(moment([currentYear, currentMonth, currentDay]));
+    // const currentDate = new Date();
+    // const currentYear = currentDate.getFullYear();
+    // const currentMonth = currentDate.getMonth();
 
+    // this.maxDate = currentDate;
 
-    this.minEndDate = new Date(1991, 1, 1);
+    // this.dateEnd = new FormControl(moment([currentYear, currentMonth, 1]));
 
     this.getExtraExpenses();
   }
 
-  chosenStartYearHandler(normalizedYear: Moment) {
-    const ctrlValue = this.dateStart.value;
+  chosenStartYearHandler(normalizedYear: Moment, index: number) {
+    const ctrlValue = this.creditDataList[index].startDate.value;
     ctrlValue!.year(normalizedYear.year());
-    this.dateStart.setValue(ctrlValue);
+    this.creditDataList[index].startDate.setValue(ctrlValue);
   }
 
-  chosenEndYearHandler(normalizedYear: Moment) {
-    const ctrlValue = this.dateEnd.value;
+  chosenEndYearHandler(normalizedYear: Moment, index: number) {
+    const ctrlValue = this.creditDataList[index].endDate.value;
     ctrlValue!.year(normalizedYear.year());
-    this.dateEnd.setValue(ctrlValue);
+    this.creditDataList[index].endDate.setValue(ctrlValue);
   }
 
-  chosenStartMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.dateStart.value;
+  chosenStartMonthHandler(normalizedMonth: Moment, index: number, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.creditDataList[index].startDate.value;
     ctrlValue!.month(normalizedMonth.month());
-    this.dateStart.setValue(ctrlValue);
-    this.minEndDate = new Date(ctrlValue!.year(), ctrlValue!.month() + 1);
+    this.creditDataList[index].startDate.setValue(ctrlValue);
+    this.creditDataList[index].minEndDate = new Date(ctrlValue!.year(), ctrlValue!.month() + 1);
     datepicker.close();
   }
 
-  chosenEndMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.dateEnd.value;
+  chosenEndMonthHandler(normalizedMonth: Moment, index: number, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.creditDataList[index].endDate.value;
     ctrlValue!.month(normalizedMonth!.month());
-    this.dateEnd.setValue(ctrlValue);
+    this.creditDataList[index].endDate.setValue(ctrlValue);
     datepicker.close();
 
     debugger;
-    if (this.dateEnd.value.getFullYear() < this.dateStart.value.getFullYear()){
+    if (this.creditDataList[index].endDate.value.getFullYear() < this.creditDataList[index].startDate.value.getFullYear()) {
       this.isDateEndFormControllerValid = true;
     }
   }
@@ -132,58 +141,71 @@ export class PricecalculatorComponent implements OnInit {
     });
   }
 
-  onCalculate() {
-    // var inflatedPurchasePrise = this.purchasePrice;
-    var strYear = this.dateStart.value!.year();
-    var strMonth = this.dateStart.value!.month() + 2;
-    // var strMonthIndex:string = '';
-    // if (strMonth === 12){
-    //   strMonthIndex = strYear + '-' + strMonth;
-    // } else
-    // {
-    //   strMonthIndex = strYear + '-0' + strMonth;
-    // }
-    var strMonthIndex = strMonth === 12 ? strYear + '-' + strMonth :  strYear + '-0' + strMonth;
-    var endMonthIndex = strYear + '-' + '12';
-    this.inflatedPurchasePrise = this.calculatePurchasePriceMoM(strMonthIndex, endMonthIndex, this.purchasePrice);
+  onAddAdditionalFinancing() {
+    const creditDataItem: ICreditData = {
+      interestRate: 5.0,
 
-    var startYearIndex = strYear + 2 + '-01'; 
-    var endYear = this.dateEnd.value!.year();
-    var endYearIndex = endYear + '-01'; 
-    this.inflatedPurchasePrise = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, this.inflatedPurchasePrise);
+      minStartDate: new Date(1991, 0, 1),
+      minEndDate: new Date(1991, 1, 1),
+      startDate: new FormControl(moment([1991, 0, 1])),
+      endDate: new FormControl(moment([new Date().getFullYear(), new Date().getMonth(), 1])),
+      maxDate: new Date(),
+    }
+    this.creditDataList.push(creditDataItem);
+  }
 
-    var endMonth = this.dateEnd.value!.month() + 1;
+  onDeleteAdditionalFinancing() {
+    if (this.creditDataList.length > 1) {
+      this.creditDataList.pop();
+    }
+  }
 
-    // TODO seems error in the formulat - should be endYear instead of strYear; and endMonth instead of  strMonth
-    var endYearFirstMonthIndex = endMonth === 12 ? strYear + '-' + strMonth :  strYear + '-0' + strMonth;
-    var endYearLastMonthIndex = strYear + '-' + '12';
-    this.inflatedPurchasePrise = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, this.inflatedPurchasePrise);
+  onCalculateInflationAdjustedPrice() {
 
-    // this.inflatedPurchasePriseAsString = (Math.round(this.inflatedPurchasePrise * 100) / 100).toFixed(2);
+    this.inflatedPurchasePrise = 0;
+    
+    this.creditDataList.forEach(creditData => {
+      var strYear = creditData.startDate.value!.year();
+      var strMonth = creditData.startDate.value!.month() + 2;
+      // var strMonthIndex:string = '';
+      // if (strMonth === 12){
+      //   strMonthIndex = strYear + '-' + strMonth;
+      // } else
+      // {
+      //   strMonthIndex = strYear + '-0' + strMonth;
+      // }
+      var strMonthIndex = strMonth === 12 ? strYear + '-' + strMonth : strYear + '-0' + strMonth;
+      var endMonthIndex = strYear + '-' + '12';
+      var inflatedPriseForTimeInterval = this.calculatePurchasePriceMoM(strMonthIndex, endMonthIndex, this.purchasePrice);
 
-    this.inflatedPurchasePrise = Math.round((this.inflatedPurchasePrise + Number.EPSILON) * 100) / 100;
-    this.inflatedPurchasePriseAsString = this.inflatedPurchasePrise.toLocaleString();
+      var startYearIndex = strYear + 2 + '-01';
+      var endYear = creditData.endDate.value!.year();
+      var endYearIndex = endYear + '-01';
+      inflatedPriseForTimeInterval = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, inflatedPriseForTimeInterval);
 
-    console.log(this.inflatedPurchasePrise);
+      var endMonth = creditData.endDate.value!.month() + 1;
 
-    var t = this. purchasePrice;
-    var p = this.interestRate;
+      // TODO seems error in the formulat - should be endYear instead of strYear; and endMonth instead of  strMonth
+      var endYearFirstMonthIndex = endMonth === 12 ? strYear + '-' + strMonth : strYear + '-0' + strMonth;
+      var endYearLastMonthIndex = strYear + '-' + '12';
+      inflatedPriseForTimeInterval = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, inflatedPriseForTimeInterval);
 
-    var s = this.dateStart;
-    var e = this.dateEnd;
+      inflatedPriseForTimeInterval = Math.round((inflatedPriseForTimeInterval + Number.EPSILON) * 100) / 100;
 
+      this.inflatedPurchasePrise = this.inflatedPurchasePrise + inflatedPriseForTimeInterval;
+    });
   }
 
   onCalculateReturn() {
 
-    var strYear = this.dateStart.value!.year();
-    var strMonth = this.dateStart.value!.month() + 1;
+    var strYear = this.creditDataList[0].startDate.value!.year();
+    var strMonth = this.creditDataList[0].startDate.value!.month() + 1;
     var strYearMonth = strMonth === 1 ? 0 : strMonth/12;
-    
-    var endMonth = this.dateEnd.value!.month() + 1;
-    var endYear = this.dateEnd.value!.year();
+    var timeSeriesLength = this.creditDataList.length - 1;
+    var endMonth = this.creditDataList[timeSeriesLength].endDate.value!.month() + 1;
+    var endYear = this.creditDataList[timeSeriesLength].endDate.value!.year();
     var endYearMonth = endMonth === 12 ? 0 : endMonth/12;
-    
+
     let duration = (endYear + endYearMonth) - (strYear + strYearMonth); 
 
     this.overallReturn = (this.currentMarketPrise - this.inflatedPurchasePrise) / this.currentMarketPrise;
@@ -192,16 +214,16 @@ export class PricecalculatorComponent implements OnInit {
     this.overallReturn = Math.round((this.overallReturn + Number.EPSILON) * 100);
   }
 
-  calculatePurchasePriceYoY(sIndex: string, eIndex: string, purchasePrise: number) : number {
-    var startYearIndex = vpiIflationMonthly.findIndex(element =>  sIndex === element.Date);
+  calculatePurchasePriceYoY(sIndex: string, eIndex: string, purchasePrise: number): number {
+    var startYearIndex = vpiIflationMonthly.findIndex(element => sIndex === element.Date);
     //var startYearIndex = vpiIflationYear.findIndex(element =>  sIndex === element.Date);
-    var endYearIndex = vpiIflationMonthly.findIndex(element =>  eIndex === element.Date);
+    var endYearIndex = vpiIflationMonthly.findIndex(element => eIndex === element.Date);
     //var endYearIndex = vpiIflationYear.findIndex(element =>  eIndex === element.Date);
     var inflatedPurchasePrise = purchasePrise;
     var iflationYoY = 0;
-    for (var i = startYearIndex; i < endYearIndex; i=i+12) {
+    for (var i = startYearIndex; i < endYearIndex; i = i + 12) {
 
-      iflationYoY = +(vpiIflationMonthly[i].InflationYoY!)/100;
+      iflationYoY = +(vpiIflationMonthly[i].InflationYoY!) / 100;
       // var iflationYoY = +(vpiIflationYear[i].InflationChangeYoY)/100;
       inflatedPurchasePrise = inflatedPurchasePrise + inflatedPurchasePrise * iflationYoY;
       console.log(iflationYoY);
@@ -211,13 +233,13 @@ export class PricecalculatorComponent implements OnInit {
 
   }
 
-  calculatePurchasePriceMoM(sIndex : string, eIndex : string, purchasePrice : number) : number {
+  calculatePurchasePriceMoM(sIndex: string, eIndex: string, purchasePrice: number): number {
     var startMonthIndex = vpiIflationMonthly.findIndex(element => sIndex === element.Date);
     var endMIndex = vpiIflationMonthly.findIndex(element => eIndex === element.Date);
 
     var iflationMoM = 0;
     for (var i = startMonthIndex; i <= endMIndex; i++) {
-      iflationMoM = +(vpiIflationMonthly[i].InflationMoM!)/100;
+      iflationMoM = +(vpiIflationMonthly[i].InflationMoM!) / 100;
       purchasePrice = purchasePrice + purchasePrice * iflationMoM;
       console.log(iflationMoM);
       console.log(purchasePrice);

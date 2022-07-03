@@ -4,9 +4,9 @@ import { FormControl } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
-import vpiIflationYear from 'src/assets/vpiiflationyear.json';
-import vpiIflationMonthly from 'src/assets/vpiiflationmonthly.json';
-import { ICreditData, IHistoricalInflation } from './ihistoricalinflation';
+import vpiIflationYear from 'src/assets/vpiinflationyear.json';
+import vpiInflationMonthly from 'src/assets/vpiinflationmonthly.json';
+import { ICreditData } from './icreditdata';
 
 
 import * as _moment from 'moment';
@@ -49,53 +49,31 @@ export const MY_FORMATS = {
 
 export class PricecalculatorComponent implements OnInit {
 
-  // maxDate: Date;
-  // minStartDate: Date = new Date(1991, 0, 1);
-  // minEndDate: Date = new Date(1991, 1, 1);
-  // dateEnd: FormControl;
-  // dateStart: FormControl = new FormControl(moment([1991, 0, 1]));
-  // interestRate: number = 2.00; 
   purchasePrice: number = 100000;
-  purchasePricePlaceHolder: string = "100000";
-  purchasePriceAsString: string = "100000";
+  downPayment: number = 20000;
+  closingCost: number = 10000;
   isDateEndFormControllerValid: boolean = false;
   inflatedPurchasePrise: number = 0.0;
-  currentMarketPrise: number = 0.0;
+  marketPrise: number = 300000.0;
   annualizedReturn: number = 0.0;
   overallReturn: number = 0.0;
 
-
-  // ihistoricalInflation: IHistoricalInflation = {
-  //   name: 'inflation',
-  //   date: [],
-  //   inflationChangeYoY: [],
-  //   VpiIndex: []
-  // };
-  // maxEndDate: Date;
-
-  creditDataItem: ICreditData = {
-    interestRate: 5.0,
-
-    minStartDate: new Date(1991, 0, 1),
-    minEndDate: new Date(1991, 1, 1),
-    startDate: new FormControl(moment([1991, 0, 1])),
-    endDate: new FormControl(moment([new Date().getFullYear(), new Date().getMonth(), 1])),
-    maxDate: new Date(),
-  }
+  private currentDate: Date = new Date();
 
   creditDataList: ICreditData[] = [];
 
-  constructor() {
+  ngOnInit(): void {
+    const creditDataItem: ICreditData = {
+      interestRate: 5.0,
 
-    this.creditDataList.push(this.creditDataItem);
+      minStartDate: new Date(1991, 0, 1),
+      minEndDate: new Date(1991, 1, 1),
+      startDate: new FormControl(moment([1991, 0, 1])),
+      endDate: new FormControl(moment([this.currentDate.getFullYear(), this.currentDate.getMonth(), 1])),
+      maxEndDate: this.currentDate,
+    };
 
-    // const currentDate = new Date();
-    // const currentYear = currentDate.getFullYear();
-    // const currentMonth = currentDate.getMonth();
-
-    // this.maxDate = currentDate;
-
-    // this.dateEnd = new FormControl(moment([currentYear, currentMonth, 1]));
+    this.creditDataList.push(creditDataItem);
 
     this.getExtraExpenses();
   }
@@ -126,7 +104,6 @@ export class PricecalculatorComponent implements OnInit {
     this.creditDataList[index].endDate.setValue(ctrlValue);
     datepicker.close();
 
-    debugger;
     if (this.creditDataList[index].endDate.value.getFullYear() < this.creditDataList[index].startDate.value.getFullYear()) {
       this.isDateEndFormControllerValid = true;
     }
@@ -144,12 +121,11 @@ export class PricecalculatorComponent implements OnInit {
   onAddAdditionalFinancing() {
     const creditDataItem: ICreditData = {
       interestRate: 5.0,
-
       minStartDate: new Date(1991, 0, 1),
       minEndDate: new Date(1991, 1, 1),
       startDate: new FormControl(moment([1991, 0, 1])),
-      endDate: new FormControl(moment([new Date().getFullYear(), new Date().getMonth(), 1])),
-      maxDate: new Date(),
+      endDate: new FormControl(moment([this.currentDate.getFullYear(), this.currentDate.getMonth(), 1])),
+      maxEndDate: this.currentDate,
     }
     this.creditDataList.push(creditDataItem);
   }
@@ -161,94 +137,154 @@ export class PricecalculatorComponent implements OnInit {
   }
 
   onCalculateInflationAdjustedPrice() {
+    // TODO formular does not use interest rate!!!!!!!!!
 
     this.inflatedPurchasePrise = 0;
-    
-    this.creditDataList.forEach(creditData => {
-      var strYear = creditData.startDate.value!.year();
-      var strMonth = creditData.startDate.value!.month() + 2;
-      // var strMonthIndex:string = '';
-      // if (strMonth === 12){
-      //   strMonthIndex = strYear + '-' + strMonth;
-      // } else
-      // {
-      //   strMonthIndex = strYear + '-0' + strMonth;
-      // }
-      var strMonthIndex = strMonth === 12 ? strYear + '-' + strMonth : strYear + '-0' + strMonth;
-      var endMonthIndex = strYear + '-' + '12';
-      var inflatedPriseForTimeInterval = this.calculatePurchasePriceMoM(strMonthIndex, endMonthIndex, this.purchasePrice);
 
-      var startYearIndex = strYear + 2 + '-01';
+    this.creditDataList.forEach(creditData => {
+      var inflatedPrise = 0;
+      var strYear = creditData.startDate.value!.year();
+
+      // Calculate MoM inflated price for the first year
+      var strMonth = creditData.startDate.value!.month() + 2; // +2 cause index starts from 0/January ... 11/Dezember and we want to calculate inflation from the following month
+      if (strMonth <= 12) {
+        var strMonthIndex = strMonth.toString().length === 2 ? strYear + '-' + strMonth : strYear + '-0' + strMonth;
+        var endMonthIndex = strYear + '-' + '12';
+        inflatedPrise = this.calculatePurchasePriceMoM(strMonthIndex, endMonthIndex, this.purchasePrice);
+      }
+
+      // Calculate YoY inflated price from the second year till january of the last year
+      var startYearIndex = strYear + 1 + '-01';
       var endYear = creditData.endDate.value!.year();
       var endYearIndex = endYear + '-01';
-      inflatedPriseForTimeInterval = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, inflatedPriseForTimeInterval);
+      inflatedPrise = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, inflatedPrise);
 
+      // Calculate MoM inflated price for the last year
       var endMonth = creditData.endDate.value!.month() + 1;
+      if (endMonth != 1) {
+        var endYearFirstMonthIndex = endYear + '-02'; // 2 is here, cause we calculated "endYear + '-01'" already for YoY
+        var endYearLastMonthIndex = endMonth.toString().length === 2 ? endYear + '-' + strMonth : endYear + '-0' + strMonth;
+        inflatedPrise = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, inflatedPrise);
+      }
 
-      // TODO seems error in the formulat - should be endYear instead of strYear; and endMonth instead of  strMonth
-      var endYearFirstMonthIndex = endMonth === 12 ? strYear + '-' + strMonth : strYear + '-0' + strMonth;
-      var endYearLastMonthIndex = strYear + '-' + '12';
-      inflatedPriseForTimeInterval = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, inflatedPriseForTimeInterval);
-
-      inflatedPriseForTimeInterval = Math.round((inflatedPriseForTimeInterval + Number.EPSILON) * 100) / 100;
-
-      this.inflatedPurchasePrise = this.inflatedPurchasePrise + inflatedPriseForTimeInterval;
+      this.inflatedPurchasePrise = inflatedPrise;
     });
+
+    // case when credit has been payed off some time ago
+    var length = this.creditDataList.length - 1;
+    var endYear = this.creditDataList[length].endDate.value!.year();
+    var endMonth = this.creditDataList[length].endDate.value!.month() + 2;
+    var currentYear = this.currentDate.getFullYear();
+    var currentMonth = this.currentDate.getMonth() + 1;
+
+    if (endYear < currentYear || ((endYear === currentYear) && (endMonth < currentMonth))) {
+
+      // Calculate MoM inflated price for the first year
+      var strMonthIndex = endMonth.toString().length === 2 ? endYear + '-' + endMonth : endYear + '-0' + endMonth;
+      var endMonthIndex = currentMonth.toString().length === 2 ? endYear + '-' + currentMonth : endYear + '-0' + currentMonth;
+      var inflatedPrise = this.calculatePurchasePriceMoM(strMonthIndex, endMonthIndex, this.inflatedPurchasePrise);
+
+      // Calculate YoY inflated price from the second year till january of the last year
+      if (endYear != currentYear) {
+        var startYearIndex = endYear + 1 + '-01';
+        var endYearIndex = currentYear + '-01';
+        inflatedPrise = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, inflatedPrise);
+      }
+
+      // Calculate MoM inflated price for the last year
+      if (endYear != currentYear && currentMonth != 1) {
+        var endYearFirstMonthIndex = currentYear + '-02';;
+        var endYearLastMonthIndex = currentYear + '-' + currentMonth;
+        inflatedPrise = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, inflatedPrise);
+      }
+
+      this.inflatedPurchasePrise = this.inflatedPurchasePrise + inflatedPrise;
+    }
+
+    // Calculate closing costs and downpayment inflation adjusted prices
+    var strYear = this.creditDataList[0].startDate.value!.year();
+    var strMonth = this.creditDataList[0].startDate.value!.month() + 2;
+
+    var strMonthIndex = currentMonth.toString().length === 2 ? strYear + '-' + strMonth : strYear + '-0' + strMonth;
+    var endMonthIndex = strYear + '-' + '12';
+
+    var startYearIndex = strYear + 1 + '-01';
+    var endYearIndex = currentYear + '-01';
+
+    var endYearFirstMonthIndex = currentYear + '-02';
+    var endYearLastMonthIndex = currentYear + '-' + currentMonth;
+
+    var downPaymentAdjusted = this.CalculatedInflationAdjustedPrice(this.downPayment, strMonthIndex, endMonthIndex,
+      startYearIndex, endYearIndex, endYearFirstMonthIndex, endYearLastMonthIndex);
+    var closingCostAdjusted = this.CalculatedInflationAdjustedPrice(this.closingCost, strMonthIndex, endMonthIndex,
+      startYearIndex, endYearIndex, endYearFirstMonthIndex, endYearLastMonthIndex);
+    this.inflatedPurchasePrise = this.inflatedPurchasePrise + downPaymentAdjusted + closingCostAdjusted;
+
+    this.inflatedPurchasePrise = Math.round((this.inflatedPurchasePrise + Number.EPSILON) * 100) / 100;
+  }
+
+  private CalculatedInflationAdjustedPrice(priceToAdjust: number, strMonthIndex: string, endMonthIndex: string,
+    startYearIndex: string, endYearIndex: string,
+    endYearFirstMonthIndex: string, endYearLastMonthIndex: string): number {
+
+    var inlfationAdjustedPrice = this.calculatePurchasePriceMoM(strMonthIndex, endMonthIndex, priceToAdjust);
+    inlfationAdjustedPrice = this.calculatePurchasePriceYoY(startYearIndex, endYearIndex, inlfationAdjustedPrice);
+    inlfationAdjustedPrice = this.calculatePurchasePriceMoM(endYearFirstMonthIndex, endYearLastMonthIndex, inlfationAdjustedPrice)
+    return inlfationAdjustedPrice;
   }
 
   onCalculateReturn() {
-
     var strYear = this.creditDataList[0].startDate.value!.year();
     var strMonth = this.creditDataList[0].startDate.value!.month() + 1;
-    var strYearMonth = strMonth === 1 ? 0 : strMonth/12;
+    var strYearMonth = strMonth === 1 ? 0 : strMonth / 12;
     var timeSeriesLength = this.creditDataList.length - 1;
     var endMonth = this.creditDataList[timeSeriesLength].endDate.value!.month() + 1;
     var endYear = this.creditDataList[timeSeriesLength].endDate.value!.year();
-    var endYearMonth = endMonth === 12 ? 0 : endMonth/12;
+    var endYearMonth = endMonth === 12 ? 0 : endMonth / 12;
 
-    let duration = (endYear + endYearMonth) - (strYear + strYearMonth); 
+    let duration = (endYear + endYearMonth) - (strYear + strYearMonth);
 
-    this.overallReturn = (this.currentMarketPrise - this.inflatedPurchasePrise) / this.currentMarketPrise;
-    let propertyReturnFull = (Math.pow(1 + this.overallReturn, 1 / duration) - 1) * 100;  
+    this.overallReturn = (this.marketPrise - this.inflatedPurchasePrise) / this.marketPrise;
+    let propertyReturnFull = (Math.pow(1 + this.overallReturn, 1 / duration) - 1) * 100;
     this.annualizedReturn = Math.round((propertyReturnFull + Number.EPSILON) * 100) / 100;
     this.overallReturn = Math.round((this.overallReturn + Number.EPSILON) * 100);
   }
 
   calculatePurchasePriceYoY(sIndex: string, eIndex: string, purchasePrise: number): number {
-    var startYearIndex = vpiIflationMonthly.findIndex(element => sIndex === element.Date);
+    var startYearIndex = vpiInflationMonthly.findIndex(element => sIndex === element.Date);
     //var startYearIndex = vpiIflationYear.findIndex(element =>  sIndex === element.Date);
-    var endYearIndex = vpiIflationMonthly.findIndex(element => eIndex === element.Date);
+    var endYearIndex = vpiInflationMonthly.findIndex(element => eIndex === element.Date);
     //var endYearIndex = vpiIflationYear.findIndex(element =>  eIndex === element.Date);
-    var inflatedPurchasePrise = purchasePrise;
     var iflationYoY = 0;
     for (var i = startYearIndex; i < endYearIndex; i = i + 12) {
 
-      iflationYoY = +(vpiIflationMonthly[i].InflationYoY!) / 100;
+      iflationYoY = +(vpiInflationMonthly[i].InflationYoY!) / 100;
       // var iflationYoY = +(vpiIflationYear[i].InflationChangeYoY)/100;
-      inflatedPurchasePrise = inflatedPurchasePrise + inflatedPurchasePrise * iflationYoY;
-      console.log(iflationYoY);
-      console.log(inflatedPurchasePrise);
+      purchasePrise = purchasePrise + purchasePrise * iflationYoY;
     }
-    return inflatedPurchasePrise;
-
+    return purchasePrise;
   }
 
   calculatePurchasePriceMoM(sIndex: string, eIndex: string, purchasePrice: number): number {
-    var startMonthIndex = vpiIflationMonthly.findIndex(element => sIndex === element.Date);
-    var endMIndex = vpiIflationMonthly.findIndex(element => eIndex === element.Date);
+    var startMonthIndex = vpiInflationMonthly.findIndex(element => sIndex === element.Date);
+    var endMonthIndex = vpiInflationMonthly.findIndex(element => eIndex === element.Date);
 
-    var iflationMoM = 0;
-    for (var i = startMonthIndex; i <= endMIndex; i++) {
-      iflationMoM = +(vpiIflationMonthly[i].InflationMoM!) / 100;
-      purchasePrice = purchasePrice + purchasePrice * iflationMoM;
-      console.log(iflationMoM);
-      console.log(purchasePrice);
+    // There is no inflation data for give year and/or month
+    if (startMonthIndex === -1) {
+      startMonthIndex = vpiInflationMonthly.length - 1;
+      return 0;
+    }
+
+    // There is no inflation data for give year and/or month
+    if (endMonthIndex === -1) {
+      endMonthIndex = vpiInflationMonthly.length - 1;
+    }
+
+    var inflationMoM = 0;
+    for (var i = startMonthIndex; i <= endMonthIndex; i++) {
+      inflationMoM = +(vpiInflationMonthly[i].InflationMoM!) / 100;
+      purchasePrice = purchasePrice + purchasePrice * inflationMoM;
     }
     return purchasePrice;
   }
-
-
-  ngOnInit(): void {
-  }
-
 }

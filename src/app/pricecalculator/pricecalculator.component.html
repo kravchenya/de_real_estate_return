@@ -2,7 +2,7 @@
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Anfang der Kreditsauszahlung</mat-label>
         <input matInput [matDatepicker]="dpStart" [formControl]="creditData.startDate" [min]="creditData.minStartDate"
-            [max]="creditData.maxDate">
+            [max]="creditData.maxEndDate">
         <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
         <mat-datepicker #dpStart startView="multi-year" (yearSelected)="chosenStartYearHandler($event, i)"
             (monthSelected)="chosenStartMonthHandler($event, i, dpStart)" panelClass="month-picker">
@@ -13,7 +13,7 @@
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Ende der Kreditsauszahlung</mat-label>
         <input matInput [matDatepicker]="dpEnd" [formControl]="creditData.endDate" [min]="creditData.minEndDate"
-            [max]="creditData.maxDate">
+            [max]="creditData.maxEndDate">
         <mat-datepicker-toggle matSuffix [for]="dpEnd"></mat-datepicker-toggle>
         <mat-datepicker #dpEnd startView="multi-year" (yearSelected)="chosenEndYearHandler($event, i)"
             (monthSelected)="chosenEndMonthHandler($event, i, dpEnd)" panelClass="month-picker">
@@ -24,11 +24,12 @@
 
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
         <mat-label>Kreditrate</mat-label>
-        <input type="number" matInput #postalCode maxlength="4" placeholder="2,00" min="0,1" max="20"
+        <input type="number" matInput maxlength="4" placeholder="2,00" min="0,1" max="20"
             [(ngModel)]="creditData.interestRate">
         <mat-error>Minimale Rate: 0,1%; maximale Rate: 20%</mat-error>
         <span matPrefix>%&nbsp;</span>
     </mat-form-field>
+
 </div>
 <button mat-stroked-button color="primary" matTooltip="Anschlussfinanzierung hinzufügen"
     (click)="onAddAdditionalFinancing()">Hinzufügen</button>
@@ -120,8 +121,25 @@
     </mat-grid-list> -->
 
     <mat-form-field appearance="fill" floatLabel="always">
-        <mat-label>Kaufpreis</mat-label>
-        <input type="number" matInput placeholder="{{purchasePricePlaceHolder}}" [(ngModel)]="purchasePrice">
+        <mat-label>Kreditsumme</mat-label>
+        <input type="number" matInput placeholder="{{purchasePrice}}" [(ngModel)]="purchasePrice">
+        <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+
+    
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+        <mat-label>Anzahlung</mat-label>
+        <input type="number" matInput maxlength="4" placeholder="2,00" min="0,1" max="20"
+            [(ngModel)]="downPayment">
+        <mat-error>Anzahlung kann nicht negative sein</mat-error>
+        <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+        <mat-label>Nebenkosten</mat-label>
+        <input type="number" matInput maxlength="4" placeholder="2,00" min="0,1" max="20"
+            [(ngModel)]="closingCost">
+        <mat-error>Nebenkosten können nicht negative sein</mat-error>
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
 
@@ -138,7 +156,7 @@
 
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Aktueller Preis von vergleichbarer Immobilie</mat-label>
-        <input type="number" matInput [(ngModel)]="currentMarketPrise">
+        <input type="number" matInput [(ngModel)]="marketPrise">
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
 

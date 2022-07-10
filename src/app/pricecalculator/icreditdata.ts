@@ -1,7 +1,7 @@
 import { FormControl } from "@angular/forms";
 
 export interface ICreditData {
-    interestRate: number;
+    annualPercentageRate: number;
     minStartDate: Date;
     minEndDate: Date;
     startDate: FormControl;

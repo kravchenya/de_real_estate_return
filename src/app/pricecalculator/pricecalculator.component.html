@@ -23,9 +23,9 @@
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
-        <mat-label>Kreditrate</mat-label>
+        <mat-label>Effektivzins (Sollzins)</mat-label>
         <input type="number" matInput maxlength="4" placeholder="2,00" min="0,1" max="20"
-            [(ngModel)]="creditData.interestRate">
+            [(ngModel)]="creditData.annualPercentageRate">
         <mat-error>Minimale Rate: 0,1%; maximale Rate: 20%</mat-error>
         <span matPrefix>%&nbsp;</span>
     </mat-form-field>
@@ -148,7 +148,7 @@
 
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Angepasster Kaufpreis</mat-label>
-        <input matInput [(ngModel)]="inflatedPurchasePrise"
+        <input matInput [(ngModel)]="inflatedPurchasePrice"
             matTooltip="Bitte geben Sie den aktuellen Markpreis für vergleichbare Immobilie ein"
             matTooltipDisabled="false">
         <span matPrefix>€&nbsp;</span>
@@ -156,7 +156,7 @@
 
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Aktueller Preis von vergleichbarer Immobilie</mat-label>
-        <input type="number" matInput [(ngModel)]="marketPrise">
+        <input type="number" matInput [(ngModel)]="marketPrice">
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
 

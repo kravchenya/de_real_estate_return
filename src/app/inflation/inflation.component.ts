@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import vpiIflationYear from 'src/assets/vpiiflationyear.json';
+import vpiIflationYear from 'src/assets/vpiinflationyear.json';
 import { IHistoricalInflation } from './ihistoricalinflation';
 
 import {

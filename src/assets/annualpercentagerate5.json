@@ -1,5 +1,61 @@
 [
 	{
+		"TimePeriod": "2023-06",
+		"InterestRate": 3.73
+	},
+	{
+		"TimePeriod": "2023-05",
+		"InterestRate": 3.66
+	},
+	{
+		"TimePeriod": "2023-04",
+		"InterestRate": 3.70
+	},
+	{
+		"TimePeriod": "2023-03",
+		"InterestRate": 3.64
+	},
+	{
+		"TimePeriod": "2023-02",
+		"InterestRate": 3.60
+	},
+	{
+		"TimePeriod": "2023-01",
+		"InterestRate": 3.45
+	},
+	{
+		"TimePeriod": "2022-12",
+		"InterestRate": 3.41
+	},
+	{
+		"TimePeriod": "2022-11",
+		"InterestRate": 3.51
+	},
+	{
+		"TimePeriod": "2022-10",
+		"InterestRate": 3.19
+	},
+	{
+		"TimePeriod": "2022-09",
+		"InterestRate": 2.96
+	},
+	{
+		"TimePeriod": "2022-08",
+		"InterestRate": 2.74
+	},
+	{
+		"TimePeriod": "2022-07",
+		"InterestRate": 2.73
+	},
+	{
+		"TimePeriod": "2022-06",
+		"InterestRate": 2.46
+	},
+	{
+		"TimePeriod": "2022-05",
+		"InterestRate": 2.12
+	},
+	{
 		"TimePeriod": "2022-04",
 		"InterestRate": 1.81
 	},

@@ -10,7 +10,7 @@ import additionalCosts from 'src/assets/additionalcosts.json';
 })
 export class CountrymapComponent implements OnInit {
 
-  style = 'https://adv-smart.de/styles/public/de_style_colour_light.json';
+  style = 'mapbox://styles/mapbox/light-v11';
   lat = 51;
   lng = 10;
 

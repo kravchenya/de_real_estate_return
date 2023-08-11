@@ -1831,5 +1831,60 @@
 		"Date": "2021-06",
 		"InflationYoY": "+2.3",
 		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2021-07",
+		"InflationYoY": "+3.8",
+		"InflationMoM": "+0.9"
+	},
+	{
+		"Date": "2021-08",
+		"InflationYoY": "+3.9",
+		"InflationMoM": "+0.0"
+	},
+	{
+		"Date": "2021-09",
+		"InflationYoY": "+4.1",
+		"InflationMoM": "+0.0"
+	},
+	{
+		"Date": "2021-10",
+		"InflationYoY": "+4.5",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2021-11",
+		"InflationYoY": "+5.2",
+		"InflationMoM": "-0.2"
+	},
+	{
+		"Date": "2021-12",
+		"InflationYoY": "+5.3",
+		"InflationMoM": "+0.5"
+	},
+	{
+		"Date": "2022-01",
+		"InflationYoY": "+4.9",
+		"InflationMoM": "+0.4"
+	},
+	{
+		"Date": "2022-02",
+		"InflationYoY": "+5.1",
+		"InflationMoM": "+0.9"
+	},
+	{
+		"Date": "2022-03",
+		"InflationYoY": "+7.3",
+		"InflationMoM": "+2.5"
+	},
+	{
+		"Date": "2022-04",
+		"InflationYoY": "+7.4",
+		"InflationMoM": "+0.8"
+	},
+	{
+		"Date": "2022-05",
+		"InflationYoY": "+7.9",
+		"InflationMoM": "+0.9"
 	}
 ]

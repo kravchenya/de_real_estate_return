@@ -3,8 +3,6 @@ import { IHistoricalRate } from './ihistoricalrate';
 import percentageRate10 from 'src/assets/annualpercentagerate10.json';
 import percentageRate5 from 'src/assets/annualpercentagerate5.json';
 import percentageNetRate from 'src/assets/annualpercentagenetrate.json';
-import inflationyear from 'src/assets/vpiiflationyear.json';
-
 
 import {
   ChartComponent,
@@ -123,12 +121,8 @@ export class CreditcostComponent implements OnInit {
       this.effectiveRate.date.push(element.TimePeriod);
       this.effectiveRate.rate.push(element.InterestRate);
     });
-
-    // console.log( this.inflation.rate);
-
   }
 
-  
   ngOnInit(): void {
   }
 }

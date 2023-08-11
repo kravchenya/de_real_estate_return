@@ -11,7 +11,6 @@ import additionalCosts from 'src/assets/additionalcosts.json';
 export class CountrymapComponent implements OnInit {
 
   style = 'mapbox://styles/mapbox/light-v11';
-
   lat = 51;
   lng = 10;
 
@@ -27,7 +26,7 @@ export class CountrymapComponent implements OnInit {
       container: 'map',
       accessToken: environment.mapbox.accessToken,
       style: this.style,
-      zoom: 5.7,
+      zoom: 5.4,
       center: [this.lng, this.lat]
     });
 

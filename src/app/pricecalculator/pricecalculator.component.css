@@ -9,5 +9,10 @@
 .row
 {
   margin-right: 8px;
+  /* display: block;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin; */
 }
   

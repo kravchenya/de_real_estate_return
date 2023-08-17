@@ -3,6 +3,7 @@ import { IHistoricalRate } from './ihistoricalrate';
 import percentageRate10 from 'src/assets/annualpercentagerate10.json';
 import percentageRate5 from 'src/assets/annualpercentagerate5.json';
 import percentageNetRate from 'src/assets/annualpercentagenetrate.json';
+import oldPercentageRate from 'src/assets/oldannualpercentagerate.json';
 
 import {
   ChartComponent,
@@ -14,6 +15,7 @@ import {
   ApexStroke,
   ApexTitleSubtitle
 } from "ng-apexcharts";
+import moment from 'moment';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -34,10 +36,12 @@ export class CreditcostComponent implements OnInit {
 
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions> | any;
-  ihistoricalRate5!: IHistoricalRate;
-  ihistoricalRate10!: IHistoricalRate;
+  historicalRate5!: IHistoricalRate;
+  historicalRate10!: IHistoricalRate;
   effectiveRate!: IHistoricalRate;
-  inflation!: IHistoricalRate;
+  oldhistoricalRate5!: IHistoricalRate;
+  oldhistoricalRate10!: IHistoricalRate;
+  oldEffectiveRate!: IHistoricalRate;
 
   constructor() { 
 
@@ -46,22 +50,34 @@ export class CreditcostComponent implements OnInit {
     this.chartOptions = {
       series: [
         {
-          name: this.ihistoricalRate5.name,
-          data: this.ihistoricalRate5.rate,
+          name: this.historicalRate5.name,
+          data: this.historicalRate5.data,
         },
         {
-          name: this.ihistoricalRate10.name,
-          data: this.ihistoricalRate10.rate
+          name: this.historicalRate10.name,
+          data: this.historicalRate10.data
         },
         {
           name: this.effectiveRate.name,
-          data: this.effectiveRate.rate
-        }
+          data: this.effectiveRate.data
+        },
+        {
+          name: this.oldhistoricalRate5.name,
+          data: this.oldhistoricalRate5.data
+        },
+        {
+          name: this.oldhistoricalRate10.name,
+          data: this.oldhistoricalRate10.data
+        },
+        {
+          name: this.oldEffectiveRate.name,
+          data: this.oldEffectiveRate.data
+        },
       ],
       chart: {
         height: 350,
         type: "line",
-        //stacked: false
+         stacked: false
       },
       dataLabels: {
         enabled: false
@@ -70,12 +86,18 @@ export class CreditcostComponent implements OnInit {
         curve: "smooth",
         width: [2, 2]
       },
-      
       xaxis: {
         type: "datetime",
-        categories: this.ihistoricalRate10.date
+        tickAmount: 10,
+        min: this.oldhistoricalRate5.data[0],
+        max: this.historicalRate5.data[this.oldhistoricalRate5.data.length- 1],
+        labels: {
+          formatter: function(value: any) {
+            return moment(new Date(value)).format("YYYY");
+          }
+        }
       },
-      tooltip: {
+       tooltip: {
         x: {
           format: "MM.yyyy"
         }
@@ -88,39 +110,54 @@ export class CreditcostComponent implements OnInit {
   }
 
   getExtraExpenses() : void {
-
-    this.ihistoricalRate10 = {
-      name:'10',
-      date: [],
-      rate: [],
-    };
-
-    percentageRate10.forEach((element) => {
-      this.ihistoricalRate10.date.push(element.TimePeriod);
-      this.ihistoricalRate10.rate.push(element.InterestRate);
-    });
-
-    this.ihistoricalRate5 = {
-      name:'5',
-      date: [],
-      rate: [],
-    };
-
-    percentageRate5.forEach((element) => {
-      this.ihistoricalRate5.date.push(element.TimePeriod);
-      this.ihistoricalRate5.rate.push(element.InterestRate);
-    });
-
     this.effectiveRate = {
-      name:'effective rate',
-      date: [],
-      rate: [],
+      name:'Effektiver Jahreszinssatz',
+      data:  new Array<number[]>(),
+    };
+    this.historicalRate5 = {
+      name:'Jahreszinssatz auf 5 Jahre ab 2003',
+      data:  new Array<number[]>(),
+    };
+    this.historicalRate10 = {
+      name:'Jahreszinssatz auf 10 Jahre ab 2003',
+      data:  new Array<number[]>(),
     };
 
     percentageNetRate.forEach((element) => {
-      this.effectiveRate.date.push(element.TimePeriod);
-      this.effectiveRate.rate.push(element.InterestRate);
+      var time = new Date(element.Date).getTime();
+      this.effectiveRate.data.push([time, element.InterestRate]);
     });
+
+    percentageRate5.forEach((element) => {
+      var time = new Date(element.Date).getTime();
+      this.historicalRate5.data.push([time, element.InterestRate]);
+    });
+
+    percentageRate10.forEach((element) => {
+      var time = new Date(element.Date).getTime();
+      this.historicalRate10.data.push([time, element.InterestRate]);
+    });
+
+    this.oldhistoricalRate5 = {
+      name:'Jahreszinssatz auf 5 Jahre von 1991 bis 2003',
+      data: new Array<number[]>(),
+    };
+    this.oldhistoricalRate10 = {
+      name:'Jahreszinssatz auf 10 Jahre von 1991 bis 2003',
+      data: new Array<number[]>(),
+    };
+    this.oldEffectiveRate = {
+      name:'Effektiver Jahreszinssatz',
+      data: new Array<number[]>(),
+    };
+
+    oldPercentageRate.forEach((element) => {
+      var time = new Date(element.Date).getTime();
+      this.oldhistoricalRate5.data.push([time, element.Year5]);
+      this.oldhistoricalRate5.data.push([time, element.Year5]);
+      this.oldhistoricalRate10.data.push([time, element.Year10]);
+      this.oldEffectiveRate.data.push([time, element.AnnualRate]);
+     });
   }
 
   ngOnInit(): void {

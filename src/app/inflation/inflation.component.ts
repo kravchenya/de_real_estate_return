@@ -13,15 +13,17 @@ import {
   ApexDataLabels,
   ApexTitleSubtitle,
   ApexYAxis,
-  ApexTheme
+  ApexTheme,
+  ApexMarkers,
+  ApexStroke
 } from "ng-apexcharts";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
-  markers: any; //ApexMarkers;
-  stroke: any; //ApexStroke;
+  markers: ApexMarkers;
+  stroke: ApexStroke;
   yaxis: ApexYAxis | ApexYAxis[];
   dataLabels: ApexDataLabels;
   title: ApexTitleSubtitle;
@@ -45,10 +47,9 @@ export class InflationComponent implements OnInit {
   ihistoricalInflation: IHistoricalInflation = {
     name:'inflation',
     date: [],
-    inflationChangeYoY: [],
-    VpiIndex: []
+    inflationYoY: [],
+    priceIndex: []
   };
-
 
   constructor() { 
 
@@ -58,17 +59,20 @@ export class InflationComponent implements OnInit {
       series: [
         {
           name: 'Inflation Index',
-          data: this.ihistoricalInflation.VpiIndex,
+          data: this.ihistoricalInflation.priceIndex,
         },
         {
           name: 'Veränderung zum Vorjahr',
-          data: this.ihistoricalInflation.inflationChangeYoY,
+          data: this.ihistoricalInflation.inflationYoY,
         }
       ],
       chart: {
         height: 350,
         type: "line",
-        stacked: false
+        stacked: false,
+        toolbar: {
+          show: false
+        }
       },
       dataLabels: {
         enabled: true
@@ -76,10 +80,9 @@ export class InflationComponent implements OnInit {
       stroke: {
         curve: "smooth",
         width: [2, 2],
-        // width: [1, 1, 4]
       },
       title: {
-        text: "Inflation Entwicklung (1991-2021)",
+        text: "Inflationsentwicklung",
         align: "center"
       },
       xaxis: {
@@ -96,11 +99,6 @@ export class InflationComponent implements OnInit {
             show: true,
             color: "#008FFB",
             offsetX: -10
-          },
-          labels: {
-            style: {
-              //color: "#008FFB"
-            }
           },
           title: {
             text: "Verbraucherpreisindex",
@@ -123,11 +121,6 @@ export class InflationComponent implements OnInit {
             color: "#00E396",
             offsetX: -10
           },
-          labels: {
-            style: {
-              //color: "#00E396"
-            }
-          },
           title: {
             text: "Veränderung zum Vorjahr in %",
             style: {
@@ -136,33 +129,12 @@ export class InflationComponent implements OnInit {
           }
         }
       ],      
-      // axisTicks: {
-      //   show: true
-      // },
-      // axisBorder: {
-      //   show: true,
-      //   color: "#FF1654"
-      // },
-      // labels: {
-      //   style: {
-      //     colors: "#FF1654"
-      //   }
-      // },
       tooltip: {
-        fixed: {
-          enabled: true,
-          position: "topLeft", // topRight, topLeft, bottomRight, bottomLeft
-          offsetY: 30,
-          offsetX: 60
-        }
+        x: {
+              format: "MM.yyyy"
+            }
       },
-      // tooltip: {
-      //   x: {
-      //     format: "MM.yyyy"
-      //   }
-      // },
       legend: {
-        // horizontalAlign: "center",
         offsetX: 40
       }, 
       theme:{
@@ -174,19 +146,10 @@ export class InflationComponent implements OnInit {
 
   getExtraExpenses() : void {
 
-  //   var fs = require('fs');
-  //   var t = vpiIflationYear;
-  //   t.reverse();
-  //   fs.writeFile ("src/assets/input.json", JSON.stringify(t), function(err: any) {
-  //     if (err) throw err;
-  //     console.log('complete');
-  //     }
-  // );
-
      vpiIflationYear.forEach((element) => {
         this.ihistoricalInflation.date.push(element.Date);
-        this.ihistoricalInflation.inflationChangeYoY.push(parseFloat(element.InflationChangeYoY));
-        this.ihistoricalInflation.VpiIndex.push(parseFloat(element.VpiIndex));
+        this.ihistoricalInflation.inflationYoY.push(element.InflationYoY);
+        this.ihistoricalInflation.priceIndex.push(element.PriceIndex);
       });
   }
 

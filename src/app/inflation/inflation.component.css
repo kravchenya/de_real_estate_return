@@ -1,4 +1,13 @@
-/* #chart {
-    width: calc(100% - 7000px);
-    height: calc(100% - 70px);
-  } */
+/* .parent {
+    width: calc(50% - 7000px);
+    height: calc(50% - 70px);
+  }
+   */
+  .chart-subtitle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #888;
+  }

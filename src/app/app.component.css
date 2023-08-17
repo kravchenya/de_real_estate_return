@@ -11,12 +11,11 @@
   } */
 
 mat-grid-tile {
-background: lightblue;
+  background: lightblue;
 }
 
-
 mat-card {
-width: 80%;
-height: 80%;
+  width: 95%;
+  height: 95%;
 }
 

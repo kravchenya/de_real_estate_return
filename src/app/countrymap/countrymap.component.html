@@ -1,29 +1,25 @@
-<div class='split left'>
-    <mat-card>
-        <div class="legendInfo">
-            <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label><strong>Bundesland</strong></mat-label>
-                <input matInput [(ngModel)]="federalState2">
-              </mat-form-field>
-              <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label><strong>Grunderwerbsteuer</strong></mat-label>
-                <input matInput [(ngModel)]="landAcquisition2">
-              </mat-form-field>
-              <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label><strong>Notar- und Grundbuchkosten*</strong></mat-label>
-                <input matInput [(ngModel)]="notary2">
-                <mat-hint >*Geschätzter Prozentsatz</mat-hint>
-              </mat-form-field> <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label><strong>Maklergebühren (Anteil Käufer)*</strong></mat-label>
-                <input matInput [(ngModel)]="realtor2">
-                <mat-hint >*Ortsbezogene Abweichungen sind möglich</mat-hint>
-              </mat-form-field>
-            <!-- <div><strong>Bundesland: </strong> <span id='federalState'></span></div>
-            <div><strong>Grunderwerbsteuer: </strong> <span id='landAcquisition'></span></div>
-            <div><strong>Notar- und Grundbuchkosten: </strong> <span id='notary'></span></div>
-            <div><strong>Maklergebühren (Anteil Käufer)*: </strong> <span id='realtor'></span></div>
-            <div><small>*Ortsbezogene Abweichungen sind möglich </small></div> -->
-        </div>
-        <div id="map"></div>
-    </mat-card>
+<div class="container">
+  <div class="top">
+    <!-- <mat-card class="mat-card-container "> -->
+        <mat-form-field floatLabel="always">
+          <mat-label><strong>Bundesland</strong></mat-label>
+          <input matInput [(ngModel)]="federalState2">
+        </mat-form-field>
+        <mat-form-field floatLabel="always">
+          <mat-label><strong>Grunderwerbsteuer</strong></mat-label>
+          <input matInput [(ngModel)]="landAcquisition2">
+        </mat-form-field>
+        <mat-form-field floatLabel="always">
+          <mat-label><strong>Notar- und Grundbuchkosten*</strong></mat-label>
+          <input matInput [(ngModel)]="notary2">
+          <mat-hint>*Geschätzter Prozentsatz</mat-hint>
+        </mat-form-field>
+        <mat-form-field floatLabel="always">
+          <mat-label><strong>Maklergebühren (Anteil Käufer)*</strong></mat-label>
+          <input matInput [(ngModel)]="realtor2">
+          <mat-hint>*Ortsbezogene Abweichungen sind möglich</mat-hint>
+        </mat-form-field>
+    <!-- </mat-card> -->
+  </div>
+  <div id="mapElement" class="bottom"></div>
 </div>

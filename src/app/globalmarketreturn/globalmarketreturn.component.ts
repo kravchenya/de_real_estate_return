@@ -59,7 +59,7 @@ export class GlobalMarketReturnComponent implements OnInit{
     this.chartOptions = {
       chart: {
         type: "line",
-        height: 350,
+        height: 400,
         toolbar: {
           show: false
         },

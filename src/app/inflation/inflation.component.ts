@@ -67,7 +67,7 @@ export class InflationComponent implements OnInit {
         }
       ],
       chart: {
-        height: 350,
+        height: 400,
         type: "line",
         stacked: false,
         toolbar: {

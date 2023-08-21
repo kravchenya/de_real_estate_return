@@ -76,7 +76,7 @@ export class AdditionalCostComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 350,
+        height: 400,
         stacked: true
       },
       plotOptions: {

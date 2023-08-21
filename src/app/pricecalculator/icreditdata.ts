@@ -4,7 +4,8 @@ export interface ICreditData {
     annualPercentageRate: number;
     minStartDate: Date;
     minEndDate: Date;
+    maxEndDate: Date;
     startDate: FormControl;
     endDate: FormControl;
-    maxEndDate: Date;
+    closingCost: number;
 }

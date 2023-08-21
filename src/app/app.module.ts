@@ -16,10 +16,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { GlobalMarketReturnComponent } from './globalmarketreturn/globalmarketreturn.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import {MatIconModule} from '@angular/material/icon';
     AdditionalCostComponent,
     CreditcostComponent,
     CountrymapComponent,
-    InflationComponent
+    InflationComponent,
+    GlobalMarketReturnComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatCardModule,
 
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

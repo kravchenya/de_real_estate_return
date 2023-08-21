@@ -1,9 +1,13 @@
 .month-picker .mat-calendar-period-button {
     pointer-events: none;
   }
-  
+
 .month-picker .mat-calendar-arrow {
   display: none;
+}
+
+.one-row-container {
+  display: flex;
 }
 
 .row
@@ -15,4 +19,3 @@
   scrollbar-color: rebeccapurple green;
   scrollbar-width: thin; */
 }
-  

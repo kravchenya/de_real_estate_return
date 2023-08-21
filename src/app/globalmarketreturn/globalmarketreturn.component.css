@@ -1,0 +1,23 @@
+.chart-subtitle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #888;
+  }
+ 
+/* .parent {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+} */
+/* .child-right {
+    background:green;
+    height: 50%;
+    width: 50%;
+    position: absolute;
+} */
+  /* .chart-container {
+    position: relative;
+  } */

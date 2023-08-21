@@ -6,3 +6,9 @@ mat-card {
   width: 95%;
   height: 95%;
 }
+
+.mat-card-content {
+  max-height: 100%;
+  position: absolute;
+  overflow: auto;
+}

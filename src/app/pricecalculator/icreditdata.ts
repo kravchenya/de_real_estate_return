@@ -7,4 +7,5 @@ export interface ICreditData {
     maxEndDate: Date;
     startDate: FormControl;
     endDate: FormControl;
+    closingCost: number;
 }

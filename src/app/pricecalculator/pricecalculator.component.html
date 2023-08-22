@@ -65,24 +65,22 @@
 <div class="row">
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label><strong>inflationsbereinigter Kaufpreis</strong></mat-label>
-        <input matInput [(ngModel)]="inflatedTotalPurchasePrice"
-            matTooltip="Bitte geben Sie den aktuellen Markpreis für vergleichbare Immobilie ein"
-            matTooltipDisabled="false">
+        <input matInput readonly [(ngModel)]="inflatedTotalPurchasePrice">
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label><strong>Gesamte Kreditkosten (nominal)</strong></mat-label>
-        <input type="number" matInput [(ngModel)]="totalCreditCost">
+        <input type="number" matInput readonly [(ngModel)]="totalCreditCost">
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label><strong>Bezahlte Zinsen</strong></mat-label>
-        <input type="number" matInput [(ngModel)]="totalInterestPaid">
+        <input type="number" matInput readonly [(ngModel)]="totalInterestPaid">
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label><strong>Aktueller Preis von vergleichbarer Immobilie</strong></mat-label>
-        <input type="number" matInput [(ngModel)]="marketPrice">
+        <input type="number" matInput readonly [(ngModel)]="marketPrice">
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
 </div>
@@ -92,13 +90,13 @@
         <mat-label>
             <strong>Reale Immobilienrendite p.a.</strong>
         </mat-label>
-        <input matInput [(ngModel)]="annualizedReturn">
+        <input matInput readonly [(ngModel)]="annualizedReturn">
         <span matPrefix>%&nbsp;</span>
     </mat-form-field>
 
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label><strong>Gesamtrendite</strong></mat-label>
-        <input matInput [(ngModel)]="overallReturn">
+        <input matInput readonly [(ngModel)]="overallReturn">
         <span matPrefix>%&nbsp;</span>
     </mat-form-field>
 

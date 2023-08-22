@@ -52,7 +52,7 @@ export class PricecalculatorComponent implements OnInit {
   creditAmount: number = 100000;
   downPayment: number = 20000;
   isDateEndFormControllerInvalid: boolean[] = [];
-  inflatedPurchasePrice: number = 0.0;
+  inflatedTotalPurchasePrice: number = 0.0;
   marketPrice: number = 300000.0;
   totalCreditCost: number = 0.0;
   totalInterestPaid: number = 0.0;
@@ -77,8 +77,6 @@ export class PricecalculatorComponent implements OnInit {
     };
 
     this.creditDataList.push(creditDataItem);
-
-    this.getExtraExpenses();
   }
 
   chosenStartYearHandler(normalizedYear: Moment, index: number) {
@@ -129,17 +127,8 @@ export class PricecalculatorComponent implements OnInit {
 
     this.isDateEndFormControllerInvalid[index] = false;
 
-    this.inflatedPurchasePrice = 0;
+    this.inflatedTotalPurchasePrice = 0;
     this.totalCreditCost = 0;
-  }
-
-  getExtraExpenses(): void {
-
-    vpiIflationYear.forEach((_element) => {
-      // this.ihistoricalInflation.date.push(element.Date);
-      // this.ihistoricalInflation.InflationYoY.push(parseFloat(element.InflationYoY));
-      // this.ihistoricalInflation.VpiIndex.push(parseFloat(element.VpiIndex));
-    });
   }
 
   onAddAdditionalFinancing() {
@@ -165,7 +154,7 @@ export class PricecalculatorComponent implements OnInit {
   }
 
   onCalculateInflationAdjustedPrice() {
-    this.inflatedPurchasePrice = 0;
+    this.inflatedTotalPurchasePrice = 0;
 
     this.creditDataList.forEach(creditData => {
       var startDate = creditData.startDate.value;
@@ -191,7 +180,7 @@ export class PricecalculatorComponent implements OnInit {
         monthlyPayments = monthlyPayments + monthlyInterest + monthlyInterest * vpiInflationMonthly[i].InflationMoM / 100;
         totalInitialPaymant = totalInitialPaymant + totalInitialPaymant * vpiInflationMonthly[i].InflationMoM / 100;
       }
-      this.inflatedPurchasePrice = Math.round((totalInitialPaymant + monthlyPayments + Number.EPSILON) * 100) / 100;
+      this.inflatedTotalPurchasePrice = Math.round((totalInitialPaymant + monthlyPayments + Number.EPSILON) * 100) / 100;
     });
   }
 
@@ -216,19 +205,27 @@ export class PricecalculatorComponent implements OnInit {
   }
 
   onCalculateReturn() {
-    var strYear = this.creditDataList[0].startDate.value!.year();
-    var strMonth = this.creditDataList[0].startDate.value!.month() + 1;
-    var strYearMonth = strMonth === 1 ? 0 : strMonth / 12;
-    var timeSeriesLength = this.creditDataList.length - 1;
-    var endMonth = this.creditDataList[timeSeriesLength].endDate.value!.month() + 1;
-    var endYear = this.creditDataList[timeSeriesLength].endDate.value!.year();
-    var endYearMonth = endMonth === 12 ? 0 : endMonth / 12;
+    this.creditDataList.forEach(creditData => {
+      var startDate = creditData.startDate.value;
+      var endDate = creditData.endDate.value;
+    
+      var timeZoneOffsetStart = startDate.toDate().getTimezoneOffset();
+      var timeZoneOffsetEnd = endDate.toDate().getTimezoneOffset();
+      var startIndexLocalTimezoneTimestapm = timeZoneOffsetStart > 0 ? startDate.valueOf() + 60000 * timeZoneOffsetStart : startDate.valueOf() - 60000 * timeZoneOffsetStart
+      var endIndexLocalTimezoneTimestapm = timeZoneOffsetEnd > 0 ? endDate.valueOf() + 60000 * timeZoneOffsetEnd : endDate.valueOf() - 60000 * timeZoneOffsetEnd
+  
+      var startIndex = vpiInflationMonthly.findIndex(vpiInflation => new Date(vpiInflation.Date).getTime() === startIndexLocalTimezoneTimestapm);
+      var endIndex = vpiInflationMonthly.findIndex(vpiInflation => new Date(vpiInflation.Date).getTime() === endIndexLocalTimezoneTimestapm);
+  
+      var totalNumberPayments = (endIndex - startIndex + 1) / 12; // in case credit duration is of form 15 years and 2 months
+      debugger;
+      this.overallReturn = (this.marketPrice - this.inflatedTotalPurchasePrice) / this.inflatedTotalPurchasePrice;
 
-    let duration = (endYear + endYearMonth) - (strYear + strYearMonth);
-
-    this.overallReturn = (this.marketPrice - this.inflatedPurchasePrice) / this.marketPrice;
-    let propertyReturnFull = (Math.pow(1 + this.overallReturn, 1 / duration) - 1) * 100;
-    this.annualizedReturn = Math.round((propertyReturnFull + Number.EPSILON) * 100) / 100;
-    this.overallReturn = Math.round((this.overallReturn + Number.EPSILON) * 100);
+      // annualized return, also known as the compound annual growth rate
+      // CAGR = ( Final Value / Initial Investment ​) ^ (1 / Number of Years1) − 1
+      var propertyReturnFull = (Math.pow(this.marketPrice/this.inflatedTotalPurchasePrice, 1 / totalNumberPayments) - 1) * 100;
+      this.annualizedReturn = Math.round((propertyReturnFull + Number.EPSILON) * 100) / 100;
+      this.overallReturn = Math.round((this.overallReturn + Number.EPSILON) * 100);
+    });
   }
 }

@@ -154,6 +154,8 @@ export class PricecalculatorComponent implements OnInit {
   }
 
   onCalculateInflationAdjustedPrice() {
+    this.annualizedReturn = 0;
+    this.overallReturn = 0;
     this.inflatedTotalPurchasePrice = 0;
 
     this.creditDataList.forEach(creditData => {
@@ -168,7 +170,6 @@ export class PricecalculatorComponent implements OnInit {
       var startIndex = vpiInflationMonthly.findIndex(vpiInflation => new Date(vpiInflation.Date).getTime() === startIndexLocalTimezoneTimestapm);
       var endIndex = vpiInflationMonthly.findIndex(vpiInflation => new Date(vpiInflation.Date).getTime() === endIndexLocalTimezoneTimestapm);
 
-      debugger;
       var totalNumberPayments = endIndex - startIndex + 1;
       var monthlyInterest = this.calculateMonthlyInterest(this.creditAmount, creditData.annualPercentageRate, totalNumberPayments);
       this.totalCreditCost = Math.round((monthlyInterest * totalNumberPayments + Number.EPSILON) * 100) / 100; 
@@ -218,7 +219,6 @@ export class PricecalculatorComponent implements OnInit {
       var endIndex = vpiInflationMonthly.findIndex(vpiInflation => new Date(vpiInflation.Date).getTime() === endIndexLocalTimezoneTimestapm);
   
       var totalNumberPayments = (endIndex - startIndex + 1) / 12; // in case credit duration is of form 15 years and 2 months
-      debugger;
       this.overallReturn = (this.marketPrice - this.inflatedTotalPurchasePrice) / this.inflatedTotalPurchasePrice;
 
       // annualized return, also known as the compound annual growth rate

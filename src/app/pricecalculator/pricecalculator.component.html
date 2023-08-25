@@ -64,7 +64,7 @@
 
 <div class="row">
     <mat-form-field appearance="fill" floatLabel="always">
-        <mat-label><strong>inflationsbereinigter Kaufpreis</strong></mat-label>
+        <mat-label><strong>inflationsbereinigter bezahlter Preis mit allen Nebenkosten</strong></mat-label>
         <input matInput readonly [(ngModel)]="inflatedTotalPurchasePrice">
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
@@ -90,13 +90,13 @@
         <mat-label>
             <strong>Reale Immobilienrendite p.a.</strong>
         </mat-label>
-        <input matInput readonly [(ngModel)]="annualizedReturn">
+        <input matInput readonly [(ngModel)]="annualizedRealReturn">
         <span matPrefix>%&nbsp;</span>
     </mat-form-field>
 
     <mat-form-field appearance="fill" floatLabel="always">
-        <mat-label><strong>Gesamtrendite</strong></mat-label>
-        <input matInput readonly [(ngModel)]="overallReturn">
+        <mat-label><strong>Inflationsbereinigte Gesamtrendite</strong></mat-label>
+        <input matInput readonly [(ngModel)]="overallRealReturn">
         <span matPrefix>%&nbsp;</span>
     </mat-form-field>
 

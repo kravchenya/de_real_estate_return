@@ -22,8 +22,8 @@ export class GlobalMarketReturnComponent implements OnInit {
   inflation!: IHistoricalRate;
 
   aggregatedCreditData: IAggregatedMortageLoanData = {} as IAggregatedMortageLoanData;
-  overallReturnNominal: number = 0.0;
-  overallReturnReal: number = 0.0;
+  overallAbsolutReturnNominal: number = 0.0;
+  overallAbsolutReturnReal: number = 0.0;
   annualizedReturnReal: number = 0.0;
   annualizedReturnNominal: number = 0.0;
 
@@ -167,11 +167,11 @@ export class GlobalMarketReturnComponent implements OnInit {
 
     const paymentsNumberInYears = paymentsNumberInMonth / 12;
 
-    this.overallReturnReal = Math.round((this.msciDevelopmentReal.rate[endIndex] + Number.EPSILON) * 100) / 100;
+    this.overallAbsolutReturnReal = Math.round((this.msciDevelopmentReal.rate[endIndex] + Number.EPSILON) * 100) / 100;
     const totalInvestementReal = totalInitialPaymentReal + monthlyPaymentsReal;
     this.annualizedReturnReal = this.calculateAnnualizedReturn(this.msciDevelopmentReal.rate[endIndex], totalInvestementReal, paymentsNumberInYears);
 
-    this.overallReturnNominal = Math.round((this.msciDevelopmentNominal.rate[endIndex] + Number.EPSILON) * 100) / 100;
+    this.overallAbsolutReturnNominal = Math.round((this.msciDevelopmentNominal.rate[endIndex] + Number.EPSILON) * 100) / 100;
     const totalInvestementNominal = initialCost + monthlyInterest * paymentsNumberInMonth;
     this.annualizedReturnNominal = this.calculateAnnualizedReturn(this.msciDevelopmentNominal.rate[endIndex], totalInvestementNominal, paymentsNumberInYears);
   }

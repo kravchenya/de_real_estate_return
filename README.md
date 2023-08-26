@@ -1,5 +1,7 @@
 # ReDe2
 
+Please pay attention, that this project is still under development and codebase may not satisfy industry standarts
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
 
 ## Development server

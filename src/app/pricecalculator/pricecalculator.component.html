@@ -59,13 +59,12 @@
         (click)="onCalculateInflationAdjustedPrice()"
         [disabled]="isDateEndFormControllerInvalid.indexOf(true) > -1">Berechnen</button>
 
-   
 </div>
 
 <div class="row">
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label><strong>inflationsbereinigter bezahlter Preis mit allen Nebenkosten</strong></mat-label>
-        <input matInput readonly [(ngModel)]="inflatedTotalPurchasePrice">
+        <input matInput readonly [(ngModel)]="totalPriceReal">
         <span matPrefix>€&nbsp;</span>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">

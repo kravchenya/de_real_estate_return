@@ -18,7 +18,6 @@ export class GlobalMarketReturnComponent implements OnInit {
   public chartOptions!: Partial<ChartOptions> | any;
   msciDevelopmentNominal!: IHistoricalRate;
   msciDevelopmentReal!: IHistoricalRate;
-  msciDevelopmentRealTer!: IHistoricalRate;
   inflation!: IHistoricalRate;
 
   aggregatedCreditData: IAggregatedMortageLoanData = {} as IAggregatedMortageLoanData;
@@ -26,6 +25,7 @@ export class GlobalMarketReturnComponent implements OnInit {
   overallAbsolutReturnReal: number = 0.0;
   annualizedReturnReal: number = 0.0;
   annualizedReturnNominal: number = 0.0;
+  totalExpenseRatio: number = 0.0;
 
   constructor() {
 
@@ -54,12 +54,6 @@ export class GlobalMarketReturnComponent implements OnInit {
       rate: [],
     };
 
-    this.msciDevelopmentRealTer = {
-      name: 'MSCI ACWI inflation angepasst mit 1% Nebenkosten',
-      date: [],
-      rate: [],
-    };
-
     this.chartOptions = {
       chart: {
         type: "line",
@@ -76,10 +70,6 @@ export class GlobalMarketReturnComponent implements OnInit {
         {
           name: this.msciDevelopmentReal.name,
           data: this.msciDevelopmentReal.rate,
-        },
-        {
-          name: this.msciDevelopmentRealTer.name,
-          data: this.msciDevelopmentRealTer.rate,
         },
       ],
       stroke: {
@@ -160,9 +150,6 @@ export class GlobalMarketReturnComponent implements OnInit {
       capitalGainReal = capitalGainReal * (1 + msciAcwiIndex[i].MoM) * (1 - vpiInflationMonthly[i]!.InflationMoM! / 100) + monthlyInterest;
       this.msciDevelopmentReal.date.push(msciAcwiIndex[i].Date);
       this.msciDevelopmentReal.rate.push(capitalGainReal);
-
-      // this.msciDevelopmentRealTer.date.push(msciAcwiIndex[i].Date);
-      // this.msciDevelopmentRealTer.rate.push(initialInvestmentReal);
     }
 
     const paymentsNumberInYears = paymentsNumberInMonth / 12;

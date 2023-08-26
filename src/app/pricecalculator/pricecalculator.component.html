@@ -40,7 +40,6 @@
 <button mat-stroked-button color="primary" matTooltip="Anschlussfinanzierung hinzufügen"
     (click)="onDeleteAdditionalFinancing()" [disabled]="creditDataList.length === 1">Entfernen</button>
 <div class="row">
-
     <mat-form-field appearance="fill" floatLabel="always">
         <mat-label><strong>Kreditsumme</strong></mat-label>
         <input type="number" matInput placeholder="{{creditAmount}}" [(ngModel)]="creditAmount">
@@ -58,7 +57,6 @@
     <button mat-stroked-button color="primary" title="inflationsbereinigen Preis samt allen Kosten berechen"
         (click)="onCalculateInflationAdjustedPrice()"
         [disabled]="isDateEndFormControllerInvalid.indexOf(true) > -1">Berechnen</button>
-
 </div>
 
 <div class="row">

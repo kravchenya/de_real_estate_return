@@ -6,6 +6,9 @@
     font-size: 12px;
     color: #888;
   }
+  .one-row-container {
+    display: flex;
+  }
  
 /* .parent {
     overflow: hidden;

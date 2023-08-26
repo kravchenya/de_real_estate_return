@@ -1,14 +1,37 @@
-<div class="parent">
-    <apx-chart class="child-right"
-      [chart]="chartOptions.chart"
-      [dataLabels]="chartOptions.dataLabels"
-      [series]="chartOptions.series"
-      [stroke]="chartOptions.stroke"
-      [subtitle]="chartOptions.subtitle"
-      [title]="chartOptions.title"
-      [tooltip]="chartOptions.tooltip"
-      [xaxis]="chartOptions.xaxis"
-      [yaxis]="chartOptions.yaxis"
-    ></apx-chart>
+<div>
+  <div class="one-row-container">
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>
+        <strong>Reale Rendite p.a</strong>
+      </mat-label>
+      <input matInput readonly [(ngModel)]="annualizedReturnReal">
+      <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>
+        <strong>Inflationsbereignitr Gewinn</strong>
+      </mat-label>
+      <input matInput readonly [(ngModel)]="overallReturnReal">
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>
+        <strong>Nominale Rendite p.a.</strong>
+      </mat-label>
+      <input matInput readonly [(ngModel)]="annualizedReturnNominal">
+      <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>
+        <strong>Nominaler Gewinn</strong>
+      </mat-label>
+      <input matInput readonly [(ngModel)]="overallReturnNominal">
+    </mat-form-field>
+  </div>
+  <div>
+    <apx-chart class="child-right" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+      [series]="chartOptions.series" [stroke]="chartOptions.stroke" [subtitle]="chartOptions.subtitle"
+      [title]="chartOptions.title" [tooltip]="chartOptions.tooltip" [xaxis]="chartOptions.xaxis"
+      [yaxis]="chartOptions.yaxis"></apx-chart>
     <div class="chart-subtitle">Quelle: Destatis</div>
+  </div>
 </div>

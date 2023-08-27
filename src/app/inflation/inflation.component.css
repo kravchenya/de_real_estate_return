@@ -1,13 +1,25 @@
-/* .parent {
-    width: calc(50% - 7000px);
-    height: calc(50% - 70px);
-  }
-   */
-  .chart-subtitle {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    color: #888;
-  }
+.month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.month-picker .mat-calendar-arrow {
+  display: none;
+}
+
+.row {
+  margin-right: 8px;
+  /* display: block;
+overflow-x: scroll;
+overflow-y: scroll;
+scrollbar-color: rebeccapurple green;
+scrollbar-width: thin; */
+}
+
+.chart-subtitle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #888;
+}

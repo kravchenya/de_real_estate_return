@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
 import { FormControl } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
 import vpiInflationMonthly from '../../assets/vpiinflationmonthly.json';
 import { ICreditData } from './icreditdata';
-
 
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
@@ -158,10 +156,8 @@ export class PricecalculatorComponent implements OnInit {
 
     this.creditDataList.forEach(creditData => {
 
-      const startIndexLocalTimezoneTimestapm = this.getIndex(creditData.startDate.value);
-      const startIndex = vpiInflationMonthly.findIndex(vpiInflation => new Date(vpiInflation.Date).getTime() === startIndexLocalTimezoneTimestapm);
-      const endIndexLocalTimezoneTimestapm = this.getIndex(creditData.endDate.value);
-      const endIndex = vpiInflationMonthly.findIndex(vpiInflation => new Date(vpiInflation.Date).getTime() === endIndexLocalTimezoneTimestapm);
+      const startIndex = this.getIndex(creditData.startDate.value);
+      const endIndex = this.getIndex(creditData.endDate.value);
 
       const totalNumberPayments = endIndex - startIndex + 1;
       const monthlyInterest = this.calculateMonthlyInterest(this.creditAmount, creditData.annualPercentageRate, totalNumberPayments);
@@ -202,11 +198,8 @@ export class PricecalculatorComponent implements OnInit {
 
   onCalculateReturn() {
     this.creditDataList.forEach(creditData => {
-      const startIndexLocalTimezoneTimestapm = this.getIndex(creditData.startDate.value);
-      const startIndex = vpiInflationMonthly.findIndex(vpiInflation => new Date(vpiInflation.Date).getTime() === startIndexLocalTimezoneTimestapm);
-      const endIndexLocalTimezoneTimestapm = this.getIndex(creditData.endDate.value);
-      const endIndex = vpiInflationMonthly.findIndex(vpiInflation => new Date(vpiInflation.Date).getTime() === endIndexLocalTimezoneTimestapm);
-
+      const startIndex = this.getIndex(creditData.startDate.value);
+      const endIndex = this.getIndex(creditData.endDate.value);
       const totalNumberPaymentsInYears = (endIndex - startIndex + 1) / 12; // in case credit duration is of form 15 years and 2 months
 
       this.overallRealReturn = (this.marketPrice - this.totalPriceReal) / this.totalPriceReal;
@@ -219,10 +212,8 @@ export class PricecalculatorComponent implements OnInit {
     });
   }
 
-  private getIndex(date: any) {
-
-    const timeZoneOffsetStart = date.toDate().getTimezoneOffset();
-    const indexLocalTimezoneTimestapm = timeZoneOffsetStart > 0 ? date.valueOf() + 60000 * timeZoneOffsetStart : date.valueOf() - 60000 * timeZoneOffsetStart;
-    return indexLocalTimezoneTimestapm;
+  private getIndex(date: Moment) {
+    const strDate = date.format('YYYY-MM');
+    return vpiInflationMonthly.findIndex(vpi => vpi.Date === strDate);
   }
 }

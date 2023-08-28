@@ -1,8 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    /* 100% of viewport height */
+    height: 100vh;  /* 100% of viewport height */
+    position: relative;
 }
 
 .top {
@@ -10,11 +10,13 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     /* Adjust as needed */
     margin-bottom: 25px;
-
 }
 
 .bottom {
-    flex: 1;
-    /* Take remaining available space */
-    width: 100%;
+    /* flex: 1; */    /* Take remaining available space */
+   
+    height: 80%;     /* height you want for the bottom margin */
+    content: "";
+    display: block;
+    flex-shrink: 0;
 }

@@ -1,0 +1,10 @@
+table {
+  width: 100%;
+}
+
+
+.main-table{
+  max-height:42vh;
+  overflow-y:scroll;
+  overflow-x:hidden;
+}

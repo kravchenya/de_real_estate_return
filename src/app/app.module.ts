@@ -21,7 +21,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
 import { GlobalMarketReturnComponent } from './globalmarketreturn/globalmarketreturn.component';
+import { CitystatisticsComponent } from './citystatistics/citystatistics.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { GlobalMarketReturnComponent } from './globalmarketreturn/globalmarketre
     CreditcostComponent,
     CountrymapComponent,
     InflationComponent,
-    GlobalMarketReturnComponent
+    GlobalMarketReturnComponent,
+    CitystatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { GlobalMarketReturnComponent } from './globalmarketreturn/globalmarketre
 
     MatButtonModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

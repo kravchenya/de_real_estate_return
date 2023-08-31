@@ -1,10 +1,14 @@
+.wrap {
+  width: 98%;
+}
+
 mat-grid-tile {
   /* background: lightblue; */
 }
 
 mat-card {
-  width: 95%;
-  height: 95%;
+  width: 99%;
+  height: 99%;
 }
 
 .mat-card-content {

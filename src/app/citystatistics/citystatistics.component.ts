@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import population from '../../assets/population.json';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface IAreaStatistics {
   number: number;
@@ -16,10 +19,13 @@ export interface IAreaStatistics {
   styleUrls: ['./citystatistics.component.css']
 })
 
-export class CitystatisticsComponent implements OnInit {
+export class CitystatisticsComponent implements OnInit, AfterViewInit {
 
+  dataSource = new MatTableDataSource<IAreaStatistics>([]);
   displayedColumns: string[] = [];
   public statisticsData: IAreaStatistics[] = [];
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor() {
   }
@@ -37,5 +43,18 @@ export class CitystatisticsComponent implements OnInit {
       };
       this.statisticsData.push(element);
     });
+
+    this.dataSource = new MatTableDataSource<IAreaStatistics>(this.statisticsData);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  public doFilter = (event: EventTarget) => {
+    const element = event as HTMLInputElement
+    const value = element.value
+    this.dataSource.filter = value.trim();
   }
 }

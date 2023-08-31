@@ -24,40 +24,42 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { GlobalMarketReturnComponent } from './globalmarketreturn/globalmarketreturn.component';
 import { CitystatisticsComponent } from './citystatistics/citystatistics.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PricecalculatorComponent,
     AdditionalCostComponent,
-    CreditcostComponent,
+    AppComponent,
+    CitystatisticsComponent,
     CountrymapComponent,
-    InflationComponent,
+    CreditcostComponent,
     GlobalMarketReturnComponent,
-    CitystatisticsComponent
+    InflationComponent,
+    PricecalculatorComponent,
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
-    NgApexchartsModule,
-
+    BrowserAnimationsModule,
+    BrowserModule,
     FormsModule,
+    NgApexchartsModule,
     NoopAnimationsModule,
-    
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatNativeDateModule,
-    ReactiveFormsModule,
-
-    MatGridListModule,
-    MatCardModule,
 
     MatButtonModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatTabsModule,
     MatTableModule,
+
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

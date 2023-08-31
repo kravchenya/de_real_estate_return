@@ -1,6 +1,6 @@
 <div class="one-row-container" *ngFor="let creditData of creditDataList; let i = index">
     <mat-form-field appearance="fill" floatLabel="always">
-        <mat-label><strong>Anfang der Kreditsauszahlung</strong></mat-label>
+        <mat-label><strong>Anfang der Kreditauszahlung</strong></mat-label>
         <input matInput [matDatepicker]="dpStart" [formControl]="creditData.startDate" [min]="creditData.minStartDate"
             [max]="creditData.maxEndDate">
         <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
@@ -10,7 +10,7 @@
         </mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
-        <mat-label><strong>Ende der Kreditsauszahlung</strong></mat-label>
+        <mat-label><strong>Ende der Kreditauszahlung</strong></mat-label>
         <input matInput [matDatepicker]="dpEnd" [formControl]="creditData.endDate" [min]="creditData.minEndDate"
             [max]="creditData.maxEndDate">
         <mat-datepicker-toggle matSuffix [for]="dpEnd"></mat-datepicker-toggle>

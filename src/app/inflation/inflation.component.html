@@ -1,7 +1,7 @@
 <div>
   <div class="row">
     <mat-form-field appearance="fill" floatLabel="always">
-      <mat-label><strong>Anfang der Kreditsauszahlung</strong></mat-label>
+      <mat-label><strong>Anfang der Umrechnung</strong></mat-label>
       <input matInput [matDatepicker]="dpStart" [formControl]="startDate" [min]="minStartDate" [max]="maxEndDate">
       <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
       <mat-datepicker #dpStart startView="multi-year" panelClass="month-picker"

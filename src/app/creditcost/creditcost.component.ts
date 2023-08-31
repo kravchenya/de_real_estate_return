@@ -1,9 +1,9 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { IHistoricalRate } from './ihistoricalrate';
-import percentageRate10 from 'src/assets/annualpercentagerate10.json';
-import percentageRate5 from 'src/assets/annualpercentagerate5.json';
-import percentageNetRate from 'src/assets/annualpercentagenetrate.json';
-import oldPercentageRate from 'src/assets/oldannualpercentagerate.json';
+import percentageRate10 from '../../assets/annualpercentagerate10.json';
+import percentageRate5 from '../../assets/annualpercentagerate5.json';
+import percentageNetRate from '../../assets/annualpercentagenetrate.json';
+import oldPercentageRate from '../../assets/oldannualpercentagerate.json';
 
 import {
   ChartComponent,

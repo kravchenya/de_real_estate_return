@@ -1,4 +1,4 @@
-# ReDe2
+# ReDe
 
 Please pay attention, that this project is still under development and codebase may not satisfy industry standarts
 

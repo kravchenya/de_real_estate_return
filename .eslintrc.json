@@ -48,6 +48,9 @@
           "error",
           {
             "parser": "angular"
+          },
+          {
+            "endOfLine": "auto"
           }
         ]
       }

@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import population from '../../assets/population.json';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 export interface IAreaStatistics {
   number: number;
@@ -12,29 +12,25 @@ export interface IAreaStatistics {
   density: number;
 }
 
-
 @Component({
   selector: 'app-citystatistics',
   templateUrl: './citystatistics.component.html',
-  styleUrls: ['./citystatistics.component.css']
+  styleUrls: ['./citystatistics.component.css'],
 })
-
 export class CitystatisticsComponent implements OnInit, AfterViewInit {
-
   dataSource = new MatTableDataSource<IAreaStatistics>([]);
   displayedColumns: string[] = [];
   public statisticsData: IAreaStatistics[] = [];
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.displayedColumns = ['name', 'population', 'area', 'density'];
 
     population.forEach((p) => {
-      var element: IAreaStatistics = {
+      const element: IAreaStatistics = {
         number: p.Number,
         name: p.Name,
         population: p.Population,
@@ -53,8 +49,8 @@ export class CitystatisticsComponent implements OnInit, AfterViewInit {
   }
 
   public doFilter = (event: EventTarget) => {
-    const element = event as HTMLInputElement
-    const value = element.value
+    const element = event as HTMLInputElement;
+    const value = element.value;
     this.dataSource.filter = value.trim();
-  }
+  };
 }

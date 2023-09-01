@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GlobalMarketReturnComponent as GlobalMarketReturnComponent } from './globalmarketreturn.component';
+import {GlobalMarketReturnComponent as GlobalMarketReturnComponent} from './globalmarketreturn.component';
 
 describe('GlobalmarketreturnComponent', () => {
   let component: GlobalMarketReturnComponent;
@@ -8,7 +8,7 @@ describe('GlobalmarketreturnComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GlobalMarketReturnComponent]
+      declarations: [GlobalMarketReturnComponent],
     });
     fixture = TestBed.createComponent(GlobalMarketReturnComponent);
     component = fixture.componentInstance;

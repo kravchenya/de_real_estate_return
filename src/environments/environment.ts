@@ -6,8 +6,9 @@ export const environment = {
   production: false,
 
   mapbox: {
-    accessToken: 'pk.eyJ1IjoicGVyZmVjdGFjdCIsImEiOiJja3J3Njc3aTkwZGNmMnVuOGltd2Nxd3YxIn0.DrE3Odk7uywjQ30AxZv4EQ'
-  }
+    accessToken:
+      'pk.eyJ1IjoicGVyZmVjdGFjdCIsImEiOiJja3J3Njc3aTkwZGNmMnVuOGltd2Nxd3YxIn0.DrE3Odk7uywjQ30AxZv4EQ',
+  },
 };
 
 /*

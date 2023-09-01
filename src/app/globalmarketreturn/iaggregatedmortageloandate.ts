@@ -1,6 +1,6 @@
-import { IMortageLoanData } from "./imortageloandata";
+import {IMortageLoanData} from './imortageloandata';
 
 export interface IAggregatedMortageLoanData {
-    downPayment: number,
-    mortageIntervals: IMortageLoanData[] 
+  downPayment: number;
+  mortageIntervals: IMortageLoanData[];
 }

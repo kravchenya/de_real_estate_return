@@ -1,4 +1,4 @@
 export interface IHistoricalRate {
-    name: string;
-    data: number[][];
-} 
+  name: string;
+  data: number[][];
+}

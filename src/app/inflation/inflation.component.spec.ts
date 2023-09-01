@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InflationComponent } from './inflation.component';
+import {InflationComponent} from './inflation.component';
 
 describe('InflationComponent', () => {
   let component: InflationComponent;
@@ -8,9 +8,8 @@ describe('InflationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InflationComponent ]
-    })
-    .compileComponents();
+      declarations: [InflationComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

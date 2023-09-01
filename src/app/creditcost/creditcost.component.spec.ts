@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreditcostComponent } from './creditcost.component';
+import {CreditcostComponent} from './creditcost.component';
 
 describe('CreditecostComponent', () => {
   let component: CreditcostComponent;
@@ -8,9 +8,8 @@ describe('CreditecostComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreditcostComponent ]
-    })
-    .compileComponents();
+      declarations: [CreditcostComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

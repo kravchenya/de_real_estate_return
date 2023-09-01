@@ -2,19 +2,43 @@
   <div class="row">
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label><strong>Anfang der Umrechnung</strong></mat-label>
-      <input matInput [matDatepicker]="dpStart" [formControl]="startDate" [min]="minStartDate" [max]="maxEndDate">
+      <input
+        matInput
+        [matDatepicker]="dpStart"
+        [formControl]="startDate"
+        [min]="minStartDate"
+        [max]="maxEndDate"
+      />
       <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
-      <mat-datepicker #dpStart startView="multi-year" panelClass="month-picker"
-        (yearSelected)="chosenStartYearHandler($event, dpStart)" (closed)="onClosed()">
+      <mat-datepicker
+        #dpStart
+        startView="multi-year"
+        panelClass="month-picker"
+        (yearSelected)="chosenStartYearHandler($event, dpStart)"
+        (closed)="onClosed()"
+      >
       </mat-datepicker>
     </mat-form-field>
-    <button mat-stroked-button color="primary" (click)="onInflationIndexRecalculat()">VPI unrechnen</button>
+    <button mat-stroked-button color="primary" (click)="onInflationIndexRecalculat()">
+      VPI unrechnen
+    </button>
   </div>
   <div>
-    <apx-chart #inflationChart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
-      [markers]="chartOptions.markers" [stroke]="chartOptions.stroke" [yaxis]="chartOptions.yaxis"
-      [dataLabels]="chartOptions.dataLabels" [title]="chartOptions.title" [fill]="chartOptions.fill"
-      [tooltip]="chartOptions.tooltip" [legend]="chartOptions.legend" [theme]=chartOptions.theme></apx-chart>
+    <apx-chart
+      #inflationChart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [markers]="chartOptions.markers"
+      [stroke]="chartOptions.stroke"
+      [yaxis]="chartOptions.yaxis"
+      [dataLabels]="chartOptions.dataLabels"
+      [title]="chartOptions.title"
+      [fill]="chartOptions.fill"
+      [tooltip]="chartOptions.tooltip"
+      [legend]="chartOptions.legend"
+      [theme]="chartOptions.theme"
+    ></apx-chart>
     <div class="chart-subtitle">Quelle: Destatis</div>
   </div>
 </div>

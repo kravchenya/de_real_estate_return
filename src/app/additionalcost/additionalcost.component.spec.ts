@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdditionalCostComponent } from './additionalcost.component';
+import {AdditionalCostComponent} from './additionalcost.component';
 
 describe('AdditionalcostsComponent', () => {
   let component: AdditionalCostComponent;
@@ -8,9 +8,8 @@ describe('AdditionalcostsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdditionalCostComponent ]
-    })
-    .compileComponents();
+      declarations: [AdditionalCostComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

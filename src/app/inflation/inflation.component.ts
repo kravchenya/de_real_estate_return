@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import vpiIflationYear from '../../assets/vpiinflationyear.json';
-import { IHistoricalInflation } from './ihistoricalinflation';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { FormControl } from '@angular/forms';
-import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
-import { Moment } from 'moment';
+import {IHistoricalInflation} from './ihistoricalinflation';
+import {MatDatepicker} from '@angular/material/datepicker';
+import {FormControl} from '@angular/forms';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS} from '@angular/material/core';
+import {Moment} from 'moment';
 import moment from 'moment';
 
 import {
@@ -21,8 +21,8 @@ import {
   ApexYAxis,
   ApexTheme,
   ApexMarkers,
-  ApexStroke
-} from "ng-apexcharts";
+  ApexStroke,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -62,22 +62,20 @@ export const MY_FORMATS = {
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-  ]
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
-
 export class InflationComponent implements OnInit {
-
-  @ViewChild("inflationChart") chart!: ChartComponent;
+  @ViewChild('inflationChart') chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions> | any;
 
   ihistoricalInflation: IHistoricalInflation = {
     name: 'inflation',
     date: [],
     inflationYoY: [],
-    priceIndex: []
+    priceIndex: [],
   };
 
   startDate: FormControl = new FormControl(moment(vpiIflationYear[0].Date));
@@ -97,30 +95,32 @@ export class InflationComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onInflationIndexRecalculat() {
     const strDate = this.startDate.value.format('YYYY-MM');
-    const startIndex = vpiIflationYear.findIndex(vpi => vpi.Date === strDate);
-    var newInflationIndex: number[] = [];
+    const startIndex = vpiIflationYear.findIndex((vpi) => vpi.Date === strDate);
+    const newInflationIndex: number[] = [];
     newInflationIndex[startIndex] = 100;
     for (let i = startIndex; i < vpiIflationYear.length - 1; i++) {
-      newInflationIndex[i + 1] = newInflationIndex[i] + newInflationIndex[i] * vpiIflationYear[i + 1].InflationYoY / 100;
+      newInflationIndex[i + 1] =
+        newInflationIndex[i] + (newInflationIndex[i] * vpiIflationYear[i + 1].InflationYoY) / 100;
       newInflationIndex[i] = Math.round((newInflationIndex[i] + Number.EPSILON) * 100) / 100;
     }
-    newInflationIndex[this.ihistoricalInflation.priceIndex.length - 1] = Math.round((newInflationIndex[this.ihistoricalInflation.priceIndex.length - 1] + Number.EPSILON) * 100) / 100;
+    newInflationIndex[this.ihistoricalInflation.priceIndex.length - 1] =
+      Math.round(
+        (newInflationIndex[this.ihistoricalInflation.priceIndex.length - 1] + Number.EPSILON) * 100,
+      ) / 100;
 
     this.ihistoricalInflation.priceIndex = newInflationIndex.slice(startIndex);
     const vpiSubArray = vpiIflationYear.slice(startIndex);
-    this.ihistoricalInflation.date = vpiSubArray.map(vpi => vpi.Date);
-    this.ihistoricalInflation.inflationYoY = vpiSubArray.map(vpi => vpi.InflationYoY);
+    this.ihistoricalInflation.date = vpiSubArray.map((vpi) => vpi.Date);
+    this.ihistoricalInflation.inflationYoY = vpiSubArray.map((vpi) => vpi.InflationYoY);
 
     this.chart.updateOptions(this.createChartOption());
   }
 
-  onClosed() {
-  }
+  onClosed() {}
 
   chosenStartYearHandler(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.startDate.value;
@@ -130,8 +130,7 @@ export class InflationComponent implements OnInit {
   }
 
   createChartOption(): Partial<ChartOptions> {
-    const options: Partial<ChartOptions> =
-    {
+    const options: Partial<ChartOptions> = {
       series: [
         {
           name: 'Inflation Index',
@@ -140,29 +139,29 @@ export class InflationComponent implements OnInit {
         {
           name: 'Veränderung zum Vorjahr',
           data: this.ihistoricalInflation.inflationYoY,
-        }
+        },
       ],
       chart: {
         height: 350,
-        type: "line",
+        type: 'line',
         stacked: false,
         toolbar: {
-          show: false
-        }
+          show: false,
+        },
       },
       dataLabels: {
-        enabled: true
+        enabled: true,
       },
       stroke: {
-        curve: "smooth",
+        curve: 'smooth',
         width: [2, 2],
       },
       title: {
-        text: "Inflationsentwicklung",
-        align: "center"
+        text: 'Inflationsentwicklung',
+        align: 'center',
       },
       xaxis: {
-        type: "datetime",
+        type: 'datetime',
         categories: this.ihistoricalInflation.date,
       },
       yaxis: [
@@ -170,63 +169,63 @@ export class InflationComponent implements OnInit {
           labels: {
             formatter: function (value: number) {
               return value.toFixed(2);
-            }
+            },
           },
           axisTicks: {
             show: true,
           },
           axisBorder: {
             show: true,
-            color: "#008FFB",
-            offsetX: -10
+            color: '#008FFB',
+            offsetX: -10,
           },
           title: {
-            text: "Verbraucherpreisindex",
+            text: 'Verbraucherpreisindex',
             style: {
-              color: "#008FFB"
-            }
+              color: '#008FFB',
+            },
           },
           tooltip: {
-            enabled: true
-          }
+            enabled: true,
+          },
         },
         {
           labels: {
             formatter: function (value: number) {
               return value.toFixed(2);
-            }
+            },
           },
           axisBorder: {
             show: true,
-            color: "#00E396",
-            offsetX: -10
+            color: '#00E396',
+            offsetX: -10,
           },
-          seriesName: "Inflation",
+          seriesName: 'Inflation',
           opposite: true,
           axisTicks: {
-            show: true
+            show: true,
           },
           title: {
-            text: "Veränderung zum Vorjahr in %",
+            text: 'Veränderung zum Vorjahr in %',
             style: {
-              color: "#00E396"
-            }
-          }
-        }
+              color: '#00E396',
+            },
+          },
+        },
       ],
       tooltip: {
         x: {
-          format: "MM.yyyy"
-        }
+          format: 'MM.yyyy',
+        },
       },
       legend: {
-        offsetX: 40
+        offsetX: 40,
       },
       theme: {
         palette: 'palette1',
         mode: 'light',
-      }
+      },
     };
-    return options
+    return options;
   }
 }

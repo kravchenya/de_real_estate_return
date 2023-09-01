@@ -1,48 +1,46 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { environment } from 'src/environments/environment';
+import {environment} from 'src/environments/environment';
 import additionalCosts from 'src/assets/additionalcosts.json';
 
 @Component({
   selector: 'app-countrymap',
   templateUrl: './countrymap.component.html',
-  styleUrls: ['./countrymap.component.css']
+  styleUrls: ['./countrymap.component.css'],
 })
 export class CountrymapComponent implements OnInit, AfterViewInit {
-
   style = 'mapbox://styles/mapbox/light-v11';
   lat = 51;
   lng = 10;
 
-  public landAcquisition: string = '';
-  federalState: string = '';
-  notary: string = '';
-  realtor: string = '';
+  public landAcquisition = '';
+  federalState = '';
+  notary = '';
+  realtor = '';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit() {
-    var map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
       container: 'mapElement',
       accessToken: environment.mapbox.accessToken,
       style: this.style,
       zoom: 5.4,
-      center: [this.lng, this.lat]
+      center: [this.lng, this.lat],
     });
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    var hoveredStateId = 0;
+    let hoveredStateId = 0;
 
     map.on('load', () => {
       map.addSource('bundeslaender', {
         type: 'geojson',
         //data: '../assets/bundeslaender_simplify200.geojson',
         data: '../assets/federalstates.geojson',
-        generateId: true
+        generateId: true,
       });
 
       // Add a new layer to visualize the states.
@@ -53,13 +51,8 @@ export class CountrymapComponent implements OnInit, AfterViewInit {
         'layout': {},
         'paint': {
           'fill-color': '#e33c19',
-          'fill-opacity': [
-            'case',
-            ['boolean', ['feature-state', 'hover'], false],
-            0.6,
-            0.3
-          ]
-        }
+          'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.6, 0.3],
+        },
       });
 
       // Add a black outline around the states.
@@ -70,8 +63,8 @@ export class CountrymapComponent implements OnInit, AfterViewInit {
         'layout': {},
         'paint': {
           'line-color': '#000',
-          'line-width': 1.5
-        }
+          'line-width': 1.5,
+        },
       });
 
       // When the user moves their mouse over the state-fill layer, we'll update the
@@ -79,17 +72,11 @@ export class CountrymapComponent implements OnInit, AfterViewInit {
       map.on('mousemove', 'bundeslaender-layer', (e: any) => {
         if (e.features.length > 0) {
           if (hoveredStateId !== null) {
-            map.setFeatureState(
-              { source: 'bundeslaender', id: hoveredStateId },
-              { hover: false }
-            );
+            map.setFeatureState({source: 'bundeslaender', id: hoveredStateId}, {hover: false});
           }
           hoveredStateId = e.features[0].id;
 
-          map.setFeatureState(
-            { source: 'bundeslaender', id: hoveredStateId },
-            { hover: true }
-          );
+          map.setFeatureState({source: 'bundeslaender', id: hoveredStateId}, {hover: true});
 
           // federalState!.textContent = e.features[0].properties.name;
           this.federalState = e.features[0].properties.name;
@@ -99,7 +86,6 @@ export class CountrymapComponent implements OnInit, AfterViewInit {
           this.notary! = 'rund ' + additionalCosts[hoveredStateId].properties.notary + '%';
           // realtor!.textContent =  additionalCosts[hoveredStateId].properties.realtor  + '%';
           this.realtor! = additionalCosts[hoveredStateId].properties.realtor + '%';
-
         }
       });
 
@@ -107,10 +93,7 @@ export class CountrymapComponent implements OnInit, AfterViewInit {
       // previously hovered feature.
       map.on('mouseleave', 'bundeslaender-layer', () => {
         if (hoveredStateId !== null) {
-          map.setFeatureState(
-            { source: 'bundeslaender', id: hoveredStateId },
-            { hover: false }
-          );
+          map.setFeatureState({source: 'bundeslaender', id: hoveredStateId}, {hover: false});
         }
         hoveredStateId = 0;
 
@@ -121,9 +104,8 @@ export class CountrymapComponent implements OnInit, AfterViewInit {
       });
 
       map.on('idle', () => {
-        map.resize()
+        map.resize();
       });
-
     });
   }
 }

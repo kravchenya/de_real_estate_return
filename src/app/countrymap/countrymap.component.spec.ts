@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CountrymapComponent } from './countrymap.component';
+import {CountrymapComponent} from './countrymap.component';
 
 describe('CountrymapComponent', () => {
   let component: CountrymapComponent;
@@ -8,9 +8,8 @@ describe('CountrymapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CountrymapComponent ]
-    })
-    .compileComponents();
+      declarations: [CountrymapComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

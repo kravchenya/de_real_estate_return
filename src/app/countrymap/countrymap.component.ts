@@ -1,7 +1,7 @@
 import {AfterViewInit, Component} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import {environment} from 'src/environments/environment';
-import additionalCosts from 'src/assets/additionalcosts.json';
+import {environment} from '../../environments/environment';
+import additionalCosts from '../../assets/additionalcosts.json';
 
 @Component({
   selector: 'app-countrymap',
@@ -74,14 +74,10 @@ export class CountrymapComponent implements AfterViewInit {
 
           map.setFeatureState({source: 'bundeslaender', id: hoveredStateId}, {hover: true});
 
-          // federalState!.textContent = e.features[0].properties.name;
           this.federalState = e.features[0].properties.name;
           this.landAcquisition = additionalCosts[hoveredStateId].properties.landAcquisition + '%';
-          //landAcquisition!.textContent = additionalCosts[hoveredStateId].properties.landAcquisition  + '%';
-          // notary!.textContent = 'rund ' + additionalCosts[hoveredStateId].properties.notary  + '%';
-          this.notary! = 'rund ' + additionalCosts[hoveredStateId].properties.notary + '%';
-          // realtor!.textContent =  additionalCosts[hoveredStateId].properties.realtor  + '%';
-          this.realtor! = additionalCosts[hoveredStateId].properties.realtor + '%';
+          this.notary = 'rund ' + additionalCosts[hoveredStateId].properties.notary + '%';
+          this.realtor = additionalCosts[hoveredStateId].properties.realtor + '%';
         }
       });
 

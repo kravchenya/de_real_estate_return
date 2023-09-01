@@ -14,7 +14,7 @@ import {IAggregatedMortageLoanData} from './iaggregatedmortageloandate';
 })
 export class GlobalMarketReturnComponent implements OnInit {
   @ViewChild('chart') chart!: ChartComponent;
-  public chartOptions!: Partial<ChartOptions> | any;
+  public chartOptions!: Partial<ChartOptions>;
   msciDevelopmentNominal!: IHistoricalRate;
   msciDevelopmentReal!: IHistoricalRate;
   inflation!: IHistoricalRate;
@@ -150,9 +150,9 @@ export class GlobalMarketReturnComponent implements OnInit {
     for (let i = startIndex + 1; i <= endIndex; i++) {
       // we do not apply inflation for the  monthly interest at the current month, but to the previous month cause inflation is Month-over-Month
       monthlyPaymentsReal =
-        monthlyPaymentsReal * (1 - vpiInflationMonthly[i]!.InflationMoM! / 100) + monthlyInterest;
+        monthlyPaymentsReal * (1 - vpiInflationMonthly[i].InflationMoM / 100) + monthlyInterest;
       totalInitialPaymentReal =
-        totalInitialPaymentReal * (1 - vpiInflationMonthly[i]!.InflationMoM! / 100);
+        totalInitialPaymentReal * (1 - vpiInflationMonthly[i].InflationMoM / 100);
 
       // we do not apply market gain for the  monthly investment at the current month, but to the previous month cause market gain is Month-over-Month
       capitalGainNominal = capitalGainNominal * (1 + msciAcwiIndex[i].MoM) + monthlyInterest;
@@ -162,7 +162,7 @@ export class GlobalMarketReturnComponent implements OnInit {
       capitalGainReal =
         capitalGainReal *
           (1 + msciAcwiIndex[i].MoM) *
-          (1 - vpiInflationMonthly[i]!.InflationMoM! / 100) +
+          (1 - vpiInflationMonthly[i].InflationMoM / 100) +
         monthlyInterest;
       this.msciDevelopmentReal.date.push(msciAcwiIndex[i].Date);
       this.msciDevelopmentReal.rate.push(capitalGainReal);

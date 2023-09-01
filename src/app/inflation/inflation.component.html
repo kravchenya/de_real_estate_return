@@ -19,25 +19,22 @@
       >
       </mat-datepicker>
     </mat-form-field>
-    <button mat-stroked-button color="primary" (click)="onInflationIndexRecalculat()">
-      VPI unrechnen
-    </button>
   </div>
   <div>
     <apx-chart
       #inflationChart
-      [series]="chartOptions.series"
-      [chart]="chartOptions.chart"
-      [xaxis]="chartOptions.xaxis"
-      [markers]="chartOptions.markers"
-      [stroke]="chartOptions.stroke"
-      [yaxis]="chartOptions.yaxis"
-      [dataLabels]="chartOptions.dataLabels"
-      [title]="chartOptions.title"
-      [fill]="chartOptions.fill"
-      [tooltip]="chartOptions.tooltip"
-      [legend]="chartOptions.legend"
-      [theme]="chartOptions.theme"
+      [series]="chartOptions.series!"
+      [chart]="chartOptions.chart!"
+      [xaxis]="chartOptions.xaxis!"
+      [markers]="chartOptions.markers!"
+      [stroke]="chartOptions.stroke!"
+      [yaxis]="chartOptions.yaxis!"
+      [dataLabels]="chartOptions.dataLabels!"
+      [title]="chartOptions.title!"
+      [fill]="chartOptions.fill!"
+      [tooltip]="chartOptions.tooltip!"
+      [legend]="chartOptions.legend!"
+      [theme]="chartOptions.theme!"
     ></apx-chart>
     <div class="chart-subtitle">Quelle: Destatis</div>
   </div>

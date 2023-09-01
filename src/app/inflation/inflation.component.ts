@@ -69,7 +69,7 @@ export const MY_FORMATS = {
 })
 export class InflationComponent implements OnInit {
   @ViewChild('inflationChart') chart!: ChartComponent;
-  public chartOptions!: Partial<ChartOptions> | any;
+  public chartOptions!: Partial<ChartOptions>;
 
   ihistoricalInflation: IHistoricalInflation = {
     name: 'inflation',
@@ -95,7 +95,7 @@ export class InflationComponent implements OnInit {
     this.chartOptions = this.createChartOption();
   }
 
-  onInflationIndexRecalculat() {
+  onClosed() {
     const strDate = this.startDate.value.format('YYYY-MM');
     const startIndex = vpiIflationYear.findIndex((vpi) => vpi.Date === strDate);
     const newInflationIndex: number[] = [];
@@ -118,11 +118,9 @@ export class InflationComponent implements OnInit {
     this.chart.updateOptions(this.createChartOption());
   }
 
-  onClosed() {}
-
   chosenStartYearHandler(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.startDate.value;
-    ctrlValue!.year(normalizedYear.year());
+    ctrlValue.year(normalizedYear.year());
     this.startDate.setValue(ctrlValue);
     datepicker.close();
   }

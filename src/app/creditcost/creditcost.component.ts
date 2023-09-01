@@ -21,7 +21,7 @@ export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
-  titel: ApexTitleSubtitle;
+  title: ApexTitleSubtitle;
   stroke: ApexStroke;
   tooltip: ApexTooltip;
   dataLabels: ApexDataLabels;
@@ -34,7 +34,7 @@ export type ChartOptions = {
 })
 export class CreditcostComponent implements OnInit {
   @ViewChild('chart') chart!: ChartComponent;
-  public chartOptions!: Partial<ChartOptions> | any;
+  public chartOptions!: Partial<ChartOptions>;
   historicalRate5!: IHistoricalRate;
   historicalRate10!: IHistoricalRate;
   effectiveRate!: IHistoricalRate;
@@ -87,10 +87,8 @@ export class CreditcostComponent implements OnInit {
       xaxis: {
         type: 'datetime',
         tickAmount: 10,
-        min: this.oldhistoricalRate5.data[0],
-        max: this.historicalRate5.data[this.oldhistoricalRate5.data.length - 1],
         labels: {
-          formatter: function (value: any) {
+          formatter: function (value: string) {
             return moment(new Date(value)).format('YYYY');
           },
         },

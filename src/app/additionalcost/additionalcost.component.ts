@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IExtraCost} from './iextracost';
 import {IExtraCostDiagram} from './iextracostdiagram';
-import additionalCosts from 'src/assets/additionalcosts.json';
+import additionalCosts from '../../assets/additionalcosts.json';
 
 import {
   ApexAxisChartSeries,
@@ -39,7 +39,7 @@ export type ChartOptions = {
 })
 export class AdditionalCostComponent implements OnInit {
   @ViewChild('chart') chart!: ChartComponent;
-  public chartOptions: Partial<ChartOptions> | any;
+  public chartOptions!: Partial<ChartOptions>;
   extraCost: IExtraCost[] = [];
   extraCostDiagram!: IExtraCostDiagram;
 
@@ -91,8 +91,8 @@ export class AdditionalCostComponent implements OnInit {
       xaxis: {
         categories: this.extraCostDiagram.categories,
         labels: {
-          formatter: function (val: any) {
-            return val + '%';
+          formatter: function (value: string) {
+            return value + '%';
           },
         },
       },
@@ -103,7 +103,7 @@ export class AdditionalCostComponent implements OnInit {
       },
       tooltip: {
         y: {
-          formatter: function (val: any) {
+          formatter: function (val: number) {
             return val + 'K';
           },
         },

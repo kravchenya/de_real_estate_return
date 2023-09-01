@@ -75,13 +75,13 @@ export class PricecalculatorComponent implements OnInit {
 
   chosenStartYearHandler(normalizedYear: Moment, index: number) {
     const ctrlValue = this.creditDataList[index].startDate.value;
-    ctrlValue!.year(normalizedYear.year());
+    ctrlValue.year(normalizedYear.year());
     this.creditDataList[index].startDate.setValue(ctrlValue);
   }
 
   chosenEndYearHandler(normalizedYear: Moment, index: number) {
     const ctrlValue = this.creditDataList[index].endDate.value;
-    ctrlValue!.year(normalizedYear.year());
+    ctrlValue.year(normalizedYear.year());
     this.creditDataList[index].endDate.setValue(ctrlValue);
   }
 
@@ -91,15 +91,15 @@ export class PricecalculatorComponent implements OnInit {
     datepicker: MatDatepicker<Moment>,
   ) {
     const ctrlValue = this.creditDataList[index].startDate.value;
-    ctrlValue!.month(normalizedMonth.month());
+    ctrlValue.month(normalizedMonth.month());
     this.creditDataList[index].startDate.setValue(ctrlValue);
-    this.creditDataList[index].minEndDate = new Date(ctrlValue!.year(), ctrlValue!.month() + 1);
+    this.creditDataList[index].minEndDate = new Date(ctrlValue.year(), ctrlValue.month() + 1);
     datepicker.close();
   }
 
   chosenEndMonthHandler(normalizedMonth: Moment, index: number, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.creditDataList[index].endDate.value;
-    ctrlValue!.month(normalizedMonth!.month());
+    ctrlValue.month(normalizedMonth.month());
     this.creditDataList[index].endDate.setValue(ctrlValue);
     datepicker.close();
   }

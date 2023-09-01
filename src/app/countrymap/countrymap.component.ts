@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from 'src/environments/environment';
 import additionalCosts from 'src/assets/additionalcosts.json';
@@ -8,7 +8,7 @@ import additionalCosts from 'src/assets/additionalcosts.json';
   templateUrl: './countrymap.component.html',
   styleUrls: ['./countrymap.component.css'],
 })
-export class CountrymapComponent implements OnInit, AfterViewInit {
+export class CountrymapComponent implements AfterViewInit {
   style = 'mapbox://styles/mapbox/light-v11';
   lat = 51;
   lng = 10;
@@ -17,10 +17,6 @@ export class CountrymapComponent implements OnInit, AfterViewInit {
   federalState = '';
   notary = '';
   realtor = '';
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   ngAfterViewInit() {
     const map = new mapboxgl.Map({

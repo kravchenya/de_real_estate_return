@@ -82,11 +82,6 @@ export class InflationComponent implements OnInit {
   minStartDate: Date = new Date(vpiIflationYear[0].Date);
   maxEndDate: Date = new Date(vpiIflationYear[vpiIflationYear.length - 1].Date);
 
-  constructor() {
-    this.initializeData();
-    this.chartOptions = this.createChartOption();
-  }
-
   initializeData(): void {
     vpiIflationYear.forEach((element) => {
       this.ihistoricalInflation.date.push(element.Date);
@@ -95,7 +90,10 @@ export class InflationComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initializeData();
+    this.chartOptions = this.createChartOption();
+  }
 
   onInflationIndexRecalculat() {
     const strDate = this.startDate.value.format('YYYY-MM');

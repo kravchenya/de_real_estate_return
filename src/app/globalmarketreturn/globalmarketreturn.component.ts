@@ -204,7 +204,7 @@ export class GlobalMarketReturnComponent implements OnInit {
     duration: number,
   ): number {
     // annualized return, also known as the compound annual growth rate
-    // CAGR = ( Final Value / Initial Investment ​) ^ (1 / Number of Years) − 1
+    // CAGR = ( Final Value / Initial Investment  ) ^ (1 / Number of Years) − 1
     const returnPerAnnum = (Math.pow(capitalGain / investedAmount, 1 / duration) - 1) * 100;
     return Math.round((returnPerAnnum + Number.EPSILON) * 100) / 100;
   }

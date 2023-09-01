@@ -24,8 +24,6 @@ export class CitystatisticsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() {}
-
   ngOnInit(): void {
     this.displayedColumns = ['name', 'population', 'area', 'density'];
 

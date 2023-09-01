@@ -42,7 +42,7 @@ export class CreditcostComponent implements OnInit {
   oldhistoricalRate10!: IHistoricalRate;
   oldEffectiveRate!: IHistoricalRate;
 
-  constructor() {
+  ngOnInit(): void {
     this.getExtraExpenses();
 
     this.chartOptions = {
@@ -157,6 +157,4 @@ export class CreditcostComponent implements OnInit {
       this.oldEffectiveRate.data.push([time, element.AnnualRate]);
     });
   }
-
-  ngOnInit(): void {}
 }

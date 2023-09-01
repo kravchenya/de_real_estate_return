@@ -191,7 +191,7 @@ export class PricecalculatorComponent implements OnInit {
     effectiveAnnualRate: number,
     creditDarutionInMonth: number,
   ): number {
-    // i_nominal_rate ​= (1 + r_effektiv_annual_rate_as_decimal​) ^ 1/n − 1
+    // i_nominal_rate = (1 + r_effektiv_annual_rate_as_decimal ) ^ 1/n − 1
     // Where:
     // i_nominal_rate is "periodic interest rate" or "nominal interest rate"
     // n number of interest payment per year (i.e. 12 for monthly payments)
@@ -223,7 +223,7 @@ export class PricecalculatorComponent implements OnInit {
       this.overallRealReturn = Math.round((this.overallRealReturn + Number.EPSILON) * 100);
 
       // annualized return, also known as the compound annual growth rate
-      // CAGR = ( Final Value / Initial Investment ​) ^ (1 / Number of Years) − 1
+      // CAGR = ( Final Value / Initial Investment ) ^ (1 / Number of Years) − 1
       this.annualizedRealReturn =
         (Math.pow(this.marketPrice / this.totalPriceReal, 1 / totalNumberPaymentsInYears) - 1) *
         100;

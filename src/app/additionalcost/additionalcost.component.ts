@@ -43,7 +43,7 @@ export class AdditionalCostComponent implements OnInit {
   extraCost: IExtraCost[] = [];
   extraCostDiagram!: IExtraCostDiagram;
 
-  constructor() {
+  ngOnInit(): void {
     this.extraCostDiagram = {
       categories: [],
       landAcquisition: [],
@@ -118,8 +118,6 @@ export class AdditionalCostComponent implements OnInit {
       },
     };
   }
-
-  ngOnInit(): void {}
 
   getExtraExpenses(): void {
     additionalCosts.forEach((element) => {

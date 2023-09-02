@@ -1,0 +1,11 @@
+{
+  "CLOSING_COST": "Credit closing cost",
+  "TAB_RETURN_ON_CAPITAL": "Return on real estate investment",
+  "TAB_GERMAN_MAP": "German map",
+  "COUNTRYMAP_REAL_FEDERAL_STATE": "Federal state",
+  "COUNTRYMAP_REAL_ESTATE_TRANSFER_TAX": "Real estate transfer tax",
+  "COUNTRYMAP_LAND_REGISTRATION_TAX": "Notary and land registration fee*",
+  "COUNTRYMAP_REAL_ESTATE_AGENT_FEE": "Real estate agent fee (buyer's share)*",
+  "COUNTRYMAP_REAL_ESTATE_AGENT_FEE_HINT_TEXT": "*Location based differences are possible",
+  "COUNTRYMAP_LAND_REGISTRATION_TAX_HINT_TEXT": "*Estimated interest rate"
+}

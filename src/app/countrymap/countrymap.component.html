@@ -1,22 +1,30 @@
 <div class="container">
   <div class="top">
     <mat-form-field floatLabel="always">
-      <mat-label><strong>Bundesland</strong></mat-label>
+      <mat-label
+        ><strong>{{ 'COUNTRYMAP_REAL_FEDERAL_STATE' | translate }}</strong></mat-label
+      >
       <input matInput [(ngModel)]="federalState" />
     </mat-form-field>
     <mat-form-field floatLabel="always">
-      <mat-label><strong>Grunderwerbsteuer</strong></mat-label>
+      <mat-label
+        ><strong>{{ 'COUNTRYMAP_REAL_ESTATE_TRANSFER_TAX' | translate }}</strong></mat-label
+      >
       <input matInput [(ngModel)]="landAcquisition" />
     </mat-form-field>
     <mat-form-field floatLabel="always">
-      <mat-label><strong>Notar- und Grundbuchkosten*</strong></mat-label>
+      <mat-label
+        ><strong>{{ 'COUNTRYMAP_LAND_REGISTRATION_TAX' | translate }}</strong></mat-label
+      >
       <input matInput [(ngModel)]="notary" />
-      <mat-hint>*Geschätzter Prozentsatz</mat-hint>
+      <mat-hint>{{ 'COUNTRYMAP_LAND_REGISTRATION_TAX_HINT_TEXT' | translate }}</mat-hint>
     </mat-form-field>
     <mat-form-field floatLabel="always">
-      <mat-label><strong>Maklergebühren (Anteil Käufer)*</strong></mat-label>
+      <mat-label
+        ><strong>{{ 'COUNTRYMAP_REAL_ESTATE_AGENT_FEE' | translate }}</strong></mat-label
+      >
       <input matInput [(ngModel)]="realtor" />
-      <mat-hint>*Ortsbezogene Abweichungen sind möglich</mat-hint>
+      <mat-hint>{{ 'COUNTRYMAP_REAL_ESTATE_AGENT_FEE_HINT_TEXT' | translate }}</mat-hint>
     </mat-form-field>
   </div>
   <div id="mapElement" class="bottom"></div>

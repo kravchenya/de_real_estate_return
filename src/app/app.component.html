@@ -1,6 +1,25 @@
+<div>
+  <!-- <mat-form-field class="top-right" >
+    <mat-select  style="width:10px" (selectionChange)="translate.use($event.value)"  [value]="translate.currentLang">
+      <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{ lang }}</mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+  <span class="top-right">
+    <select #selectedLang (change)="switchLang(selectedLang.value)">
+      <option
+        *ngFor="let language of translate.getLangs()"
+        [value]="language"
+        [selected]="language === translate.currentLang"
+      >
+        {{ language }}
+      </option>
+    </select>
+  </span>
+</div>
 <div class="wrap">
   <mat-tab-group [selectedIndex]="0">
-    <mat-tab label="Karte">
+    <mat-tab [label]="'TAB_GERMAN_MAP' | translate">
       <ng-template matTabContent>
         <mat-grid-list cols="2" rowHeight="2:1">
           <mat-grid-tile rowspan="2">
@@ -21,7 +40,7 @@
         </mat-grid-list>
       </ng-template>
     </mat-tab>
-    <mat-tab label="Rendite">
+    <mat-tab [label]="'TAB_RETURN_ON_CAPITAL' | translate">
       <ng-template matTabContent>
         <mat-grid-list cols="2" rowHeight="2:1">
           <mat-grid-tile>

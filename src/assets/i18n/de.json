@@ -1,0 +1,11 @@
+{
+  "CLOSING_COST": "Kreditnebenkosten",
+  "TAB_RETURN_ON_CAPITAL": "Immobilienrendite",
+  "TAB_GERMAN_MAP": "Deutsche Karte",
+  "COUNTRYMAP_REAL_FEDERAL_STATE": "Bundesland",
+  "COUNTRYMAP_REAL_ESTATE_TRANSFER_TAX": "Grunderwerbsteuer",
+  "COUNTRYMAP_LAND_REGISTRATION_TAX": "Notar- und Grundbuchkosten*",
+  "COUNTRYMAP_REAL_ESTATE_AGENT_FEE": "Maklergebühren (Anteil Käufer)*",
+  "COUNTRYMAP_REAL_ESTATE_AGENT_FEE_HINT_TEXT": "*Ortsbezogene Abweichungen sind möglich",
+  "COUNTRYMAP_LAND_REGISTRATION_TAX_HINT_TEXT": "*Geschätzter Prozentsatz"
+}

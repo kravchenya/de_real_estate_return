@@ -26,6 +26,10 @@ import {GlobalMarketReturnComponent} from './globalmarketreturn/globalmarketretu
 import {CitystatisticsComponent} from './citystatistics/citystatistics.component';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     NgApexchartsModule,
     NoopAnimationsModule,
 
@@ -55,13 +60,25 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatInputModule,
     MatNativeDateModule,
     MatPaginatorModule,
+    MatSelectModule,
     MatSortModule,
     MatTabsModule,
     MatTableModule,
 
     ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

@@ -1,7 +1,9 @@
 <div>
   <div class="row">
     <mat-form-field appearance="fill" floatLabel="always">
-      <mat-label><strong>Anfang der Umrechnung</strong></mat-label>
+      <mat-label
+        ><strong>{{ 'INFLATION_RECALCULATION_DATE' | translate }}</strong></mat-label
+      >
       <input
         matInput
         [matDatepicker]="dpStart"
@@ -36,6 +38,6 @@
       [legend]="chartOptions.legend!"
       [theme]="chartOptions.theme!"
     ></apx-chart>
-    <div class="chart-subtitle">Quelle: Destatis</div>
+    <div class="chart-subtitle">{{ 'INFLATION_SOURSE' | translate }}</div>
   </div>
 </div>

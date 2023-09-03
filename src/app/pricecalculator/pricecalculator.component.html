@@ -1,6 +1,8 @@
 <div class="one-row-container" *ngFor="let creditData of creditDataList; let i = index">
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label><strong>Anfang der Kreditauszahlung</strong></mat-label>
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_START_DATE' | translate }}</strong></mat-label
+    >
     <input
       matInput
       [matDatepicker]="dpStart"
@@ -20,7 +22,9 @@
     </mat-datepicker>
   </mat-form-field>
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label><strong>Ende der Kreditauszahlung</strong></mat-label>
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_END_DATE' | translate }}</strong></mat-label
+    >
     <input
       matInput
       [matDatepicker]="dpEnd"
@@ -40,7 +44,9 @@
     </mat-datepicker>
   </mat-form-field>
   <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
-    <mat-label><strong>Nebenkosten</strong></mat-label>
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_CLOSING_COST' | translate }}</strong></mat-label
+    >
     <input
       type="number"
       matInput
@@ -50,11 +56,13 @@
       max="20"
       [(ngModel)]="creditData.closingCost"
     />
-    <mat-error>Nebenkosten können nicht negative sein</mat-error>
+    <mat-error>{{ 'PRICE_CALCULATOR_CLOSING_COST_HINT' | translate }}</mat-error>
     <span matPrefix>€&nbsp;</span>
   </mat-form-field>
   <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
-    <mat-label><strong>Effektivzins (Sollzins)</strong></mat-label>
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_ANNUAL_INTEREST_RATE' | translate }}</strong></mat-label
+    >
     <input
       type="number"
       matInput
@@ -64,12 +72,12 @@
       max="20"
       [(ngModel)]="creditData.annualPercentageRate"
     />
-    <mat-error>Minimale Rate: 0,1%; maximale Rate: 20%</mat-error>
+    <mat-error>{{ 'PRICE_CALCULATOR_ANNUAL_INTEREST_RATE_HINT' | translate }}</mat-error>
     <span matPrefix>%&nbsp;</span>
   </mat-form-field>
-  <mat-error *ngIf="isDateEndFormControllerInvalid[i]"
-    >Enddatum ist gleich oder kleiner als Anfangsdatum</mat-error
-  >
+  <mat-error *ngIf="isDateEndFormControllerInvalid[i]">{{
+    'PRICE_CALCULATOR_END_DATE_HINT' | translate
+  }}</mat-error>
 </div>
 <button
   mat-stroked-button
@@ -77,7 +85,7 @@
   matTooltip="Anschlussfinanzierung hinzufügen"
   (click)="onAddAdditionalFinancing()"
 >
-  Hinzufügen
+  {{ 'PRICE_CALCULATOR_BUTTON_ADD' | translate }}
 </button>
 <button
   mat-stroked-button
@@ -86,17 +94,21 @@
   (click)="onDeleteAdditionalFinancing()"
   [disabled]="creditDataList.length === 1"
 >
-  Entfernen
+  {{ 'PRICE_CALCULATOR_BUTTON_DELETE' | translate }}
 </button>
 <div class="row">
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label><strong>Kreditsumme</strong></mat-label>
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_CREDIT_SUM' | translate }}</strong></mat-label
+    >
     <input type="number" matInput placeholder="{{ creditAmount }}" [(ngModel)]="creditAmount" />
     <span matPrefix>€&nbsp;</span>
   </mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
-    <mat-label><strong>Anzahlung</strong></mat-label>
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_DOWNPAYMENT' | translate }}</strong></mat-label
+    >
     <input
       type="number"
       matInput
@@ -106,7 +118,7 @@
       max="20"
       [(ngModel)]="downPayment"
     />
-    <mat-error>Anzahlung kann nicht negative sein</mat-error>
+    <mat-error>{{ 'PRICE_CALCULATOR_DOWNPAYMENT_HINT' | translate }} </mat-error>
     <span matPrefix>€&nbsp;</span>
   </mat-form-field>
 
@@ -117,30 +129,36 @@
     (click)="onCalculateInflationAdjustedPrice()"
     [disabled]="isDateEndFormControllerInvalid.indexOf(true) > -1"
   >
-    Berechnen
+    {{ 'PRICE_CALCULATOR_BUTTON_CALCULATE_CREDIT_COST' | translate }}
   </button>
 </div>
 
 <div class="row">
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label
-      ><strong>inflationsbereinigter bezahlter Preis mit allen Nebenkosten</strong></mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_TOTAL_REAL_PAID_SUM' | translate }}</strong></mat-label
     >
     <input matInput readonly [(ngModel)]="totalPriceReal" />
     <span matPrefix>€&nbsp;</span>
   </mat-form-field>
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label><strong>Gesamte Kreditkosten (nominal)</strong></mat-label>
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_TOTAL_NOMINAL_PAID_SUM' | translate }}</strong></mat-label
+    >
     <input type="number" matInput readonly [(ngModel)]="totalCreditCost" />
     <span matPrefix>€&nbsp;</span>
   </mat-form-field>
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label><strong>Bezahlte Zinsen</strong></mat-label>
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_INTEREST_PAID' | translate }} </strong></mat-label
+    >
     <input type="number" matInput readonly [(ngModel)]="totalInterestPaid" />
     <span matPrefix>€&nbsp;</span>
   </mat-form-field>
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label><strong>Aktueller Preis von vergleichbarer Immobilie</strong></mat-label>
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_REAL_ESTATE_MARKET_PRICE' | translate }}</strong></mat-label
+    >
     <input type="number" matInput readonly [(ngModel)]="marketPrice" />
     <span matPrefix>€&nbsp;</span>
   </mat-form-field>
@@ -149,14 +167,18 @@
 <div class="row">
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>
-      <strong>Reale Immobilienrendite p.a.</strong>
+      <strong>{{ 'PRICE_CALCULATOR_REAL_RETURN_ON_REAL_ESTATE' | translate }}</strong>
     </mat-label>
     <input matInput readonly [(ngModel)]="annualizedRealReturn" />
     <span matPrefix>%&nbsp;</span>
   </mat-form-field>
 
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label><strong>Inflationsbereinigte Gesamtrendite</strong></mat-label>
+    <mat-label
+      ><strong>{{
+        'PRICE_CALCULATOR_REAL_TOTAL_RETURN_ON_REAL_ESTATE' | translate
+      }}</strong></mat-label
+    >
     <input matInput readonly [(ngModel)]="overallRealReturn" />
     <span matPrefix>%&nbsp;</span>
   </mat-form-field>
@@ -167,6 +189,6 @@
     [disabled]="isDateEndFormControllerInvalid.indexOf(true) > -1"
     (click)="onCalculateReturn()"
   >
-    Rendite berechenen
+    {{ 'PRICE_CALCULATOR_BUTTON_CALCULATE_RETURN' | translate }}
   </button>
 </div>

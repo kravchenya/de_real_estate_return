@@ -2,33 +2,33 @@
   <div class="one-row-container">
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
-        <strong>Reale Rendite p.a</strong>
+        <strong>{{ 'GLOBALMARKETRETURN_MSCI_REAL_RETURN_RATE' | translate }}</strong>
       </mat-label>
       <input matInput readonly [(ngModel)]="annualizedReturnReal" />
       <span matPrefix>%&nbsp;</span>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
-        <strong>Inflationsbereignitr Gewinn</strong>
+        <strong>{{ 'GLOBALMARKETRETURN_MSCI_REAL_RETURN' | translate }} </strong>
       </mat-label>
       <input matInput readonly [(ngModel)]="overallAbsolutReturnReal" />
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
-        <strong>Nominale Rendite p.a.</strong>
+        <strong>{{ 'GLOBALMARKETRETURN_MSCI_NOMINAL_RETURN_RATE' | translate }}</strong>
       </mat-label>
       <input matInput readonly [(ngModel)]="annualizedReturnNominal" />
       <span matPrefix>%&nbsp;</span>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
-        <strong>Nominaler Gewinn</strong>
+        <strong>{{ 'GLOBALMARKETRETURN_MSCI_NOMINAL_RETURN' | translate }}</strong>
       </mat-label>
       <input matInput readonly [(ngModel)]="overallAbsolutReturnNominal" />
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
-        <strong>TER</strong>
+        <strong>{{ 'GLOBALMARKETRETURN_MSCI_TER' | translate }}</strong>
       </mat-label>
       <input
         type="number"
@@ -37,11 +37,29 @@
         maxlength="4"
         placeholder="0,00"
         min="0,1"
-        max="10"
+        max="10,0"
         [(ngModel)]="totalExpenseRatio"
       />
-      <mat-error>Minimale Rate: 0,1%; maximale Rate: 10%</mat-error>
+      <mat-error>{{ 'GLOBALMARKETRETURN_MSCI_TER_HINT' | translate }}</mat-error>
       <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>
+        <strong>{{ 'GLOBALMARKETRETURN_MSCI_RECURRENT_TRANSACTION_COST' | translate }}</strong>
+      </mat-label>
+      <input
+        type="number"
+        readonly
+        matInput
+        maxlength="5"
+        placeholder="0.0"
+        min="0"
+        max="10000"
+        [(ngModel)]="transactionCost"
+      />
+      <mat-error>{{
+        'GLOBALMARKETRETURN_MSCI_RECURRENT_TRANSACTION_COST_HINT' | translate
+      }}</mat-error>
     </mat-form-field>
   </div>
   <div>
@@ -56,6 +74,6 @@
       [xaxis]="chartOptions.xaxis!"
       [yaxis]="chartOptions.yaxis!"
     ></apx-chart>
-    <div class="chart-subtitle">Quelle: Destatis</div>
+    <div class="chart-subtitle">{{ 'GLOBALMARKETRETURN_MSCI_SOURSE' | translate }}</div>
   </div>
 </div>

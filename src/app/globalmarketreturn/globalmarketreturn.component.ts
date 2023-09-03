@@ -25,6 +25,7 @@ export class GlobalMarketReturnComponent implements OnInit {
   annualizedReturnReal = 0.0;
   annualizedReturnNominal = 0.0;
   totalExpenseRatio = 0.0;
+  transactionCost = 0.0;
 
   constructor() {
     const creditDataItem: IMortageLoanData = {

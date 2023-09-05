@@ -62,18 +62,6 @@
       }}</mat-error>
     </mat-form-field>
   </div>
-  <div>
-    <apx-chart
-      class="child-right"
-      [chart]="chartOptions.chart!"
-      [dataLabels]="chartOptions.dataLabels!"
-      [series]="chartOptions.series!"
-      [stroke]="chartOptions.stroke!"
-      [title]="chartOptions.title!"
-      [tooltip]="chartOptions.tooltip!"
-      [xaxis]="chartOptions.xaxis!"
-      [yaxis]="chartOptions.yaxis!"
-    ></apx-chart>
-    <div class="chart-subtitle">{{ 'GLOBALMARKETRETURN_MSCI_SOURSE' | translate }}</div>
-  </div>
+  <div id="globalMarketReturnChart"></div>
+  <div class="chart-subtitle">{{ 'GLOBALMARKETRETURN_MSCI_SOURSE' | translate }}</div>
 </div>

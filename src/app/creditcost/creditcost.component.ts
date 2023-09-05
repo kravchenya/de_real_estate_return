@@ -1,12 +1,12 @@
-import {Component, ViewChild, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IHistoricalRate} from './ihistoricalrate';
+import {TranslateService} from '@ngx-translate/core';
 import percentageRate10 from '../../assets/annualpercentagerate10.json';
 import percentageRate5 from '../../assets/annualpercentagerate5.json';
 import percentageNetRate from '../../assets/annualpercentagenetrate.json';
 import oldPercentageRate from '../../assets/oldannualpercentagerate.json';
 
 import {
-  ChartComponent,
   ApexAxisChartSeries,
   ApexChart,
   ApexXAxis,
@@ -33,8 +33,7 @@ export type ChartOptions = {
   styleUrls: ['./creditcost.component.css'],
 })
 export class CreditcostComponent implements OnInit {
-  @ViewChild('chart') chart!: ChartComponent;
-  public chartOptions!: Partial<ChartOptions>;
+  apexChart!: ApexCharts;
   historicalRate5!: IHistoricalRate;
   historicalRate10!: IHistoricalRate;
   effectiveRate!: IHistoricalRate;
@@ -42,36 +41,13 @@ export class CreditcostComponent implements OnInit {
   oldhistoricalRate10!: IHistoricalRate;
   oldEffectiveRate!: IHistoricalRate;
 
+  constructor(private translate: TranslateService) {}
+
   ngOnInit(): void {
     this.getExtraExpenses();
 
-    this.chartOptions = {
-      series: [
-        {
-          name: this.historicalRate5.name,
-          data: this.historicalRate5.data,
-        },
-        {
-          name: this.historicalRate10.name,
-          data: this.historicalRate10.data,
-        },
-        {
-          name: this.effectiveRate.name,
-          data: this.effectiveRate.data,
-        },
-        {
-          name: this.oldhistoricalRate5.name,
-          data: this.oldhistoricalRate5.data,
-        },
-        {
-          name: this.oldhistoricalRate10.name,
-          data: this.oldhistoricalRate10.data,
-        },
-        {
-          name: this.oldEffectiveRate.name,
-          data: this.oldEffectiveRate.data,
-        },
-      ],
+    const chartOptions = {
+      series: [],
       chart: {
         height: 400,
         type: 'line',
@@ -98,54 +74,138 @@ export class CreditcostComponent implements OnInit {
           format: 'MM.yyyy',
         },
       },
-      title: {
-        text: 'Zinsentwicklung',
-        align: 'center',
-      },
     };
+
+    this.apexChart = new ApexCharts(document.querySelector('#creditCostChart'), chartOptions);
+    this.apexChart.render();
+
+    this.translate
+      .get([
+        'CREDITCOST_INTEREST_RATE_CHANGE',
+        'CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003',
+        'CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003',
+        'CREDITCOST_ANNUAL_INTEREST_RATE',
+        'CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003',
+        'CREDITCOST_INTEREST_RATE_10YEARS_TILL_2003',
+        'CREDITCOST_ANNUAL_INTEREST_RATE_OLD',
+      ])
+      .subscribe((translatedTexts) => {
+        this.apexChart.updateOptions({
+          title: {
+            text: translatedTexts.CREDITCOST_INTEREST_RATE_CHANGE,
+            align: 'center',
+          },
+          series: [
+            {
+              name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003,
+              data: this.historicalRate5.data,
+            },
+            {
+              name: translatedTexts.CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003,
+              data: this.historicalRate10.data,
+            },
+            {
+              name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE,
+              data: this.effectiveRate.data,
+            },
+            {
+              name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003,
+              data: this.oldhistoricalRate5.data,
+            },
+            {
+              name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003,
+              data: this.oldhistoricalRate10.data,
+            },
+            {
+              name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE_OLD,
+              data: this.oldEffectiveRate.data,
+            },
+          ],
+        });
+      });
+
+    this.translate.onLangChange.subscribe(() => {
+      this.translate
+        .get([
+          'CREDITCOST_INTEREST_RATE_CHANGE',
+          'CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003',
+          'CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003',
+          'CREDITCOST_ANNUAL_INTEREST_RATE',
+          'CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003',
+          'CREDITCOST_INTEREST_RATE_10YEARS_TILL_2003',
+          'CREDITCOST_ANNUAL_INTEREST_RATE_OLD',
+        ])
+        .subscribe((translatedTexts) => {
+          this.apexChart.updateOptions({
+            title: {
+              text: translatedTexts.CREDITCOST_INTEREST_RATE_CHANGE,
+              align: 'center',
+            },
+            series: [
+              {
+                name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003,
+                data: this.historicalRate5.data,
+              },
+              {
+                name: translatedTexts.CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003,
+                data: this.historicalRate10.data,
+              },
+              {
+                name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE,
+                data: this.effectiveRate.data,
+              },
+              {
+                name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003,
+                data: this.oldhistoricalRate5.data,
+              },
+              {
+                name: translatedTexts.CREDITCOST_INTEREST_RATE_10YEARS_TILL_2003,
+                data: this.oldhistoricalRate10.data,
+              },
+              {
+                name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE_OLD,
+                data: this.oldEffectiveRate.data,
+              },
+            ],
+          });
+        });
+    });
   }
 
   getExtraExpenses(): void {
-    this.effectiveRate = {
-      name: 'Effektiver Jahreszinssatz',
-      data: new Array<number[]>(),
-    };
-    this.historicalRate5 = {
-      name: 'Jahreszinssatz auf 5 Jahre ab 2003',
-      data: new Array<number[]>(),
-    };
-    this.historicalRate10 = {
-      name: 'Jahreszinssatz auf 10 Jahre ab 2003',
-      data: new Array<number[]>(),
-    };
-
+    this.effectiveRate = {data: new Array<number[]>()} as IHistoricalRate;
     percentageNetRate.forEach((element) => {
       const time = new Date(element.Date).getTime();
       this.effectiveRate.data.push([time, element.InterestRate]);
     });
 
+    this.historicalRate5 = {
+      data: new Array<number[]>(),
+    } as IHistoricalRate;
     percentageRate5.forEach((element) => {
       const time = new Date(element.Date).getTime();
       this.historicalRate5.data.push([time, element.InterestRate]);
     });
 
+    this.historicalRate10 = {
+      data: new Array<number[]>(),
+    } as IHistoricalRate;
     percentageRate10.forEach((element) => {
       const time = new Date(element.Date).getTime();
       this.historicalRate10.data.push([time, element.InterestRate]);
     });
 
     this.oldhistoricalRate5 = {
-      name: 'Jahreszinssatz auf 5 Jahre von 1991 bis 2003',
       data: new Array<number[]>(),
-    };
+    } as IHistoricalRate;
+
     this.oldhistoricalRate10 = {
-      name: 'Jahreszinssatz auf 10 Jahre von 1991 bis 2003',
       data: new Array<number[]>(),
-    };
+    } as IHistoricalRate;
+
     this.oldEffectiveRate = {
-      name: 'Effektiver Jahreszinssatz',
       data: new Array<number[]>(),
-    };
+    } as IHistoricalRate;
 
     oldPercentageRate.forEach((element) => {
       const time = new Date(element.Date).getTime();

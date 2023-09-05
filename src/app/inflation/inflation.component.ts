@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import vpiIflationYear from '../../assets/vpiinflationyear.json';
 import {IHistoricalInflation} from './ihistoricalinflation';
 import {MatDatepicker} from '@angular/material/datepicker';
@@ -9,7 +9,6 @@ import {Moment} from 'moment';
 import moment from 'moment';
 
 import {
-  ChartComponent,
   ApexAxisChartSeries,
   ApexChart,
   ApexFill,
@@ -23,6 +22,7 @@ import {
   ApexMarkers,
   ApexStroke,
 } from 'ng-apexcharts';
+import {TranslateService} from '@ngx-translate/core';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -68,8 +68,7 @@ export const MY_FORMATS = {
   ],
 })
 export class InflationComponent implements OnInit {
-  @ViewChild('inflationChart') chart!: ChartComponent;
-  public chartOptions!: Partial<ChartOptions>;
+  apexChart!: ApexCharts;
 
   ihistoricalInflation: IHistoricalInflation = {
     name: 'inflation',
@@ -82,17 +81,74 @@ export class InflationComponent implements OnInit {
   minStartDate: Date = new Date(vpiIflationYear[0].Date);
   maxEndDate: Date = new Date(vpiIflationYear[vpiIflationYear.length - 1].Date);
 
+  constructor(private translate: TranslateService) {}
+
+  ngOnInit(): void {
+    this.initializeData();
+    const chartOptions = this.createChartOption();
+
+    this.apexChart = new ApexCharts(document.querySelector('#inflationChart'), chartOptions);
+    this.apexChart.render();
+
+    this.translate
+      .get([
+        'INFLATION_GRAPH_TITLE',
+        'INFLATION_CONSUMER_PRICE_INDEX',
+        'INFLATION_CONSUMER_PRICE_INDEX_YOY',
+      ])
+      .subscribe((translatedTexts) => {
+        this.apexChart.updateOptions({
+          title: {
+            text: translatedTexts.INFLATION_GRAPH_TITLE,
+            align: 'center',
+          },
+          series: [
+            {
+              name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX,
+              data: this.ihistoricalInflation.priceIndex,
+            },
+            {
+              name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX_YOY,
+              data: this.ihistoricalInflation.inflationYoY,
+            },
+          ],
+        });
+      });
+
+    this.translate.onLangChange.subscribe(() => {
+      this.translate
+        .get([
+          'INFLATION_GRAPH_TITLE',
+          'INFLATION_CONSUMER_PRICE_INDEX',
+          'INFLATION_CONSUMER_PRICE_INDEX_YOY',
+        ])
+        .subscribe((translatedTexts) => {
+          this.apexChart.updateOptions({
+            title: {
+              text: translatedTexts.INFLATION_GRAPH_TITLE,
+              align: 'center',
+            },
+            series: [
+              {
+                name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX,
+                data: this.ihistoricalInflation.priceIndex,
+              },
+              {
+                name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX_YOY,
+                data: this.ihistoricalInflation.inflationYoY,
+              },
+            ],
+          });
+        });
+    });
+  }
+
   initializeData(): void {
     vpiIflationYear.forEach((element) => {
       this.ihistoricalInflation.date.push(element.Date);
       this.ihistoricalInflation.inflationYoY.push(element.InflationYoY);
       this.ihistoricalInflation.priceIndex.push(element.PriceIndex);
     });
-  }
-
-  ngOnInit(): void {
-    this.initializeData();
-    this.chartOptions = this.createChartOption();
   }
 
   onClosed() {
@@ -115,7 +171,7 @@ export class InflationComponent implements OnInit {
     this.ihistoricalInflation.date = vpiSubArray.map((vpi) => vpi.Date);
     this.ihistoricalInflation.inflationYoY = vpiSubArray.map((vpi) => vpi.InflationYoY);
 
-    this.chart.updateOptions(this.createChartOption());
+    this.apexChart.updateOptions(this.createChartOption());
   }
 
   chosenStartYearHandler(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
@@ -127,16 +183,7 @@ export class InflationComponent implements OnInit {
 
   createChartOption(): Partial<ChartOptions> {
     const options: Partial<ChartOptions> = {
-      series: [
-        {
-          name: 'Inflation Index',
-          data: this.ihistoricalInflation.priceIndex,
-        },
-        {
-          name: 'Veränderung zum Vorjahr',
-          data: this.ihistoricalInflation.inflationYoY,
-        },
-      ],
+      series: [],
       chart: {
         height: 350,
         type: 'line',
@@ -152,10 +199,7 @@ export class InflationComponent implements OnInit {
         curve: 'smooth',
         width: [2, 2],
       },
-      title: {
-        text: 'Inflationsentwicklung',
-        align: 'center',
-      },
+
       xaxis: {
         type: 'datetime',
         categories: this.ihistoricalInflation.date,

@@ -1,11 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ChartComponent} from 'ng-apexcharts';
-import {ChartOptions} from '../additionalcost/additionalcost.component';
+import {Component, OnInit} from '@angular/core';
+import {IAggregatedMortageLoanData} from './iaggregatedmortageloandate';
 import {IHistoricalRate} from './ihistoricalrate';
+import {IMortageLoanData} from './imortageloandata';
 import msciAcwiIndex from '../../assets/msciacwiindex.json';
 import vpiInflationMonthly from '../../assets/vpiinflationmonthly.json';
-import {IMortageLoanData} from './imortageloandata';
-import {IAggregatedMortageLoanData} from './iaggregatedmortageloandate';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-globalmarketreturn',
@@ -13,8 +12,6 @@ import {IAggregatedMortageLoanData} from './iaggregatedmortageloandate';
   styleUrls: ['./globalmarketreturn.component.css'],
 })
 export class GlobalMarketReturnComponent implements OnInit {
-  @ViewChild('chart') chart!: ChartComponent;
-  public chartOptions!: Partial<ChartOptions>;
   msciDevelopmentNominal!: IHistoricalRate;
   msciDevelopmentReal!: IHistoricalRate;
   inflation!: IHistoricalRate;
@@ -27,7 +24,9 @@ export class GlobalMarketReturnComponent implements OnInit {
   totalExpenseRatio = 0.0;
   transactionCost = 0.0;
 
-  constructor() {
+  constructor(private translate: TranslateService) {}
+
+  ngOnInit(): void {
     const creditDataItem: IMortageLoanData = {
       annualPercentageRate: 5.0,
       closingCost: 20000,
@@ -53,7 +52,9 @@ export class GlobalMarketReturnComponent implements OnInit {
       rate: [],
     };
 
-    this.chartOptions = {
+    this.getMcsiAcwiData();
+
+    const chartOptions = {
       chart: {
         type: 'line',
         height: 350,
@@ -61,23 +62,10 @@ export class GlobalMarketReturnComponent implements OnInit {
           show: false,
         },
       },
-      series: [
-        {
-          name: this.msciDevelopmentNominal.name,
-          data: this.msciDevelopmentNominal.rate,
-        },
-        {
-          name: this.msciDevelopmentReal.name,
-          data: this.msciDevelopmentReal.rate,
-        },
-      ],
+      series: [],
       stroke: {
         curve: 'smooth',
         width: [2, 2],
-      },
-      title: {
-        text: 'MSCI ACWI Entwicklung',
-        align: 'center',
       },
       tooltip: {
         x: {
@@ -96,13 +84,67 @@ export class GlobalMarketReturnComponent implements OnInit {
         },
       },
     };
+
+    const apexChart = new ApexCharts(
+      document.querySelector('#globalMarketReturnChart'),
+      chartOptions,
+    );
+    apexChart.render();
+
+    this.translate
+      .get([
+        'GLOBALMARKETRETURN_MSCI_GRAPH_TITLE',
+        'GLOBALMARKETRETURN_MSCI_NOMINAL_DATA_SERIES',
+        'GLOBALMARKETRETURN_MSCI_REAL_DATA_SERIES',
+      ])
+      .subscribe((translatedTexts) => {
+        apexChart.updateOptions({
+          title: {
+            text: translatedTexts.GLOBALMARKETRETURN_MSCI_GRAPH_TITLE,
+            align: 'center',
+          },
+          series: [
+            {
+              name: translatedTexts.GLOBALMARKETRETURN_MSCI_NOMINAL_DATA_SERIES,
+              data: this.msciDevelopmentNominal.rate,
+            },
+            {
+              name: translatedTexts.GLOBALMARKETRETURN_MSCI_REAL_DATA_SERIES,
+              data: this.msciDevelopmentReal.rate,
+            },
+          ],
+        });
+      });
+
+    this.translate.onLangChange.subscribe(() => {
+      this.translate
+        .get([
+          'GLOBALMARKETRETURN_MSCI_GRAPH_TITLE',
+          'GLOBALMARKETRETURN_MSCI_NOMINAL_DATA_SERIES',
+          'GLOBALMARKETRETURN_MSCI_REAL_DATA_SERIES',
+        ])
+        .subscribe((translatedTexts) => {
+          apexChart.updateOptions({
+            title: {
+              text: translatedTexts.GLOBALMARKETRETURN_MSCI_GRAPH_TITLE,
+              align: 'center',
+            },
+            series: [
+              {
+                name: translatedTexts.GLOBALMARKETRETURN_MSCI_NOMINAL_DATA_SERIES,
+                data: this.msciDevelopmentNominal.rate,
+              },
+              {
+                name: translatedTexts.GLOBALMARKETRETURN_MSCI_REAL_DATA_SERIES,
+                data: this.msciDevelopmentReal.rate,
+              },
+            ],
+          });
+        });
+    });
   }
 
-  ngOnInit(): void {
-    this.getMcsiAcwiData();
-  }
-
-  getMcsiAcwiData(): void {
+  private getMcsiAcwiData(): void {
     //TODO think about loop here cause of refinancing your credit
     const startDate = this.aggregatedCreditData.mortageIntervals[0].startDate;
     const startIndex = msciAcwiIndex.findIndex(

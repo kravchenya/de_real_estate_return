@@ -182,8 +182,20 @@ export class InflationComponent implements OnInit {
   }
 
   createChartOption(): Partial<ChartOptions> {
+    const indexTitle = this.translate.instant('INFLATION_CONSUMER_PRICE_INDEX');
+    const yoyTitle = this.translate.instant('INFLATION_CONSUMER_PRICE_INDEX_YOY');
+
     const options: Partial<ChartOptions> = {
-      series: [],
+      series: [
+        {
+          name: indexTitle,
+          data: this.ihistoricalInflation.priceIndex,
+        },
+        {
+          name: yoyTitle,
+          data: this.ihistoricalInflation.inflationYoY,
+        },
+      ],
       chart: {
         height: 350,
         type: 'line',

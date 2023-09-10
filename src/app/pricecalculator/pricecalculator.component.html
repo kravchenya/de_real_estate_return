@@ -125,7 +125,7 @@
   <button
     mat-stroked-button
     color="primary"
-    title="inflationsbereinigen Preis samt allen Kosten berechen"
+    [title]="'PRICE_CALCULATOR_BUTTON_CALCULATE_CREDIT_COST_HINT' | translate"
     (click)="onCalculateInflationAdjustedPrice()"
     [disabled]="isDateEndFormControllerInvalid.indexOf(true) > -1"
   >

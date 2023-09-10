@@ -3,14 +3,7 @@ import population from '../../assets/population.json';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-
-export interface IAreaStatistics {
-  number: number;
-  name: string;
-  population: number;
-  area: number;
-  density: number;
-}
+import {IPlaseInfo} from './iplaceinfo';
 
 @Component({
   selector: 'app-citystatistics',
@@ -18,9 +11,9 @@ export interface IAreaStatistics {
   styleUrls: ['./citystatistics.component.css'],
 })
 export class CitystatisticsComponent implements OnInit, AfterViewInit {
-  dataSource = new MatTableDataSource<IAreaStatistics>([]);
+  dataSource!: MatTableDataSource<IPlaseInfo>;
   displayedColumns: string[] = [];
-  public statisticsData: IAreaStatistics[] = [];
+  statisticsData: IPlaseInfo[] = [];
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -28,7 +21,7 @@ export class CitystatisticsComponent implements OnInit, AfterViewInit {
     this.displayedColumns = ['name', 'population', 'area', 'density'];
 
     population.forEach((p) => {
-      const element: IAreaStatistics = {
+      const element: IPlaseInfo = {
         number: p.Number,
         name: p.Name,
         population: p.Population,
@@ -37,11 +30,10 @@ export class CitystatisticsComponent implements OnInit, AfterViewInit {
       };
       this.statisticsData.push(element);
     });
-
-    this.dataSource = new MatTableDataSource<IAreaStatistics>(this.statisticsData);
   }
 
   ngAfterViewInit() {
+    this.dataSource = new MatTableDataSource<IPlaseInfo>(this.statisticsData);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }

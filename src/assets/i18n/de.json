@@ -39,6 +39,8 @@
   "INFLATION_GRAPH_TITLE": "Inflationsentwicklung",
   "INFLATION_RECALCULATION_DATE": "Anfangsdatum der Umrechnung",
   "INFLATION_SOURSE": "Quelle: Destatis",
+  "INFLATION_Y_AXIS_TITLE_YOY_CHANGE": "Veränderung zum Vorjahr in %",
+  "INFLATION_Y_AXIS_TITLE_INDEX_INFLATION": "Verbraucherpreisindex",
   "PRICE_CALCULATOR_ANNUAL_INTEREST_RATE": "Effektivzins (Sollzins)",
   "PRICE_CALCULATOR_ANNUAL_INTEREST_RATE_HINT": "Minimale Rate: 0,1%; maximale Rate: 20%",
   "PRICE_CALCULATOR_BUTTON_ADD": "Hinzufügen",

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import vpiIflationYear from '../../assets/vpiinflationyear.json';
 import {IHistoricalInflation} from './ihistoricalinflation';
 import {MatDatepicker} from '@angular/material/datepicker';
@@ -51,6 +51,14 @@ export const MY_FORMATS = {
   },
 };
 
+interface TranslatedTexts {
+  INFLATION_GRAPH_TITLE: string;
+  INFLATION_CONSUMER_PRICE_INDEX: string;
+  INFLATION_CONSUMER_PRICE_INDEX_YOY: string;
+  INFLATION_Y_AXIS_TITLE_INDEX_INFLATION: string;
+  INFLATION_Y_AXIS_TITLE_YOY_CHANGE: string;
+}
+
 @Component({
   selector: 'app-inflation',
   templateUrl: './inflation.component.html',
@@ -67,7 +75,7 @@ export const MY_FORMATS = {
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
-export class InflationComponent implements OnInit {
+export class InflationComponent implements OnInit, OnDestroy {
   apexChart!: ApexCharts;
 
   ihistoricalInflation: IHistoricalInflation = {
@@ -83,6 +91,10 @@ export class InflationComponent implements OnInit {
 
   constructor(private translate: TranslateService) {}
 
+  ngOnDestroy() {
+    this.apexChart.destroy();
+  }
+
   ngOnInit(): void {
     this.initializeData();
     const chartOptions = this.createChartOption();
@@ -95,24 +107,11 @@ export class InflationComponent implements OnInit {
         'INFLATION_GRAPH_TITLE',
         'INFLATION_CONSUMER_PRICE_INDEX',
         'INFLATION_CONSUMER_PRICE_INDEX_YOY',
+        'INFLATION_Y_AXIS_TITLE_INDEX_INFLATION',
+        'INFLATION_Y_AXIS_TITLE_YOY_CHANGE',
       ])
       .subscribe((translatedTexts) => {
-        this.apexChart.updateOptions({
-          title: {
-            text: translatedTexts.INFLATION_GRAPH_TITLE,
-            align: 'center',
-          },
-          series: [
-            {
-              name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX,
-              data: this.ihistoricalInflation.priceIndex,
-            },
-            {
-              name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX_YOY,
-              data: this.ihistoricalInflation.inflationYoY,
-            },
-          ],
-        });
+        this.apexChart.updateOptions(this.initOptions(translatedTexts));
       });
 
     this.translate.onLangChange.subscribe(() => {
@@ -121,29 +120,82 @@ export class InflationComponent implements OnInit {
           'INFLATION_GRAPH_TITLE',
           'INFLATION_CONSUMER_PRICE_INDEX',
           'INFLATION_CONSUMER_PRICE_INDEX_YOY',
+          'INFLATION_Y_AXIS_TITLE_INDEX_INFLATION',
+          'INFLATION_Y_AXIS_TITLE_YOY_CHANGE',
         ])
         .subscribe((translatedTexts) => {
-          this.apexChart.updateOptions({
-            title: {
-              text: translatedTexts.INFLATION_GRAPH_TITLE,
-              align: 'center',
-            },
-            series: [
-              {
-                name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX,
-                data: this.ihistoricalInflation.priceIndex,
-              },
-              {
-                name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX_YOY,
-                data: this.ihistoricalInflation.inflationYoY,
-              },
-            ],
-          });
+          this.apexChart.updateOptions(this.initOptions(translatedTexts));
         });
     });
   }
 
-  initializeData(): void {
+  private initOptions(translatedTexts: TranslatedTexts) {
+    return {
+      title: {
+        text: translatedTexts.INFLATION_GRAPH_TITLE,
+        align: 'center',
+      },
+      series: [
+        {
+          name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX,
+          data: this.ihistoricalInflation.priceIndex,
+        },
+        {
+          name: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX_YOY,
+          data: this.ihistoricalInflation.inflationYoY,
+        },
+      ],
+      yaxis: [
+        {
+          labels: {
+            formatter: function (value: number) {
+              return value.toFixed(2);
+            },
+          },
+          axisBorder: {
+            show: true,
+            color: '#008FFB',
+            offsetX: -10,
+          },
+          seriesName: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX,
+          title: {
+            text: translatedTexts.INFLATION_Y_AXIS_TITLE_INDEX_INFLATION,
+            style: {
+              color: '#008FFB',
+            },
+          },
+          tooltip: {
+            enabled: true,
+          },
+        },
+        {
+          labels: {
+            formatter: function (value: number) {
+              return value.toFixed(2);
+            },
+          },
+          axisBorder: {
+            show: true,
+            color: '#00E396',
+            offsetX: -10,
+          },
+          opposite: true,
+          seriesName: translatedTexts.INFLATION_CONSUMER_PRICE_INDEX_YOY,
+          title: {
+            text: translatedTexts.INFLATION_Y_AXIS_TITLE_YOY_CHANGE,
+            style: {
+              color: '#00E396',
+            },
+          },
+          tooltip: {
+            enabled: true,
+          },
+        },
+      ],
+    };
+  }
+
+  private initializeData(): void {
     vpiIflationYear.forEach((element) => {
       this.ihistoricalInflation.date.push(element.Date);
       this.ihistoricalInflation.inflationYoY.push(element.InflationYoY);
@@ -181,9 +233,12 @@ export class InflationComponent implements OnInit {
     datepicker.close();
   }
 
-  createChartOption(): Partial<ChartOptions> {
+  private createChartOption(): Partial<ChartOptions> {
     const indexTitle = this.translate.instant('INFLATION_CONSUMER_PRICE_INDEX');
     const yoyTitle = this.translate.instant('INFLATION_CONSUMER_PRICE_INDEX_YOY');
+
+    const indexYaxis = this.translate.instant('INFLATION_Y_AXIS_TITLE_INDEX_INFLATION');
+    const yoyYaxis = this.translate.instant('INFLATION_Y_AXIS_TITLE_YOY_CHANGE');
 
     const options: Partial<ChartOptions> = {
       series: [
@@ -231,8 +286,9 @@ export class InflationComponent implements OnInit {
             color: '#008FFB',
             offsetX: -10,
           },
+          seriesName: indexTitle,
           title: {
-            text: 'Verbraucherpreisindex',
+            text: indexYaxis,
             style: {
               color: '#008FFB',
             },
@@ -247,21 +303,24 @@ export class InflationComponent implements OnInit {
               return value.toFixed(2);
             },
           },
+          axisTicks: {
+            show: true,
+          },
           axisBorder: {
             show: true,
             color: '#00E396',
             offsetX: -10,
           },
-          seriesName: 'Inflation',
+          seriesName: yoyTitle,
           opposite: true,
-          axisTicks: {
-            show: true,
-          },
           title: {
-            text: 'Veränderung zum Vorjahr in %',
+            text: yoyYaxis,
             style: {
               color: '#00E396',
             },
+          },
+          tooltip: {
+            enabled: true,
           },
         },
       ],

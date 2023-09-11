@@ -7,6 +7,7 @@ import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mater
 import {DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS} from '@angular/material/core';
 import {Moment} from 'moment';
 import moment from 'moment';
+import {TranslateService} from '@ngx-translate/core';
 
 export const MY_FORMATS = {
   parse: {
@@ -71,7 +72,7 @@ export class InflationComponent implements OnInit, OnDestroy {
     this.apexChart = new ApexCharts(document.querySelector('#inflationChart'), chartOptions);
     this.apexChart.render();
 
-    const translatedTexts = [
+    const inflationTexts = [
       'INFLATION_GRAPH_TITLE',
       'INFLATION_CONSUMER_PRICE_INDEX',
       'INFLATION_CONSUMER_PRICE_INDEX_YOY',
@@ -79,12 +80,12 @@ export class InflationComponent implements OnInit, OnDestroy {
       'INFLATION_Y_AXIS_TITLE_YOY_CHANGE',
     ];
 
-    this.translate.get(translatedTexts).subscribe((translatedTexts) => {
+    this.translate.get(inflationTexts).subscribe((translatedTexts) => {
       this.apexChart.updateOptions(this.initOptions(translatedTexts));
     });
 
     this.translate.onLangChange.subscribe(() => {
-      this.translate.get(translatedTexts).subscribe((translatedTexts) => {
+      this.translate.get(inflationTexts).subscribe((translatedTexts) => {
         this.apexChart.updateOptions(this.initOptions(translatedTexts));
       });
     });
@@ -194,14 +195,14 @@ export class InflationComponent implements OnInit, OnDestroy {
     datepicker.close();
   }
 
-  private createChartOption(): Partial<ChartOptions> {
+  private createChartOption() {
     const indexTitle = this.translate.instant('INFLATION_CONSUMER_PRICE_INDEX');
     const yoyTitle = this.translate.instant('INFLATION_CONSUMER_PRICE_INDEX_YOY');
 
     const indexYaxis = this.translate.instant('INFLATION_Y_AXIS_TITLE_INDEX_INFLATION');
     const yoyYaxis = this.translate.instant('INFLATION_Y_AXIS_TITLE_YOY_CHANGE');
 
-    const options: Partial<ChartOptions> = {
+    return {
       series: [
         {
           name: indexTitle,
@@ -298,6 +299,5 @@ export class InflationComponent implements OnInit, OnDestroy {
         mode: 'light',
       },
     };
-    return options;
   }
 }

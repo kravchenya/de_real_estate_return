@@ -6,26 +6,17 @@ import percentageRate5 from '../../assets/annualpercentagerate5.json';
 import percentageNetRate from '../../assets/annualpercentagenetrate.json';
 import oldPercentageRate from '../../assets/oldannualpercentagerate.json';
 
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexDataLabels,
-  ApexTooltip,
-  ApexStroke,
-  ApexTitleSubtitle,
-} from 'ng-apexcharts';
 import moment from 'moment';
 
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  title: ApexTitleSubtitle;
-  stroke: ApexStroke;
-  tooltip: ApexTooltip;
-  dataLabels: ApexDataLabels;
-};
+interface TranslatedTexts {
+  'CREDITCOST_INTEREST_RATE_CHANGE': string;
+  'CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003': string;
+  'CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003': string;
+  'CREDITCOST_ANNUAL_INTEREST_RATE': string;
+  'CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003': string;
+  'CREDITCOST_INTEREST_RATE_10YEARS_TILL_2003': string;
+  'CREDITCOST_ANNUAL_INTEREST_RATE_OLD': string;
+}
 
 @Component({
   selector: 'app-creditcost',
@@ -79,97 +70,60 @@ export class CreditcostComponent implements OnInit {
     this.apexChart = new ApexCharts(document.querySelector('#creditCostChart'), chartOptions);
     this.apexChart.render();
 
-    this.translate
-      .get([
-        'CREDITCOST_INTEREST_RATE_CHANGE',
-        'CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003',
-        'CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003',
-        'CREDITCOST_ANNUAL_INTEREST_RATE',
-        'CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003',
-        'CREDITCOST_INTEREST_RATE_10YEARS_TILL_2003',
-        'CREDITCOST_ANNUAL_INTEREST_RATE_OLD',
-      ])
-      .subscribe((translatedTexts) => {
-        this.apexChart.updateOptions({
-          title: {
-            text: translatedTexts.CREDITCOST_INTEREST_RATE_CHANGE,
-            align: 'center',
-          },
-          series: [
-            {
-              name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003,
-              data: this.historicalRate5.data,
-            },
-            {
-              name: translatedTexts.CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003,
-              data: this.historicalRate10.data,
-            },
-            {
-              name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE,
-              data: this.effectiveRate.data,
-            },
-            {
-              name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003,
-              data: this.oldhistoricalRate5.data,
-            },
-            {
-              name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003,
-              data: this.oldhistoricalRate10.data,
-            },
-            {
-              name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE_OLD,
-              data: this.oldEffectiveRate.data,
-            },
-          ],
-        });
-      });
+    const creditCostTexts = [
+      'CREDITCOST_INTEREST_RATE_CHANGE',
+      'CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003',
+      'CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003',
+      'CREDITCOST_ANNUAL_INTEREST_RATE',
+      'CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003',
+      'CREDITCOST_INTEREST_RATE_10YEARS_TILL_2003',
+      'CREDITCOST_ANNUAL_INTEREST_RATE_OLD',
+    ];
+
+    this.translate.get(creditCostTexts).subscribe((translatedTexts) => {
+      this.apexChart.updateOptions(this.initOptions(translatedTexts));
+    });
 
     this.translate.onLangChange.subscribe(() => {
-      this.translate
-        .get([
-          'CREDITCOST_INTEREST_RATE_CHANGE',
-          'CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003',
-          'CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003',
-          'CREDITCOST_ANNUAL_INTEREST_RATE',
-          'CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003',
-          'CREDITCOST_INTEREST_RATE_10YEARS_TILL_2003',
-          'CREDITCOST_ANNUAL_INTEREST_RATE_OLD',
-        ])
-        .subscribe((translatedTexts) => {
-          this.apexChart.updateOptions({
-            title: {
-              text: translatedTexts.CREDITCOST_INTEREST_RATE_CHANGE,
-              align: 'center',
-            },
-            series: [
-              {
-                name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003,
-                data: this.historicalRate5.data,
-              },
-              {
-                name: translatedTexts.CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003,
-                data: this.historicalRate10.data,
-              },
-              {
-                name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE,
-                data: this.effectiveRate.data,
-              },
-              {
-                name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003,
-                data: this.oldhistoricalRate5.data,
-              },
-              {
-                name: translatedTexts.CREDITCOST_INTEREST_RATE_10YEARS_TILL_2003,
-                data: this.oldhistoricalRate10.data,
-              },
-              {
-                name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE_OLD,
-                data: this.oldEffectiveRate.data,
-              },
-            ],
-          });
-        });
+      this.translate.get(creditCostTexts).subscribe((translatedTexts) => {
+        this.apexChart.updateOptions(this.initOptions(translatedTexts));
+      });
     });
+  }
+
+  private initOptions(translatedTexts: TranslatedTexts) {
+    return {
+      title: {
+        text: translatedTexts.CREDITCOST_INTEREST_RATE_CHANGE,
+        align: 'center',
+      },
+      series: [
+        {
+          name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_FROM_2003,
+          data: this.historicalRate5.data,
+        },
+        {
+          name: translatedTexts.CREDITCOST_INTEREST_RATE_10YEARS_FROM_2003,
+          data: this.historicalRate10.data,
+        },
+        {
+          name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE,
+          data: this.effectiveRate.data,
+        },
+        {
+          name: translatedTexts.CREDITCOST_INTEREST_RATE_5YEARS_TILL_2003,
+          data: this.oldhistoricalRate5.data,
+        },
+        {
+          name: translatedTexts.CREDITCOST_INTEREST_RATE_10YEARS_TILL_2003,
+          data: this.oldhistoricalRate10.data,
+        },
+        {
+          name: translatedTexts.CREDITCOST_ANNUAL_INTEREST_RATE_OLD,
+          data: this.oldEffectiveRate.data,
+        },
+      ],
+    };
   }
 
   getExtraExpenses(): void {

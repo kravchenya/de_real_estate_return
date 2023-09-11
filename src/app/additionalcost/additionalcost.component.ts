@@ -3,35 +3,15 @@ import {IExtraCost} from './iextracost';
 import {IExtraCostDiagram} from './iextracostdiagram';
 import additionalCosts from '../../assets/additionalcosts.json';
 
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexDataLabels,
-  ApexXAxis,
-  ApexPlotOptions,
-  ApexStroke,
-  ApexTitleSubtitle,
-  ApexYAxis,
-  ApexTooltip,
-  ApexFill,
-  ApexLegend,
-} from 'ng-apexcharts';
 import {TranslateService} from '@ngx-translate/core';
 import ApexCharts from 'apexcharts';
 
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  xaxis: ApexXAxis;
-  yaxis: ApexYAxis;
-  stroke: ApexStroke;
-  title: ApexTitleSubtitle;
-  tooltip: ApexTooltip;
-  fill: ApexFill;
-  legend: ApexLegend;
-};
+interface TranslatedTexts {
+  'ADDITIONALCOST_CLOSING_COST': string;
+  'ADDITIONALCOST_REAL_ESTATE_TRANSFER_TAX': string;
+  'ADDITIONALCOST_LAND_REGISTRATION_TAX': string;
+  'ADDITIONALCOST_REAL_ESTATE_AGENT_FEE': string;
+}
 
 @Component({
   selector: 'app-additionalcost',
@@ -105,67 +85,45 @@ export class AdditionalCostComponent implements OnInit {
     const apexChart = new ApexCharts(document.querySelector('#closingCostChart'), chartOptions);
     apexChart.render();
 
+    const additionalcostTexts = [
+      'ADDITIONALCOST_CLOSING_COST',
+      'ADDITIONALCOST_REAL_ESTATE_TRANSFER_TAX',
+      'ADDITIONALCOST_LAND_REGISTRATION_TAX',
+      'ADDITIONALCOST_REAL_ESTATE_AGENT_FEE',
+    ];
+
     this.translate.onLangChange.subscribe(() => {
-      this.translate
-        .get([
-          'ADDITIONALCOST_CLOSING_COST',
-          'ADDITIONALCOST_REAL_ESTATE_TRANSFER_TAX',
-          'ADDITIONALCOST_LAND_REGISTRATION_TAX',
-          'ADDITIONALCOST_REAL_ESTATE_AGENT_FEE',
-        ])
-        .subscribe((translatedTexts) => {
-          apexChart.updateOptions({
-            title: {
-              text: translatedTexts.ADDITIONALCOST_CLOSING_COST,
-              align: 'center',
-            },
-            series: [
-              {
-                name: translatedTexts.ADDITIONALCOST_REAL_ESTATE_TRANSFER_TAX,
-                data: this.extraCostDiagram.landAcquisition,
-              },
-              {
-                name: translatedTexts.ADDITIONALCOST_LAND_REGISTRATION_TAX,
-                data: this.extraCostDiagram.notary,
-              },
-              {
-                name: translatedTexts.ADDITIONALCOST_REAL_ESTATE_AGENT_FEE,
-                data: this.extraCostDiagram.realtor,
-              },
-            ],
-          });
-        });
+      this.translate.get(additionalcostTexts).subscribe((translatedTexts) => {
+        apexChart.updateOptions(this.initOptions(translatedTexts));
+      });
     });
 
-    this.translate
-      .get([
-        'ADDITIONALCOST_CLOSING_COST',
-        'ADDITIONALCOST_REAL_ESTATE_TRANSFER_TAX',
-        'ADDITIONALCOST_LAND_REGISTRATION_TAX',
-        'ADDITIONALCOST_REAL_ESTATE_AGENT_FEE',
-      ])
-      .subscribe((translatedTexts) => {
-        apexChart.updateOptions({
-          title: {
-            text: translatedTexts.ADDITIONALCOST_CLOSING_COST,
-            align: 'center',
-          },
-          series: [
-            {
-              name: translatedTexts.ADDITIONALCOST_REAL_ESTATE_TRANSFER_TAX,
-              data: this.extraCostDiagram.landAcquisition,
-            },
-            {
-              name: translatedTexts.ADDITIONALCOST_LAND_REGISTRATION_TAX,
-              data: this.extraCostDiagram.notary,
-            },
-            {
-              name: translatedTexts.ADDITIONALCOST_REAL_ESTATE_AGENT_FEE,
-              data: this.extraCostDiagram.realtor,
-            },
-          ],
-        });
-      });
+    this.translate.get(additionalcostTexts).subscribe((translatedTexts) => {
+      apexChart.updateOptions(this.initOptions(translatedTexts));
+    });
+  }
+
+  private initOptions(translatedTexts: TranslatedTexts) {
+    return {
+      title: {
+        text: translatedTexts.ADDITIONALCOST_CLOSING_COST,
+        align: 'center',
+      },
+      series: [
+        {
+          name: translatedTexts.ADDITIONALCOST_REAL_ESTATE_TRANSFER_TAX,
+          data: this.extraCostDiagram.landAcquisition,
+        },
+        {
+          name: translatedTexts.ADDITIONALCOST_LAND_REGISTRATION_TAX,
+          data: this.extraCostDiagram.notary,
+        },
+        {
+          name: translatedTexts.ADDITIONALCOST_REAL_ESTATE_AGENT_FEE,
+          data: this.extraCostDiagram.realtor,
+        },
+      ],
+    };
   }
 
   getExtraExpenses(): void {

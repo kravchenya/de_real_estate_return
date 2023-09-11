@@ -8,37 +8,6 @@ import {DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS} from '@angular/material/
 import {Moment} from 'moment';
 import moment from 'moment';
 
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexFill,
-  ApexTooltip,
-  ApexXAxis,
-  ApexLegend,
-  ApexDataLabels,
-  ApexTitleSubtitle,
-  ApexYAxis,
-  ApexTheme,
-  ApexMarkers,
-  ApexStroke,
-} from 'ng-apexcharts';
-import {TranslateService} from '@ngx-translate/core';
-
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  markers: ApexMarkers;
-  stroke: ApexStroke;
-  yaxis: ApexYAxis | ApexYAxis[];
-  dataLabels: ApexDataLabels;
-  title: ApexTitleSubtitle;
-  legend: ApexLegend;
-  fill: ApexFill;
-  tooltip: ApexTooltip;
-  theme: ApexTheme;
-};
-
 export const MY_FORMATS = {
   parse: {
     dateInput: 'MM/YYYY',
@@ -102,30 +71,22 @@ export class InflationComponent implements OnInit, OnDestroy {
     this.apexChart = new ApexCharts(document.querySelector('#inflationChart'), chartOptions);
     this.apexChart.render();
 
-    this.translate
-      .get([
-        'INFLATION_GRAPH_TITLE',
-        'INFLATION_CONSUMER_PRICE_INDEX',
-        'INFLATION_CONSUMER_PRICE_INDEX_YOY',
-        'INFLATION_Y_AXIS_TITLE_INDEX_INFLATION',
-        'INFLATION_Y_AXIS_TITLE_YOY_CHANGE',
-      ])
-      .subscribe((translatedTexts) => {
-        this.apexChart.updateOptions(this.initOptions(translatedTexts));
-      });
+    const translatedTexts = [
+      'INFLATION_GRAPH_TITLE',
+      'INFLATION_CONSUMER_PRICE_INDEX',
+      'INFLATION_CONSUMER_PRICE_INDEX_YOY',
+      'INFLATION_Y_AXIS_TITLE_INDEX_INFLATION',
+      'INFLATION_Y_AXIS_TITLE_YOY_CHANGE',
+    ];
+
+    this.translate.get(translatedTexts).subscribe((translatedTexts) => {
+      this.apexChart.updateOptions(this.initOptions(translatedTexts));
+    });
 
     this.translate.onLangChange.subscribe(() => {
-      this.translate
-        .get([
-          'INFLATION_GRAPH_TITLE',
-          'INFLATION_CONSUMER_PRICE_INDEX',
-          'INFLATION_CONSUMER_PRICE_INDEX_YOY',
-          'INFLATION_Y_AXIS_TITLE_INDEX_INFLATION',
-          'INFLATION_Y_AXIS_TITLE_YOY_CHANGE',
-        ])
-        .subscribe((translatedTexts) => {
-          this.apexChart.updateOptions(this.initOptions(translatedTexts));
-        });
+      this.translate.get(translatedTexts).subscribe((translatedTexts) => {
+        this.apexChart.updateOptions(this.initOptions(translatedTexts));
+      });
     });
   }
 

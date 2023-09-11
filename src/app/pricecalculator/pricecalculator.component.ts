@@ -9,6 +9,7 @@ import {ICreditData} from './icreditdata';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import {default as _rollupMoment, Moment} from 'moment';
+import {SharedDataService} from '../service/shareddata.service';
 
 const moment = _rollupMoment || _moment;
 
@@ -56,6 +57,8 @@ export class PricecalculatorComponent implements OnInit {
   private currentDate: Date = new Date();
 
   creditDataList: ICreditData[] = [];
+
+  constructor(private sharedService: SharedDataService) {}
 
   ngOnInit(): void {
     const creditDataItem: ICreditData = {
@@ -126,6 +129,9 @@ export class PricecalculatorComponent implements OnInit {
 
     this.totalPriceReal = 0;
     this.totalCreditCost = 0;
+    this.totalInterestPaid = 0;
+    this.annualizedRealReturn = 0;
+    this.overallRealReturn = 0;
   }
 
   onAddAdditionalFinancing() {
@@ -157,6 +163,20 @@ export class PricecalculatorComponent implements OnInit {
     this.overallRealReturn = 0;
     this.totalPriceReal = 0;
 
+    this.sharedService.calculateMsciData(
+      this.creditDataList[0].startDate.value.format('YYYY-MM'),
+      this.creditDataList[this.creditDataList.length - 1].endDate.value.format('YYYY-MM'),
+      this.creditAmount,
+      this.downPayment,
+      this.creditDataList[0].closingCost,
+      this.creditDataList[0].annualPercentageRate,
+    );
+
+    // this.sharedService.changeStartData(this.creditDataList[0].startDate.value.toDate());
+    // this.sharedService.changeEndtData(
+    //   this.creditDataList[this.creditDataList.length - 1].endDate.value.toDate(),
+    // );
+
     this.creditDataList.forEach((creditData) => {
       const startIndex = this.getIndex(creditData.startDate.value);
       const endIndex = this.getIndex(creditData.endDate.value);
@@ -183,10 +203,32 @@ export class PricecalculatorComponent implements OnInit {
 
       this.totalPriceReal =
         Math.round((totalInitialPaymant + monthlyPayments + Number.EPSILON) * 100) / 100;
+
+      this.overallRealReturn = Math.round(
+        ((this.marketPrice - this.totalPriceReal) / this.totalPriceReal + Number.EPSILON) * 100,
+      );
+
+      const totalNumberPaymentsInYears = (endIndex - startIndex + 1) / 12; // in case credit duration is of form 15 years and 2 months
+      this.annualizedRealReturn = this.calculateAnnualizedReturn(
+        this.marketPrice,
+        this.totalPriceReal,
+        totalNumberPaymentsInYears,
+      );
     });
   }
 
-  calculateMonthlyInterest(
+  private calculateAnnualizedReturn(
+    capitalGain: number,
+    investedAmount: number,
+    duration: number,
+  ): number {
+    // annualized return, also known as the compound annual growth rate
+    // CAGR = ( Final Value / Initial Investment  ) ^ (1 / Number of Years) − 1
+    const returnPerAnnum = (Math.pow(capitalGain / investedAmount, 1 / duration) - 1) * 100;
+    return Math.round((returnPerAnnum + Number.EPSILON) * 100) / 100;
+  }
+
+  private calculateMonthlyInterest(
     creditAmount: number,
     effectiveAnnualRate: number,
     creditDarutionInMonth: number,
@@ -211,25 +253,6 @@ export class PricecalculatorComponent implements OnInit {
         Math.pow(1 + nominalInterestRate, creditDarutionInMonth)) /
       (Math.pow(1 + nominalInterestRate, creditDarutionInMonth) - 1)
     );
-  }
-
-  onCalculateReturn() {
-    this.creditDataList.forEach((creditData) => {
-      const startIndex = this.getIndex(creditData.startDate.value);
-      const endIndex = this.getIndex(creditData.endDate.value);
-      const totalNumberPaymentsInYears = (endIndex - startIndex + 1) / 12; // in case credit duration is of form 15 years and 2 months
-
-      this.overallRealReturn = (this.marketPrice - this.totalPriceReal) / this.totalPriceReal;
-      this.overallRealReturn = Math.round((this.overallRealReturn + Number.EPSILON) * 100);
-
-      // annualized return, also known as the compound annual growth rate
-      // CAGR = ( Final Value / Initial Investment ) ^ (1 / Number of Years) − 1
-      this.annualizedRealReturn =
-        (Math.pow(this.marketPrice / this.totalPriceReal, 1 / totalNumberPaymentsInYears) - 1) *
-        100;
-      this.annualizedRealReturn =
-        Math.round((this.annualizedRealReturn + Number.EPSILON) * 100) / 100;
-    });
   }
 
   private getIndex(date: Moment) {

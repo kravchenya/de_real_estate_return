@@ -4,27 +4,28 @@
       <mat-label>
         <strong>{{ 'GLOBALMARKETRETURN_MSCI_REAL_RETURN_RATE' | translate }}</strong>
       </mat-label>
-      <input matInput readonly [(ngModel)]="annualizedReturnReal" />
+      <input matInput readonly [ngModel]="annualizedReturnReal$ | async" />
       <span matPrefix>%&nbsp;</span>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
         <strong>{{ 'GLOBALMARKETRETURN_MSCI_REAL_RETURN' | translate }} </strong>
       </mat-label>
-      <input matInput readonly [(ngModel)]="overallAbsolutReturnReal" />
+      <input matInput readonly [ngModel]="overallAbsolutReturnReal$ | async" />
     </mat-form-field>
+
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
         <strong>{{ 'GLOBALMARKETRETURN_MSCI_NOMINAL_RETURN_RATE' | translate }}</strong>
       </mat-label>
-      <input matInput readonly [(ngModel)]="annualizedReturnNominal" />
+      <input matInput readonly [ngModel]="annualizedReturnNominal$ | async" />
       <span matPrefix>%&nbsp;</span>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
         <strong>{{ 'GLOBALMARKETRETURN_MSCI_NOMINAL_RETURN' | translate }}</strong>
       </mat-label>
-      <input matInput readonly [(ngModel)]="overallAbsolutReturnNominal" />
+      <input matInput readonly [ngModel]="overallAbsolutReturnNominal$ | async" />
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>

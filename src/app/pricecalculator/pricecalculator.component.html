@@ -182,13 +182,4 @@
     <input matInput readonly [(ngModel)]="overallRealReturn" />
     <span matPrefix>%&nbsp;</span>
   </mat-form-field>
-
-  <button
-    mat-stroked-button
-    color="primary"
-    [disabled]="isDateEndFormControllerInvalid.indexOf(true) > -1"
-    (click)="onCalculateReturn()"
-  >
-    {{ 'PRICE_CALCULATOR_BUTTON_CALCULATE_RETURN' | translate }}
-  </button>
 </div>

@@ -44,7 +44,6 @@
   "PRICE_CALCULATOR_ANNUAL_INTEREST_RATE": "Effektivzins (Sollzins)",
   "PRICE_CALCULATOR_ANNUAL_INTEREST_RATE_HINT": "Minimale Rate: 0,1%; maximale Rate: 20%",
   "PRICE_CALCULATOR_BUTTON_ADD": "Hinzufügen",
-  "PRICE_CALCULATOR_BUTTON_CALCULATE_RETURN": "Rendite berechnen",
   "PRICE_CALCULATOR_BUTTON_CALCULATE_CREDIT_COST": "Berechnen Kreditkosten",
   "PRICE_CALCULATOR_BUTTON_CALCULATE_CREDIT_COST_HINT": "Inflationsbereinigten Preis samt allen Kosten berechen",
   "PRICE_CALCULATOR_BUTTON_DELETE": "Entfernen",

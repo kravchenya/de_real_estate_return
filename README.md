@@ -2,8 +2,6 @@
 
 Please pay attention, that this project is still under development and codebase may not satisfy industry standarts
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -27,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Project description
+
+There are two tabs. One tab shows German map with statistics about cities and towns together with closing costs for each federal state
+
+![](images/germanmap.jpg)
+
+Other tab shows historical development of interest rates and inflation starting from 1st of January 1991. And helps to calculate inflation adjusted price of total price paid for a property and comparison of MSCI ACWI index fund if the same money were invested in this index
+
+![](images/realestatereturn.jpg)

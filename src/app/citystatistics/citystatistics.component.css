@@ -19,3 +19,27 @@ table {
   /* overflow-y:scroll;
   overflow-x:hidden; */
 }
+
+.mat-column-name {
+  width: 40% !important;
+  overflow-wrap: break-word;
+}
+
+.mat-column-population {
+  width: 20% !important;
+  overflow-wrap: break-word;
+}
+
+.mat-column-area {
+  width: 20% !important;
+  overflow-wrap: break-word;
+}
+
+.mat-column-density {
+  width: 20% !important;
+  overflow-wrap: break-word;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}

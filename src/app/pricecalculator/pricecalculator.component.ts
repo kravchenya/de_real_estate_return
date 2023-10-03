@@ -9,7 +9,7 @@ import {ICreditData} from './icreditdata';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import {default as _rollupMoment, Moment} from 'moment';
-import {SharedDataService} from '../service/shareddata.service';
+import {SharedDataService} from '../services/shareddataservice/shareddata.service';
 
 const moment = _rollupMoment || _moment;
 
@@ -66,7 +66,6 @@ export class PricecalculatorComponent implements OnInit {
       minStartDate: new Date(1991, 0, 1),
       minEndDate: new Date(1991, 1, 1),
       maxEndDate: this.currentDate,
-      // startDate: new FormControl(moment([1991, 0, 1])),
       startDate: new FormControl(moment([1991, 0, 1])),
       // endDate: new FormControl(moment([this.currentDate.getFullYear(), this.currentDate.getMonth(), 1])),
       endDate: new FormControl(moment([2020, 11, 1])),
@@ -171,11 +170,6 @@ export class PricecalculatorComponent implements OnInit {
       this.creditDataList[0].closingCost,
       this.creditDataList[0].annualPercentageRate,
     );
-
-    // this.sharedService.changeStartData(this.creditDataList[0].startDate.value.toDate());
-    // this.sharedService.changeEndtData(
-    //   this.creditDataList[this.creditDataList.length - 1].endDate.value.toDate(),
-    // );
 
     this.creditDataList.forEach((creditData) => {
       const startIndex = this.getIndex(creditData.startDate.value);

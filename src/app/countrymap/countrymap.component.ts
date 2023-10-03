@@ -1,25 +1,71 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../environments/environment';
 import additionalCosts from '../../assets/additionalcosts.json';
+import {Observable, map} from 'rxjs';
+import {FederalStateSelectionService} from '../services/stateselection/federalstateselection.service';
 
 @Component({
   selector: 'app-countrymap',
   templateUrl: './countrymap.component.html',
   styleUrls: ['./countrymap.component.css'],
 })
-export class CountrymapComponent implements AfterViewInit {
+export class CountrymapComponent implements OnInit, AfterViewInit {
   style = 'mapbox://styles/mapbox/light-v11';
   lat = 51;
   lng = 10;
+  mapObject!: mapboxgl.Map;
+  hoveredStateId = 0;
+
+  selectedFederalState$: Observable<string> = new Observable<string>();
 
   public landAcquisition = '';
   federalState = '';
   notary = '';
   realtor = '';
 
+  constructor(private stateSelectionService: FederalStateSelectionService) {}
+
+  ngOnInit(): void {
+    this.selectedFederalState$ = this.stateSelectionService.selectedFederalState$.pipe(
+      map((value) => {
+        const additionalCost = additionalCosts.find(
+          (aCost) => aCost.properties.federalState === value,
+        );
+
+        if (this.mapObject != null || this.mapObject != undefined) {
+          if (this.hoveredStateId !== null) {
+            this.mapObject.setFeatureState(
+              {source: 'bundeslaender', id: this.hoveredStateId},
+              {hover: false},
+            );
+          }
+
+          if (additionalCost != undefined) {
+            this.hoveredStateId = additionalCost?.id;
+            this.mapObject.setFeatureState(
+              {source: 'bundeslaender', id: this.hoveredStateId},
+              {hover: true},
+            );
+
+            this.landAcquisition = additionalCost.properties.landAcquisition + '%';
+            this.notary = 'rund ' + additionalCost.properties.notary + '%';
+            this.realtor = additionalCost.properties.realtor + '%';
+          } else {
+            this.hoveredStateId = 0;
+            this.federalState = '';
+            this.landAcquisition = '';
+            this.notary = '';
+            this.realtor = '';
+          }
+        }
+        return value;
+      }),
+    );
+  }
+
   ngAfterViewInit() {
-    const map = new mapboxgl.Map({
+    this.mapObject = new mapboxgl.Map({
       container: 'mapElement',
       accessToken: environment.mapbox.accessToken,
       style: this.style,
@@ -27,12 +73,10 @@ export class CountrymapComponent implements AfterViewInit {
       center: [this.lng, this.lat],
     });
 
-    map.addControl(new mapboxgl.NavigationControl());
+    this.mapObject.addControl(new mapboxgl.NavigationControl());
 
-    let hoveredStateId = 0;
-
-    map.on('load', () => {
-      map.addSource('bundeslaender', {
+    this.mapObject.on('load', () => {
+      this.mapObject.addSource('bundeslaender', {
         type: 'geojson',
         //data: '../assets/bundeslaender_simplify200.geojson',
         data: '../assets/federalstates.geojson',
@@ -40,7 +84,7 @@ export class CountrymapComponent implements AfterViewInit {
       });
 
       // Add a new layer to visualize the states.
-      map.addLayer({
+      this.mapObject.addLayer({
         'id': 'bundeslaender-layer',
         'type': 'fill',
         'source': 'bundeslaender',
@@ -52,7 +96,7 @@ export class CountrymapComponent implements AfterViewInit {
       });
 
       // Add a black outline around the states.
-      map.addLayer({
+      this.mapObject.addLayer({
         'id': 'bundeslaender-border',
         'type': 'line',
         'source': 'bundeslaender',
@@ -65,38 +109,51 @@ export class CountrymapComponent implements AfterViewInit {
 
       // When the user moves their mouse over the state-fill layer, we'll update the
       // feature state for the feature under the mouse.
-      map.on('mousemove', 'bundeslaender-layer', (e: any) => {
+      this.mapObject.on('mousemove', 'bundeslaender-layer', (e: any) => {
         if (e.features.length > 0) {
-          if (hoveredStateId !== null) {
-            map.setFeatureState({source: 'bundeslaender', id: hoveredStateId}, {hover: false});
+          if (this.hoveredStateId !== null) {
+            this.mapObject.setFeatureState(
+              {source: 'bundeslaender', id: this.hoveredStateId},
+              {hover: false},
+            );
           }
-          hoveredStateId = e.features[0].id;
+          this.hoveredStateId = e.features[0].id;
 
-          map.setFeatureState({source: 'bundeslaender', id: hoveredStateId}, {hover: true});
-
+          this.mapObject.setFeatureState(
+            {source: 'bundeslaender', id: this.hoveredStateId},
+            {hover: true},
+          );
+          const properties = additionalCosts[this.hoveredStateId].properties;
           this.federalState = e.features[0].properties.name;
-          this.landAcquisition = additionalCosts[hoveredStateId].properties.landAcquisition + '%';
-          this.notary = 'rund ' + additionalCosts[hoveredStateId].properties.notary + '%';
-          this.realtor = additionalCosts[hoveredStateId].properties.realtor + '%';
+          this.landAcquisition = properties.landAcquisition + '%';
+          this.notary = 'rund ' + properties.notary + '%';
+          this.realtor = properties.realtor + '%';
+
+          this.stateSelectionService.updateSelectedFederalState(properties.federalState);
         }
       });
 
       // When the mouse leaves the state-fill layer, update the feature state of the
       // previously hovered feature.
-      map.on('mouseleave', 'bundeslaender-layer', () => {
-        if (hoveredStateId !== null) {
-          map.setFeatureState({source: 'bundeslaender', id: hoveredStateId}, {hover: false});
+      this.mapObject.on('mouseleave', 'bundeslaender-layer', () => {
+        if (this.hoveredStateId !== null) {
+          this.mapObject.setFeatureState(
+            {source: 'bundeslaender', id: this.hoveredStateId},
+            {hover: false},
+          );
         }
-        hoveredStateId = 0;
+        this.hoveredStateId = 0;
 
         this.federalState = '';
         this.landAcquisition = '';
         this.notary = '';
         this.realtor = '';
+
+        this.stateSelectionService.updateSelectedFederalState('');
       });
 
-      map.on('idle', () => {
-        map.resize();
+      this.mapObject.on('idle', () => {
+        this.mapObject.resize();
       });
     });
   }

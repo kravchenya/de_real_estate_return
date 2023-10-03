@@ -4,7 +4,7 @@
       <mat-label
         ><strong>{{ 'COUNTRYMAP_REAL_FEDERAL_STATE' | translate }}</strong></mat-label
       >
-      <input matInput [(ngModel)]="federalState" />
+      <input matInput readonly [ngModel]="selectedFederalState$ | async" />
     </mat-form-field>
     <mat-form-field floatLabel="always">
       <mat-label

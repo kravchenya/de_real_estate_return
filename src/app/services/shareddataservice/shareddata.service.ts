@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {IHistoricalRate} from './ihistoricalrate';
-import msciAcwiIndex from '../../assets/msciacwiindex.json';
-import vpiInflationMonthly from '../../assets/vpiinflationmonthly.json';
+import msciAcwiIndex from '../../../assets/msciacwiindex.json';
+import vpiInflationMonthly from '../../../assets/vpiinflationmonthly.json';
 
 @Injectable({
   providedIn: 'root',

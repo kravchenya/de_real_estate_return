@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {IPlaseInfo} from './iplaceinfo';
+import {FederalStateSelectionService} from '../services/stateselection/federalstateselection.service';
 
 @Component({
   selector: 'app-citystatistics',
@@ -16,13 +17,16 @@ export class CitystatisticsComponent implements OnInit, AfterViewInit {
   statisticsData: IPlaseInfo[] = [];
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  clickedRows = new Set<IPlaseInfo>();
+
+  constructor(private stateSelectionService: FederalStateSelectionService) {}
 
   ngOnInit(): void {
     this.displayedColumns = ['name', 'population', 'area', 'density'];
 
     population.forEach((p) => {
       const element: IPlaseInfo = {
-        number: p.Number,
+        index: p.Number,
         name: p.Name,
         population: p.Population,
         area: p.Area,
@@ -43,4 +47,20 @@ export class CitystatisticsComponent implements OnInit, AfterViewInit {
     const value = element.value;
     this.dataSource.filter = value.trim();
   };
+
+  public rowClick(selectedRow: IPlaseInfo) {
+    const federalState = population.find((data) => data.Number === selectedRow.index)?.FederalState;
+
+    if (this.clickedRows.has(selectedRow)) {
+      this.clickedRows.clear();
+      this.stateSelectionService.updateSelectedFederalState('');
+    } else {
+      this.clickedRows.clear();
+      this.clickedRows.add(selectedRow);
+
+      if (federalState !== undefined) {
+        this.stateSelectionService.updateSelectedFederalState(federalState);
+      }
+    }
+  }
 }

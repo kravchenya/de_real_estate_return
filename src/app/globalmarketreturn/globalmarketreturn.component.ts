@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {IHistoricalRate} from '../service/ihistoricalrate';
+import {IHistoricalRate} from '../services/shareddataservice/ihistoricalrate';
 import {TranslateService} from '@ngx-translate/core';
-import {SharedDataService} from '../service/shareddata.service';
+import {SharedDataService} from '../services/shareddataservice/shareddata.service';
 import {Observable, combineLatest, map, of, switchMap} from 'rxjs';
 
 interface TranslatedTexts {

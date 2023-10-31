@@ -8,10 +8,6 @@ import vpiInflationMonthly from '../../../assets/vpiinflationmonthly.json';
   providedIn: 'root',
 })
 export class SharedDataService {
-  constructor() {
-    this.calculateMsciData('1991-01', '2020-12', 100000, 20000, 10000, 5);
-  }
-
   private overallAbsolutReturnReal = new BehaviorSubject<number>(0);
   overallAbsolutReturnReal$ = this.overallAbsolutReturnReal.asObservable();
 
@@ -23,6 +19,9 @@ export class SharedDataService {
 
   private annualizedReturnNominal = new BehaviorSubject<number>(0);
   annualizedReturnNominal$ = this.annualizedReturnNominal.asObservable();
+
+  private monthlyInterest = new BehaviorSubject<number>(0);
+  monthlyPayment$ = this.monthlyInterest.asObservable();
 
   private msciDevelopmentReal = new BehaviorSubject<IHistoricalRate>({
     date: [],
@@ -36,6 +35,40 @@ export class SharedDataService {
   });
   msciDevelopmentNominal$ = this.msciDevelopmentNominal.asObservable();
 
+  private startDate = '1991-01';
+  private endDate = '2020-12';
+  private loanAmount = 100000;
+  private downPayment = 20000;
+  private closingCost = 10000;
+  private annualPercentageRate = 5;
+  private totalExpenseRatio = 0;
+  private transactionCost = 0;
+
+  constructor() {
+    this.calculateMsciData(
+      this.startDate,
+      this.endDate,
+      this.loanAmount,
+      this.downPayment,
+      this.closingCost,
+      this.annualPercentageRate,
+    );
+  }
+
+  updateCalculatedMsciData(transactionCost: number, totalExpenseRatio: number): void {
+    this.transactionCost = transactionCost;
+    this.totalExpenseRatio = totalExpenseRatio;
+
+    this.calculateMsciData(
+      this.startDate,
+      this.endDate,
+      this.loanAmount,
+      this.downPayment,
+      this.closingCost,
+      this.annualPercentageRate,
+    );
+  }
+
   calculateMsciData(
     startDate: string,
     endDate: string,
@@ -43,7 +76,14 @@ export class SharedDataService {
     downPayment: number,
     closingCost: number,
     annualPercentageRate: number,
-  ) {
+  ): void {
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.loanAmount = loanAmount;
+    this.downPayment = downPayment;
+    this.closingCost = closingCost;
+    this.annualPercentageRate = annualPercentageRate;
+
     const msciDevelopmentNominalInterim: IHistoricalRate = {
       date: [],
       rate: [],
@@ -57,15 +97,19 @@ export class SharedDataService {
     const endIndex = msciAcwiIndex.findIndex((msciAcwi) => msciAcwi.Date === endDate);
 
     const paymentsNumberInMonth = endIndex - startIndex + 1; // +1 cause we need to pay for the first month too
+
     const monthlyInterest = this.calculateMonthlyInterest(
       loanAmount,
       annualPercentageRate,
       paymentsNumberInMonth,
     );
+    this.monthlyInterest.next((Math.round(monthlyInterest + Number.EPSILON) * 100) / 100);
+
+    const monthlyPayment = monthlyInterest - this.transactionCost;
 
     const initialCost = closingCost + downPayment;
-    let capitalGainNominal = initialCost + monthlyInterest; // therefore i = startIndex + 1 we start from index + 1, however we have a still initial payment
-    let capitalGainReal = capitalGainNominal;
+    let capitalGainNominal = initialCost + monthlyPayment; // therefore i = startIndex + 1 we start from index + 1, however we have a still initial payment
+    let capitalGainReal = initialCost + monthlyPayment;
 
     msciDevelopmentNominalInterim.rate.push(capitalGainNominal);
     msciDevelopmentNominalInterim.date.push(msciAcwiIndex[startIndex].Date);
@@ -73,28 +117,28 @@ export class SharedDataService {
     msciDevelopmentRealInterim.rate.push(capitalGainReal);
     msciDevelopmentRealInterim.date.push(msciAcwiIndex[startIndex].Date);
 
-    let monthlyPaymentsReal = monthlyInterest; // in the very first month we do not have inflation MoM, therefore i = startIndex + 1 we start from index + 1, however we have a still initial payment
+    let monthlyPaymentsReal = monthlyPayment; // in the very first month we do not have inflation MoM, therefore i = startIndex + 1 we start from index + 1, however we have a still initial payment
     let totalInitialPaymentReal = initialCost;
 
     for (let i = startIndex + 1; i <= endIndex; i++) {
       // we do not apply inflation for the  monthly interest at the current month, but to the previous month cause inflation is Month-over-Month
       monthlyPaymentsReal =
-        monthlyPaymentsReal * (1 - vpiInflationMonthly[i].InflationMoM / 100) + monthlyInterest;
+        monthlyPaymentsReal * (1 - vpiInflationMonthly[i].InflationMoM / 100) + monthlyPayment;
       totalInitialPaymentReal =
         totalInitialPaymentReal * (1 - vpiInflationMonthly[i].InflationMoM / 100);
 
       // we do not apply market gain for the  monthly investment at the current month, but to the previous month cause market gain is Month-over-Month
-      capitalGainNominal = capitalGainNominal * (1 + msciAcwiIndex[i].MoM) + monthlyInterest;
-      msciDevelopmentNominalInterim.date.push(msciAcwiIndex[i].Date);
+      capitalGainNominal = capitalGainNominal * (1 + msciAcwiIndex[i].MoM) + monthlyPayment;
       msciDevelopmentNominalInterim.rate.push(capitalGainNominal);
+      msciDevelopmentNominalInterim.date.push(msciAcwiIndex[i].Date);
 
       capitalGainReal =
         capitalGainReal *
           (1 + msciAcwiIndex[i].MoM) *
           (1 - vpiInflationMonthly[i].InflationMoM / 100) +
-        monthlyInterest;
-      msciDevelopmentRealInterim.date.push(msciAcwiIndex[i].Date);
+        monthlyPayment;
       msciDevelopmentRealInterim.rate.push(capitalGainReal);
+      msciDevelopmentRealInterim.date.push(msciAcwiIndex[i].Date);
     }
 
     this.msciDevelopmentReal.next(msciDevelopmentRealInterim);
@@ -102,28 +146,36 @@ export class SharedDataService {
 
     const paymentsNumberInYears = paymentsNumberInMonth / 12;
 
-    this.overallAbsolutReturnReal.next(
-      Math.round((msciDevelopmentRealInterim.rate[endIndex - startIndex] + Number.EPSILON) * 100) /
-        100,
-    );
     const totalInvestementReal = totalInitialPaymentReal + monthlyPaymentsReal;
+    this.overallAbsolutReturnReal.next(
+      Math.round(
+        (msciDevelopmentRealInterim.rate[msciDevelopmentRealInterim.rate.length - 1] -
+          totalInvestementReal +
+          Number.EPSILON) *
+          100,
+      ) / 100,
+    );
     this.annualizedReturnReal.next(
       this.calculateAnnualizedReturn(
-        msciDevelopmentRealInterim.rate[endIndex - startIndex],
+        msciDevelopmentRealInterim.rate[msciDevelopmentRealInterim.rate.length - 1],
         totalInvestementReal,
         paymentsNumberInYears,
       ),
     );
 
+    const totalInvestementNominal = initialCost + monthlyPayment * paymentsNumberInMonth;
     this.overallAbsolutReturnNominal.next(
       Math.round(
-        (msciDevelopmentNominalInterim.rate[endIndex - startIndex] + Number.EPSILON) * 100,
+        (msciDevelopmentNominalInterim.rate[msciDevelopmentNominalInterim.rate.length - 1] -
+          totalInvestementNominal +
+          Number.EPSILON) *
+          100,
       ) / 100,
     );
-    const totalInvestementNominal = initialCost + monthlyInterest * paymentsNumberInMonth;
+
     this.annualizedReturnNominal.next(
       this.calculateAnnualizedReturn(
-        msciDevelopmentNominalInterim.rate[endIndex - startIndex],
+        msciDevelopmentNominalInterim.rate[msciDevelopmentNominalInterim.rate.length - 1],
         totalInvestementNominal,
         paymentsNumberInYears,
       ),
@@ -158,13 +210,14 @@ export class SharedDataService {
   }
 
   private calculateAnnualizedReturn(
-    capitalGain: number,
-    investedAmount: number,
+    finalValue: number,
+    totalInvestedAmount: number,
     duration: number,
   ): number {
     // annualized return, also known as the compound annual growth rate
+    // Compound Annual Growth Rate
     // CAGR = ( Final Value / Initial Investment  ) ^ (1 / Number of Years) − 1
-    const returnPerAnnum = (Math.pow(capitalGain / investedAmount, 1 / duration) - 1) * 100;
+    const returnPerAnnum = (Math.pow(finalValue / totalInvestedAmount, 1 / duration) - 1) * 100;
     return Math.round((returnPerAnnum + Number.EPSILON) * 100) / 100;
   }
 }

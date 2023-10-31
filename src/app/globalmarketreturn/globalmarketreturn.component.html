@@ -12,8 +12,8 @@
         <strong>{{ 'GLOBALMARKETRETURN_MSCI_REAL_RETURN' | translate }} </strong>
       </mat-label>
       <input matInput readonly [ngModel]="overallAbsolutReturnReal$ | async" />
+      <span matPrefix>€&nbsp;</span>
     </mat-form-field>
-
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
         <strong>{{ 'GLOBALMARKETRETURN_MSCI_NOMINAL_RETURN_RATE' | translate }}</strong>
@@ -26,6 +26,33 @@
         <strong>{{ 'GLOBALMARKETRETURN_MSCI_NOMINAL_RETURN' | translate }}</strong>
       </mat-label>
       <input matInput readonly [ngModel]="overallAbsolutReturnNominal$ | async" />
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>
+        <strong>{{ 'GLOBALMARKETRETURN_MSCI_MONTHLY_PAYMENT' | translate }}</strong>
+      </mat-label>
+      <input matInput readonly [ngModel]="monthlyPayment$ | async" />
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>
+        <strong>{{ 'GLOBALMARKETRETURN_MSCI_RECURRENT_TRANSACTION_COST' | translate }}</strong>
+      </mat-label>
+      <input
+        type="number"
+        matInput
+        maxlength="5"
+        placeholder="0.0"
+        min="0"
+        max="10000"
+        (focusout)="onFocusOutEvent()"
+        [(ngModel)]="transactionCost"
+      />
+      <span matPrefix>€&nbsp;</span>
+      <mat-error>{{
+        'GLOBALMARKETRETURN_MSCI_RECURRENT_TRANSACTION_COST_HINT' | translate
+      }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>
@@ -43,24 +70,6 @@
       />
       <mat-error>{{ 'GLOBALMARKETRETURN_MSCI_TER_HINT' | translate }}</mat-error>
       <span matPrefix>%&nbsp;</span>
-    </mat-form-field>
-    <mat-form-field appearance="fill" floatLabel="always">
-      <mat-label>
-        <strong>{{ 'GLOBALMARKETRETURN_MSCI_RECURRENT_TRANSACTION_COST' | translate }}</strong>
-      </mat-label>
-      <input
-        type="number"
-        readonly
-        matInput
-        maxlength="5"
-        placeholder="0.0"
-        min="0"
-        max="10000"
-        [(ngModel)]="transactionCost"
-      />
-      <mat-error>{{
-        'GLOBALMARKETRETURN_MSCI_RECURRENT_TRANSACTION_COST_HINT' | translate
-      }}</mat-error>
     </mat-form-field>
   </div>
   <div id="globalMarketReturnChart"></div>

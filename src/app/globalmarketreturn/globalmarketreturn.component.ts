@@ -29,6 +29,7 @@ export class GlobalMarketReturnComponent implements OnInit {
   overallAbsolutReturnNominal$: Observable<number> = new Observable<number>();
   annualizedReturnReal$: Observable<number> = new Observable<number>();
   annualizedReturnNominal$: Observable<number> = new Observable<number>();
+  monthlyPayment$: Observable<number> = new Observable<number>();
   totalExpenseRatio = 0.0;
   transactionCost = 0.0;
 
@@ -114,6 +115,8 @@ export class GlobalMarketReturnComponent implements OnInit {
   }
 
   private getMcsiAcwiData(apexChart: ApexCharts): void {
+    this.monthlyPayment$ = this.sharedService.monthlyPayment$.pipe(map((value) => value));
+
     this.annualizedReturnNominal$ = this.sharedService.annualizedReturnNominal$.pipe(
       map((value) => value),
     );
@@ -138,7 +141,6 @@ export class GlobalMarketReturnComponent implements OnInit {
       switchMap(([overallAbsolutReturnReal, msciDevelopmentReal, msciDevelopmentNominal]) => {
         this.msciDevelopmentReal = msciDevelopmentReal;
         this.msciDevelopmentNominal = msciDevelopmentNominal;
-
         apexChart.updateOptions({
           series: [
             {
@@ -158,6 +160,10 @@ export class GlobalMarketReturnComponent implements OnInit {
         return of(overallAbsolutReturnReal);
       }),
     );
+  }
+
+  onFocusOutEvent() {
+    this.sharedService.updateCalculatedMsciData(this.transactionCost, this.totalExpenseRatio);
   }
 
   private calculateTer(): number {

@@ -58,6 +58,8 @@ export class InflationComponent implements OnInit, OnDestroy {
   startDate: FormControl = new FormControl(moment(vpiIflationYear[0].Date));
   minStartDate: Date = new Date(vpiIflationYear[0].Date);
   maxEndDate: Date = new Date(vpiIflationYear[vpiIflationYear.length - 1].Date);
+  annualizedInflation = 0;
+  totalInflation = 0;
 
   constructor(private translate: TranslateService) {}
 
@@ -181,9 +183,19 @@ export class InflationComponent implements OnInit, OnDestroy {
       ) / 100;
 
     this.ihistoricalInflation.priceIndex = newInflationIndex.slice(startIndex);
-    const vpiSubArray = vpiIflationYear.slice(startIndex);
-    this.ihistoricalInflation.date = vpiSubArray.map((vpi) => vpi.Date);
-    this.ihistoricalInflation.inflationYoY = vpiSubArray.map((vpi) => vpi.InflationYoY);
+    this.ihistoricalInflation.inflationYoY =
+      this.ihistoricalInflation.inflationYoY.slice(startIndex);
+    this.ihistoricalInflation.date = this.ihistoricalInflation.date.slice(startIndex);
+
+    this.totalInflation =
+      this.ihistoricalInflation.priceIndex[this.ihistoricalInflation.priceIndex.length - 1] -
+      this.ihistoricalInflation.priceIndex[0];
+
+    this.annualizedInflation = this.calculateAnnualizedInflationRatio(
+      this.ihistoricalInflation.priceIndex[this.ihistoricalInflation.priceIndex.length - 1],
+      this.ihistoricalInflation.priceIndex[0],
+      this.ihistoricalInflation.date.length - 1,
+    );
 
     this.apexChart.updateOptions(this.createChartOption());
   }
@@ -193,6 +205,17 @@ export class InflationComponent implements OnInit, OnDestroy {
     ctrlValue.year(normalizedYear.year());
     this.startDate.setValue(ctrlValue);
     datepicker.close();
+  }
+
+  private calculateAnnualizedInflationRatio(
+    finalValue: number,
+    initialValue: number,
+    duration: number,
+  ): number {
+    // annualized return, also known as the compound annual growth rate
+    // CAGR = ( Final Value / Initial Investment  ) ^ (1 / Number of Years) − 1
+    const returnPerAnnum = (Math.pow(finalValue / initialValue, 1 / duration) - 1) * 100;
+    return Math.round((returnPerAnnum + Number.EPSILON) * 100) / 100;
   }
 
   private createChartOption() {

@@ -21,6 +21,20 @@
       >
       </mat-datepicker>
     </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>
+        <strong>{{ 'INFLATION_ANNUALIZED_VALUE' | translate }}</strong>
+      </mat-label>
+      <input matInput readonly [ngModel]="annualizedInflation" />
+      <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>
+        <strong>{{ 'INFLATION_TOTAL_VALUE' | translate }} </strong>
+      </mat-label>
+      <input matInput readonly [ngModel]="totalInflation" />
+      <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
   </div>
   <div id="inflationChart"></div>
   <div class="chart-subtitle">{{ 'INFLATION_SOURSE' | translate }}</div>

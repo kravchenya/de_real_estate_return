@@ -1,0 +1,39 @@
+# Node modules
+node_modules
+npm-debug.log
+
+# Angular build output
+dist/
+
+# Editor directories and files
+.vscode/
+.editorconfig
+.prettierrc
+.prettierignore
+.stylelintrc.json
+.eslintrc.json
+
+# Docker files
+.dockerignore
+Dockerfile
+
+# Logs and databases
+*.log
+
+# Environment variables and secrets
+.env
+*.pem
+*.cert
+*.key
+
+# Git
+.git/
+.gitignore
+
+# Angular CLI specific
+.angular
+
+
+LICENSE
+README.md
+SECURITY.md

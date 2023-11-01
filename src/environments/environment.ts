@@ -6,7 +6,8 @@ export const environment = {
   production: false,
 
   mapbox: {
-    accessToken: '',
+    accessToken:
+      'HERE COMES YOU TOCKEN. For more details see https://docs.mapbox.com/help/glossary/access-token/',
   },
 };
 

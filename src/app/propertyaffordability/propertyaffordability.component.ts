@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
   templateUrl: './propertyaffordability.component.html',
   styleUrls: ['./propertyaffordability.component.css'],
 })
-export class PropertyaffordabilityComponent {
+export class PropertyAffordabilityComponent {
   propertyPrice = 500000;
   monthlyIncome = 3500;
   monthlyRent = 1500;

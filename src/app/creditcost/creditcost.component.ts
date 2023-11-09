@@ -23,7 +23,7 @@ interface TranslatedTexts {
   templateUrl: './creditcost.component.html',
   styleUrls: ['./creditcost.component.css'],
 })
-export class CreditcostComponent implements OnInit {
+export class CreditCostComponent implements OnInit {
   apexChart!: ApexCharts;
   historicalRate5!: IHistoricalRate;
   historicalRate10!: IHistoricalRate;

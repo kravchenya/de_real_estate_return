@@ -11,7 +11,7 @@ import {FederalStateSelectionService} from '../services/stateselection/federalst
   templateUrl: './citystatistics.component.html',
   styleUrls: ['./citystatistics.component.css'],
 })
-export class CitystatisticsComponent implements OnInit, AfterViewInit {
+export class CityStatisticsComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<IPlaseInfo> = new MatTableDataSource<IPlaseInfo>();
   displayedColumns: string[] = [];
   statisticsData: IPlaseInfo[] = [];

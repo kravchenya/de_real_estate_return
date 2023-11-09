@@ -6,10 +6,10 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-b
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {PricecalculatorComponent} from './pricecalculator/pricecalculator.component';
+import {PriceCalculatorComponent as PriceCalculatorComponent} from './pricecalculator/pricecalculator.component';
 import {AdditionalCostComponent} from './additionalcost/additionalcost.component';
-import {CreditcostComponent} from './creditcost/creditcost.component';
-import {CountrymapComponent} from './countrymap/countrymap.component';
+import {CreditCostComponent} from './creditcost/creditcost.component';
+import {CountryMapComponent} from './countrymap/countrymap.component';
 import {InflationComponent} from './inflation/inflation.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -23,7 +23,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {GlobalMarketReturnComponent} from './globalmarketreturn/globalmarketreturn.component';
-import {CitystatisticsComponent} from './citystatistics/citystatistics.component';
+import {CityStatisticsComponent} from './citystatistics/citystatistics.component';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -37,12 +37,12 @@ import {PropertyGrowthComponent} from './propertygrowth/propertygrowth.component
   declarations: [
     AdditionalCostComponent,
     AppComponent,
-    CitystatisticsComponent,
-    CountrymapComponent,
-    CreditcostComponent,
+    CityStatisticsComponent,
+    CountryMapComponent,
+    CreditCostComponent,
     GlobalMarketReturnComponent,
     InflationComponent,
-    PricecalculatorComponent,
+    PriceCalculatorComponent,
     PropertyAffordabilityComponent,
     PropertyGrowthComponent,
   ],

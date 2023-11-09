@@ -1,16 +1,16 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {PropertyaffordabilityComponent} from './propertyaffordability.component';
+import {PropertyAffordabilityComponent} from './propertyaffordability.component';
 
 describe('PropertyaffordabilityComponent', () => {
-  let component: PropertyaffordabilityComponent;
-  let fixture: ComponentFixture<PropertyaffordabilityComponent>;
+  let component: PropertyAffordabilityComponent;
+  let fixture: ComponentFixture<PropertyAffordabilityComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PropertyaffordabilityComponent],
+      declarations: [PropertyAffordabilityComponent],
     });
-    fixture = TestBed.createComponent(PropertyaffordabilityComponent);
+    fixture = TestBed.createComponent(PropertyAffordabilityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

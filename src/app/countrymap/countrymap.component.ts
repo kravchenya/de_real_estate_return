@@ -10,7 +10,7 @@ import {FederalStateSelectionService} from '../services/stateselection/federalst
   templateUrl: './countrymap.component.html',
   styleUrls: ['./countrymap.component.css'],
 })
-export class CountrymapComponent implements OnInit, AfterViewInit {
+export class CountryMapComponent implements OnInit, AfterViewInit {
   style = 'mapbox://styles/mapbox/light-v11';
   lat = 51;
   lng = 10;

@@ -1,19 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {CountrymapComponent} from './countrymap.component';
+import {CountryMapComponent} from './countrymap.component';
 
 describe('CountrymapComponent', () => {
-  let component: CountrymapComponent;
-  let fixture: ComponentFixture<CountrymapComponent>;
+  let component: CountryMapComponent;
+  let fixture: ComponentFixture<CountryMapComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CountrymapComponent],
+      declarations: [CountryMapComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CountrymapComponent);
+    fixture = TestBed.createComponent(CountryMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

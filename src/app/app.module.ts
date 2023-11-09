@@ -30,6 +30,8 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {MatSelectModule} from '@angular/material/select';
+import {PropertyAffordabilityComponent} from './propertyaffordability/propertyaffordability.component';
+import {PropertyGrowthComponent} from './propertygrowth/propertygrowth.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import {MatSelectModule} from '@angular/material/select';
     GlobalMarketReturnComponent,
     InflationComponent,
     PricecalculatorComponent,
+    PropertyAffordabilityComponent,
+    PropertyGrowthComponent,
   ],
   imports: [
     AppRoutingModule,

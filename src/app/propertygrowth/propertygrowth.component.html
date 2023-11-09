@@ -1,0 +1,50 @@
+<div>
+  <div>
+    <div class="horizontal-align-center">
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label
+          ><strong>{{ 'INFLATION_RECALCULATION_DATE' | translate }}</strong></mat-label
+        >
+        <input
+          matInput
+          [matDatepicker]="dpStart"
+          [formControl]="startDate"
+          [min]="minStartDate"
+          [max]="maxEndDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
+        <mat-datepicker
+          #dpStart
+          startView="multi-year"
+          panelClass="month-picker"
+          (yearSelected)="chosenStartYearHandler($event, dpStart)"
+          (closed)="onClosed()"
+        >
+        </mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>
+          <strong>{{ 'PROPERTY_GROWTH_HOUSE_NOMINAL_ANNUAL' | translate }}</strong>
+        </mat-label>
+        <input matInput readonly [ngModel]="annualizedNominalHouseReturn" />
+        <span matPrefix>%&nbsp;</span>
+      </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>
+          <strong>{{ 'PROPERTY_GROWTH_HOUSE_REAL_ANNUAL' | translate }} </strong>
+        </mat-label>
+        <input matInput readonly [ngModel]="annualizedRealHouseReturn" />
+        <span matPrefix>%&nbsp;</span>
+      </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>
+          <strong>{{ 'PROPERTY_GROWTH_RENT_NOMINAL_ANNUAL' | translate }}</strong>
+        </mat-label>
+        <input matInput readonly [ngModel]="annualizedNominalRentalReturn" />
+        <span matPrefix>%&nbsp;</span>
+      </mat-form-field>
+    </div>
+    <div id="propertyPrices"></div>
+    <div class="chart-subtitle">{{ 'PROPERTY_GROWTH_SOURSE' | translate }}</div>
+  </div>
+</div>

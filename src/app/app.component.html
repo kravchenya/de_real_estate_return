@@ -40,7 +40,7 @@
         </mat-grid-list>
       </ng-template>
     </mat-tab>
-    <mat-tab [label]="'TAB_RETURN_ON_CAPITAL' | translate">
+    <mat-tab [label]="'TAB_RETURN_ON_CAPITAL_BUY' | translate">
       <ng-template matTabContent>
         <mat-grid-list cols="2" rowHeight="2:1">
           <mat-grid-tile>
@@ -62,6 +62,25 @@
             <mat-card>
               <app-globalmarketreturn></app-globalmarketreturn>
             </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </ng-template>
+    </mat-tab>
+    <mat-tab [label]="'TAB_RETURN_ON_CAPITAL_RENT' | translate">
+      <ng-template matTabContent>
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile rowspan="2">
+            <mat-card class="mat-card-content">
+              <app-propertyaffordability></app-propertyaffordability>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card>
+              <app-propertygrowth></app-propertygrowth>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card> </mat-card>
           </mat-grid-tile>
         </mat-grid-list>
       </ng-template>

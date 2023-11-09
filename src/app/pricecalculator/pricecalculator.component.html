@@ -150,11 +150,21 @@
   </mat-form-field>
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label
-      ><strong>{{ 'PRICE_CALCULATOR_INTEREST_PAID' | translate }} </strong></mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_TOTAL_INTEREST_PAID' | translate }} </strong></mat-label
     >
     <input type="number" matInput readonly [(ngModel)]="totalInterestPaid" />
     <span matPrefix>€&nbsp;</span>
   </mat-form-field>
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label
+      ><strong>{{ 'PRICE_CALCULATOR_MONTHLY_INTEREST_PAID' | translate }} </strong></mat-label
+    >
+    <input type="number" matInput readonly [(ngModel)]="monthlyInterest" />
+    <span matPrefix>€&nbsp;</span>
+  </mat-form-field>
+</div>
+
+<div class="row">
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label
       ><strong>{{ 'PRICE_CALCULATOR_REAL_ESTATE_MARKET_PRICE' | translate }}</strong></mat-label
@@ -162,9 +172,6 @@
     <input type="number" matInput readonly [(ngModel)]="marketPrice" />
     <span matPrefix>€&nbsp;</span>
   </mat-form-field>
-</div>
-
-<div class="row">
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>
       <strong>{{ 'PRICE_CALCULATOR_REAL_RETURN_ON_REAL_ESTATE' | translate }}</strong>
@@ -180,6 +187,6 @@
       }}</strong></mat-label
     >
     <input matInput readonly [(ngModel)]="overallRealReturn" />
-    <span matPrefix>%&nbsp;</span>
+    <span matPrefix>€&nbsp;</span>
   </mat-form-field>
 </div>

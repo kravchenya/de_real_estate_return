@@ -43,7 +43,7 @@ export const MY_FORMATS = {
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
-export class PricecalculatorComponent implements OnInit {
+export class PriceCalculatorComponent implements OnInit {
   creditAmount = 100000;
   downPayment = 20000;
   isDateEndFormControllerInvalid: boolean[] = [];
@@ -51,6 +51,7 @@ export class PricecalculatorComponent implements OnInit {
   marketPrice = 300000.0;
   totalCreditCost = 0.0;
   totalInterestPaid = 0.0;
+  monthlyInterest = 0.0;
   annualizedRealReturn = 0.0;
   overallRealReturn = 0.0;
 
@@ -129,6 +130,7 @@ export class PricecalculatorComponent implements OnInit {
     this.totalPriceReal = 0;
     this.totalCreditCost = 0;
     this.totalInterestPaid = 0;
+    this.monthlyInterest = 0.0;
     this.annualizedRealReturn = 0;
     this.overallRealReturn = 0;
   }
@@ -176,31 +178,33 @@ export class PricecalculatorComponent implements OnInit {
       const endIndex = this.getIndex(creditData.endDate.value);
 
       const totalNumberPayments = endIndex - startIndex + 1;
-      const monthlyInterest = this.calculateMonthlyInterest(
+
+      this.monthlyInterest = this.calculateMonthlyInterest(
         this.creditAmount,
         creditData.annualPercentageRate,
         totalNumberPayments,
       );
       this.totalCreditCost =
-        Math.round((monthlyInterest * totalNumberPayments + Number.EPSILON) * 100) / 100;
+        Math.round((this.monthlyInterest * totalNumberPayments + Number.EPSILON) * 100) / 100;
       this.totalInterestPaid =
         Math.round((this.totalCreditCost - this.creditAmount + Number.EPSILON) * 100) / 100;
 
-      let monthlyPayments = monthlyInterest; // in the very first month we do not have inflation MoM, therefore i = startIndex + 1 we start from index + 1, however we have a still initial payment
-      let totalInitialPaymant = creditData.closingCost + this.downPayment;
+      let monthlyPaymentsReal = this.monthlyInterest; // in the very first month we do not have inflation MoM, therefore i = startIndex + 1 we start from index + 1, however we have a still initial payment
+      let totalInitialPaymantReal = creditData.closingCost + this.downPayment;
       for (let i = startIndex + 1; i <= endIndex; i++) {
         // we do not apply inflation for the  monthly interest at the current month, but to previous month cause inflation is Month-over-Month
-        monthlyPayments =
-          monthlyPayments * (1 + vpiInflationMonthly[i].InflationMoM / 100) + monthlyInterest;
-        totalInitialPaymant = totalInitialPaymant * (1 + vpiInflationMonthly[i].InflationMoM / 100);
+        monthlyPaymentsReal =
+          monthlyPaymentsReal * (1 + vpiInflationMonthly[i].InflationMoM / 100) +
+          this.monthlyInterest;
+        totalInitialPaymantReal =
+          totalInitialPaymantReal * (1 + vpiInflationMonthly[i].InflationMoM / 100);
       }
 
       this.totalPriceReal =
-        Math.round((totalInitialPaymant + monthlyPayments + Number.EPSILON) * 100) / 100;
+        Math.round((totalInitialPaymantReal + monthlyPaymentsReal + Number.EPSILON) * 100) / 100;
 
-      this.overallRealReturn = Math.round(
-        ((this.marketPrice - this.totalPriceReal) / this.totalPriceReal + Number.EPSILON) * 100,
-      );
+      this.overallRealReturn =
+        Math.round((this.marketPrice - this.totalPriceReal + Number.EPSILON) * 100) / 100;
 
       const totalNumberPaymentsInYears = (endIndex - startIndex + 1) / 12; // in case credit duration is of form 15 years and 2 months
       this.annualizedRealReturn = this.calculateAnnualizedReturn(
@@ -208,17 +212,19 @@ export class PricecalculatorComponent implements OnInit {
         this.totalPriceReal,
         totalNumberPaymentsInYears,
       );
+
+      this.monthlyInterest = Math.round((this.monthlyInterest + Number.EPSILON) * 100) / 100;
     });
   }
 
   private calculateAnnualizedReturn(
-    capitalGain: number,
-    investedAmount: number,
+    finalValue: number,
+    totalPaidValue: number,
     duration: number,
   ): number {
     // annualized return, also known as the compound annual growth rate
     // CAGR = ( Final Value / Initial Investment  ) ^ (1 / Number of Years) − 1
-    const returnPerAnnum = (Math.pow(capitalGain / investedAmount, 1 / duration) - 1) * 100;
+    const returnPerAnnum = (Math.pow(finalValue / totalPaidValue, 1 / duration) - 1) * 100;
     return Math.round((returnPerAnnum + Number.EPSILON) * 100) / 100;
   }
 

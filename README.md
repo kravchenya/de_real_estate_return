@@ -35,3 +35,7 @@ There are two tabs. One tab shows German map with statistics about cities and to
 Other tab shows historical development of interest rates and inflation starting from 1st of January 1991. And helps to calculate inflation adjusted price of total price paid for a property and comparison of MSCI ACWI index fund if the same money were invested in this index
 
 ![](images/realestatereturn.jpg)
+
+The third tab shows development of renting and property prices. Also calculates what is more rational to buy or  rent depending on several factors
+![](images/fairrentingprice.jpg)
+

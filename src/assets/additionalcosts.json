@@ -1,162 +1,162 @@
 [
-	{
-		"id": 0,
-		"properties": {
-			"id": "DE-BW",
-			"federalState": "Baden-Württemberg",
-			"landAcquisition": 5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 1,
-		"properties": {
-			"id": "DE-BY",
-			"federalState": "Bayern",
-			"landAcquisition": 3.5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 2,
-		"properties": {
-			"id": "DE-BE",
-			"federalState": "Berlin",
-			"landAcquisition": 6,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 3,
-		"properties": {
-			"id": "DE-BB",
-			"federalState": "Brandenburg",
-			"landAcquisition": 6.5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 4,
-		"properties": {
-			"id": "DE-HB",
-			"federalState": "Bremen",
-			"landAcquisition": 5.0,
-			"notary": 2,
-			"realtor": 2.975
-		}
-	},
-	{
-		"id": 5,
-		"properties": {
-			"id": "DE-HH",
-			"federalState": "Hamburg",
-			"landAcquisition": 4.5,
-			"notary": 2,
-			"realtor": 3.125
-		}
-	},
-	{
-		"id": 6,
-		"properties": {
-			"id": "DE-HE",
-			"federalState": "Hessen",
-			"landAcquisition": 6,
-			"notary": 2,
-			"realtor": 2.975
-		}
-	},
-	{
-		"id": 7,
-		"properties": {
-			"id": "DE-MV",
-			"federalState": "Mecklenburg-Vorpommern",
-			"landAcquisition": 6,
-			"notary": 2,
-			"realtor": 2.975
-		}
-	},
-	{
-		"id": 8,
-		"properties": {
-			"id": "DE-NI",
-			"federalState": "Niedersachsen",
-			"landAcquisition": 5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 9,
-		"properties": {
-			"id": "DE-NW",
-			"federalState": "Nordrhein-Westfalen",
-			"landAcquisition": 6.5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 10,
-		"properties": {
-			"id": "DE-RP",
-			"federalState": "Rheinland-Pfalz",
-			"landAcquisition": 5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 11,
-		"properties": {
-			"id": "DE-SL",
-			"federalState": "Saarland",
-			"landAcquisition": 6.5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 12,
-		"properties": {
-			"id": "DE-SN",
-			"federalState": "Sachsen",
-			"landAcquisition": 3.5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 13,
-		"properties": {
-			"id": "DE-ST",
-			"federalState": "Sachsen-Anhalt",
-			"landAcquisition": 5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 14,
-		"properties": {
-			"id": "DE-SH",
-			"federalState": "Schleswig-Holstein",
-			"landAcquisition": 6.5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	},
-	{
-		"id": 15,
-		"properties": {
-			"id": "DE-TH",
-			"federalState": "Thüringen",
-			"landAcquisition": 6.5,
-			"notary": 2,
-			"realtor": 3.57
-		}
-	}
+  {
+    "id": 0,
+    "properties": {
+      "id": "DE-BW",
+      "federalState": "Baden-Württemberg",
+      "landAcquisition": 5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 1,
+    "properties": {
+      "id": "DE-BY",
+      "federalState": "Bayern",
+      "landAcquisition": 3.5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 2,
+    "properties": {
+      "id": "DE-BE",
+      "federalState": "Berlin",
+      "landAcquisition": 6,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 3,
+    "properties": {
+      "id": "DE-BB",
+      "federalState": "Brandenburg",
+      "landAcquisition": 6.5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 4,
+    "properties": {
+      "id": "DE-HB",
+      "federalState": "Bremen",
+      "landAcquisition": 5.0,
+      "notary": 2,
+      "realtor": 2.975
+    }
+  },
+  {
+    "id": 5,
+    "properties": {
+      "id": "DE-HH",
+      "federalState": "Hamburg",
+      "landAcquisition": 4.5,
+      "notary": 2,
+      "realtor": 3.125
+    }
+  },
+  {
+    "id": 6,
+    "properties": {
+      "id": "DE-HE",
+      "federalState": "Hessen",
+      "landAcquisition": 6,
+      "notary": 2,
+      "realtor": 2.975
+    }
+  },
+  {
+    "id": 7,
+    "properties": {
+      "id": "DE-MV",
+      "federalState": "Mecklenburg-Vorpommern",
+      "landAcquisition": 6,
+      "notary": 2,
+      "realtor": 2.975
+    }
+  },
+  {
+    "id": 8,
+    "properties": {
+      "id": "DE-NI",
+      "federalState": "Niedersachsen",
+      "landAcquisition": 5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 9,
+    "properties": {
+      "id": "DE-NW",
+      "federalState": "Nordrhein-Westfalen",
+      "landAcquisition": 6.5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 10,
+    "properties": {
+      "id": "DE-RP",
+      "federalState": "Rheinland-Pfalz",
+      "landAcquisition": 5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 11,
+    "properties": {
+      "id": "DE-SL",
+      "federalState": "Saarland",
+      "landAcquisition": 6.5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 12,
+    "properties": {
+      "id": "DE-SN",
+      "federalState": "Sachsen",
+      "landAcquisition": 3.5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 13,
+    "properties": {
+      "id": "DE-ST",
+      "federalState": "Sachsen-Anhalt",
+      "landAcquisition": 5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 14,
+    "properties": {
+      "id": "DE-SH",
+      "federalState": "Schleswig-Holstein",
+      "landAcquisition": 6.5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  },
+  {
+    "id": 15,
+    "properties": {
+      "id": "DE-TH",
+      "federalState": "Thüringen",
+      "landAcquisition": 6.5,
+      "notary": 2,
+      "realtor": 3.57
+    }
+  }
 ]

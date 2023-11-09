@@ -1,0 +1,326 @@
+<div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        maxlength="7"
+        placeholder="300 000"
+        min="1"
+        max="9 999 999"
+        [(ngModel)]="propertyPrice"
+      />
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_DOWNPAYMENT' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        maxlength="7"
+        placeholder="300 000"
+        min="1"
+        max="9 999 999"
+        [(ngModel)]="downpayment"
+      />
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_CLOSINGCOST' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        placeholder="10"
+        maxlength="2"
+        max="20"
+        min="0"
+        [(ngModel)]="closingCost"
+      />
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_MONTHLY_SALARY' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        maxlength="7"
+        placeholder="300 000"
+        min="1"
+        max="9 999 999"
+        [(ngModel)]="monthlyIncome"
+      />
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_MONTHLY_RENT' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        maxlength="7"
+        placeholder="1500"
+        min="1"
+        max="9 999 999"
+        [(ngModel)]="monthlyRent"
+      />
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_MONTHLY_RENT' | translate }}</mat-error>
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_INTEREST_RATE' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        maxlength="10"
+        placeholder="1,5"
+        min="1"
+        max="10"
+        [(ngModel)]="interestRate"
+      />
+      <span matPrefix>%&nbsp;</span>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_MAINTENANCE_COST' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        maxlength="10"
+        placeholder="1,5"
+        min="1"
+        max="10"
+        [(ngModel)]="maintenanceCost"
+      />
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_TAX' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        maxlength="10"
+        placeholder="1,5"
+        min="1"
+        max="10"
+        [(ngModel)]="propertyTax"
+      />
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_EQUATY_RETURN' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        maxlength="10"
+        placeholder="1,5"
+        min="1"
+        max="10"
+        [(ngModel)]="historicalNominalEquityReturn"
+      />
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_RETURN' | translate }}</strong></mat-label
+      >
+      <input
+        type="number"
+        matInput
+        maxlength="10"
+        placeholder="1,5"
+        min="1"
+        max="10"
+        [(ngModel)]="historicalNominalPropertyReturn"
+      />
+      <span matPrefix>%&nbsp;</span>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+    </mat-form-field>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      matTooltip="Anschlussfinanzierung hinzufügen"
+      (click)="onCalculateMonthlyPayment()"
+    >
+      {{ 'PROPERTY_AFFORTABILITY_PRICE_TO_INCOME_BUTTON' | translate }}
+    </button>
+  </div>
+
+  <div class="conten-margin-top">
+    <div class="conten-horizontal-allocation">
+      <mat-card class="content-flex outline">
+        <mat-card-subtitle class="subtitle-margin">{{
+          'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_INCOME' | translate
+        }}</mat-card-subtitle>
+        <mat-card-content>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label
+              ><strong>{{
+                'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_INCOME_LABEL' | translate
+              }}</strong></mat-label
+            >
+            <input matInput readonly [(ngModel)]="priceToIncomeRatio" />
+            <span matPrefix>€&nbsp;</span>
+          </mat-form-field>
+          <ul>
+            <li>
+              {{ 'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_INCOME_HINT_3' | translate }}
+            </li>
+            <li>
+              {{ 'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_INCOME_HINT_4' | translate }}
+            </li>
+            <li>
+              {{ 'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_INCOME_HINT_5' | translate }}
+            </li>
+            <li>
+              {{ 'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_INCOME_HINT_6' | translate }}
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="content-flex outline">
+        <mat-card-subtitle class="subtitle-margin">{{
+          'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_RENT' | translate
+        }}</mat-card-subtitle>
+        <mat-card-content>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label
+              ><strong>{{
+                'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_RENT_LABEL' | translate
+              }}</strong></mat-label
+            >
+            <input matInput readonly [(ngModel)]="priceToRentRatio" />
+            <span matPrefix>€&nbsp;</span>
+          </mat-form-field>
+          <ul>
+            <li>
+              {{ 'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_RENT_HINT_20' | translate }}
+            </li>
+            <li>
+              {{ 'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_RENT_HINT_25' | translate }}
+            </li>
+            <li>
+              {{ 'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_RENT_HINT_30' | translate }}
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="conten-horizontal-allocation">
+      <mat-card class="content-flex outline">
+        <mat-card-subtitle class="subtitle-margin">{{
+          'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST' | translate
+        }}</mat-card-subtitle>
+        <mat-card-content>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label
+              ><strong>{{
+                'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST_LABEL' | translate
+              }}</strong></mat-label
+            >
+            <input matInput readonly [(ngModel)]="monthlyTotalCostOfPropertyOwnership" />
+            <span matPrefix>€&nbsp;</span>
+          </mat-form-field>
+          <p>
+            {{
+              'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST_EXPLANATION_1'
+                | translate
+            }}
+          </p>
+          <p>
+            {{
+              'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST_EXPLANATION_2'
+                | translate
+            }}
+          </p>
+          <p>
+            {{
+              'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST_BREAKDOWN' | translate
+            }}
+          </p>
+          <ul>
+            <li>
+              {{
+                'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST_PROPERTY_TAX'
+                  | translate
+              }}
+            </li>
+            <li>
+              {{
+                'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST_MAINTENANCE'
+                  | translate
+              }}
+            </li>
+            <li>
+              {{
+                'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST_OPPORTUNITY_COST'
+                  | translate
+              }}
+            </li>
+            <li>
+              {{
+                'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST_CLOSING_COST'
+                  | translate
+              }}
+            </li>
+            <li>
+              {{ 'PROPERTY_AFFORTABILITY_MONTHLY_PROPERTY_PRICE_WITH_ALL_COST_CREDIT' | translate }}
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="content-flex outline">
+        <mat-card-subtitle class="subtitle-margin">{{
+          'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_30_INCOME' | translate
+        }}</mat-card-subtitle>
+        <mat-card-content>
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label
+              ><strong>{{
+                'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_30_INCOME_LABEL' | translate
+              }}</strong></mat-label
+            >
+            <input matInput readonly [(ngModel)]="monthlyMaximumTotalPayment" />
+            <span matPrefix>€&nbsp;</span>
+          </mat-form-field>
+          <p>
+            {{
+              'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_30_INCOME_EXPLANATION_1' | translate
+            }}
+          </p>
+          <p>
+            {{
+              'PROPERTY_AFFORTABILITY_PROPERTY_AFFORTABILITY_BY_30_INCOME_EXPLANATION_2' | translate
+            }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

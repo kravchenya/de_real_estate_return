@@ -1,0 +1,25 @@
+.conten-horizontal-allocation {
+  display: flex;
+  justify-content: space-between;
+}
+.subtitle-margin {
+  margin: 10px;
+}
+
+.conten-margin-top {
+  margin-top: 10px;
+}
+
+.content-flex {
+  flex: 1;
+}
+
+.outline {
+  margin: 5px;
+}
+
+.horizontal-align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

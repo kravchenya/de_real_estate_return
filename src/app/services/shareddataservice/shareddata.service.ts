@@ -23,6 +23,9 @@ export class SharedDataService {
   private monthlyInterest = new BehaviorSubject<number>(0);
   monthlyPayment$ = this.monthlyInterest.asObservable();
 
+  private transactionCost = new BehaviorSubject<number>(0);
+  transactionCost$ = this.transactionCost.asObservable();
+
   private msciDevelopmentReal = new BehaviorSubject<IHistoricalRate>({
     date: [],
     rate: [],
@@ -42,7 +45,6 @@ export class SharedDataService {
   private closingCost = 10000;
   private annualPercentageRate = 5;
   private totalExpenseRatio = 0;
-  private transactionCost = 0;
 
   constructor() {
     this.calculateMsciData(
@@ -56,7 +58,7 @@ export class SharedDataService {
   }
 
   updateCalculatedMsciData(transactionCost: number, totalExpenseRatio: number): void {
-    this.transactionCost = transactionCost;
+    this.transactionCost.next((Math.round(transactionCost + Number.EPSILON) * 100) / 100);
     this.totalExpenseRatio = totalExpenseRatio;
 
     this.calculateMsciData(
@@ -105,7 +107,8 @@ export class SharedDataService {
     );
     this.monthlyInterest.next((Math.round(monthlyInterest + Number.EPSILON) * 100) / 100);
 
-    const monthlyPayment = monthlyInterest - this.transactionCost;
+    const transactionCost = this.transactionCost.getValue();
+    const monthlyPayment = monthlyInterest - transactionCost;
 
     const initialCost = closingCost + downPayment;
     let capitalGainNominal = initialCost + monthlyPayment; // therefore i = startIndex + 1 we start from index + 1, however we have a still initial payment

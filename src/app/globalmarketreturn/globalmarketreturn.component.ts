@@ -31,6 +31,7 @@ export class GlobalMarketReturnComponent implements OnInit {
   annualizedReturnNominal$: Observable<number> = new Observable<number>();
   monthlyPayment$: Observable<number> = new Observable<number>();
   totalExpenseRatio = 0.0;
+  transactionCost$: Observable<number> = new Observable<number>();
   transactionCost = 0.0;
 
   constructor(
@@ -115,6 +116,8 @@ export class GlobalMarketReturnComponent implements OnInit {
   }
 
   private getMcsiAcwiData(apexChart: ApexCharts): void {
+    this.transactionCost$ = this.sharedService.transactionCost$.pipe(map((value) => value));
+
     this.monthlyPayment$ = this.sharedService.monthlyPayment$.pipe(map((value) => value));
 
     this.annualizedReturnNominal$ = this.sharedService.annualizedReturnNominal$.pipe(
@@ -162,8 +165,9 @@ export class GlobalMarketReturnComponent implements OnInit {
     );
   }
 
-  onFocusOutEvent() {
-    this.sharedService.updateCalculatedMsciData(this.transactionCost, this.totalExpenseRatio);
+  onFocusOutEvent(event: FocusEvent): void {
+    const newTransactionCost = +(event?.target as HTMLInputElement).value;
+    this.sharedService.updateCalculatedMsciData(newTransactionCost, this.totalExpenseRatio);
   }
 
   private calculateTer(): number {

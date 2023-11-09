@@ -46,8 +46,8 @@
         placeholder="0.0"
         min="0"
         max="10000"
-        (focusout)="onFocusOutEvent()"
-        [(ngModel)]="transactionCost"
+        (blur)="onFocusOutEvent($event)"
+        [ngModel]="transactionCost$ | async"
       />
       <span matPrefix>€&nbsp;</span>
       <mat-error>{{

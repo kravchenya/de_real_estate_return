@@ -42,11 +42,11 @@
       <input
         type="number"
         matInput
-        maxlength="5"
-        placeholder="0.0"
+        placeholder="0"
         min="0"
         max="10000"
-        (blur)="onFocusOutEvent($event)"
+        required
+        (blur)="onBlur($event)"
         [ngModel]="transactionCost$ | async"
       />
       <span matPrefix>€&nbsp;</span>
@@ -62,9 +62,8 @@
         type="number"
         readonly
         matInput
-        maxlength="4"
-        placeholder="0,00"
-        min="0,1"
+        placeholder="0"
+        min="0"
         max="10,0"
         [(ngModel)]="totalExpenseRatio"
       />

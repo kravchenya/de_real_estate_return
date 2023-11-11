@@ -32,6 +32,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {MatSelectModule} from '@angular/material/select';
 import {PropertyAffordabilityComponent} from './propertyaffordability/propertyaffordability.component';
 import {PropertyGrowthComponent} from './propertygrowth/propertygrowth.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import {PropertyGrowthComponent} from './propertygrowth/propertygrowth.component
     MatSortModule,
     MatTabsModule,
     MatTableModule,
+    MatTooltipModule,
 
     ReactiveFormsModule,
     TranslateModule.forRoot({

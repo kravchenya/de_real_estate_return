@@ -1,19 +1,26 @@
 <div>
-  <div>
+  <form #propertyAffortabilityForm="ngForm">
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
       <mat-label
         ><strong>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</strong></mat-label
       >
       <input
+        name="propertyPrice"
         type="number"
         matInput
-        maxlength="7"
-        placeholder="300 000"
+        required
+        placeholder="300000"
         min="1"
-        max="9 999 999"
+        max="9999999"
+        matTooltip="{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE_TOOLTIP' | translate }}"
         [(ngModel)]="propertyPrice"
       />
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <mat-icon
+        matSuffix
+        matTooltip="{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE_TOOLTIP' | translate }}"
+        >info</mat-icon
+      >
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE_HINT' | translate }}</mat-error>
       <span matPrefix>€&nbsp;</span>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
@@ -21,31 +28,33 @@
         ><strong>{{ 'PROPERTY_AFFORTABILITY_DOWNPAYMENT' | translate }}</strong></mat-label
       >
       <input
+        name="downpayment"
         type="number"
         matInput
-        maxlength="7"
-        placeholder="300 000"
-        min="1"
-        max="9 999 999"
+        required
+        placeholder="10000"
+        min="0"
+        max="9999999"
         [(ngModel)]="downpayment"
       />
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_DOWNPAYMENT_HINT' | translate }}</mat-error>
       <span matPrefix>€&nbsp;</span>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
       <mat-label
-        ><strong>{{ 'PROPERTY_AFFORTABILITY_CLOSINGCOST' | translate }}</strong></mat-label
+        ><strong>{{ 'PROPERTY_AFFORTABILITY_CLOSING_COST' | translate }}</strong></mat-label
       >
       <input
+        name="closingCost"
         type="number"
         matInput
+        required
         placeholder="10"
-        maxlength="2"
-        max="20"
+        max="30"
         min="0"
         [(ngModel)]="closingCost"
       />
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_CLOSING_COST_HINT' | translate }}</mat-error>
       <span matPrefix>%&nbsp;</span>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
@@ -53,15 +62,16 @@
         ><strong>{{ 'PROPERTY_AFFORTABILITY_MONTHLY_SALARY' | translate }}</strong></mat-label
       >
       <input
+        name="monthlyIncome"
         type="number"
         matInput
-        maxlength="7"
-        placeholder="300 000"
+        required
+        placeholder="3500"
         min="1"
-        max="9 999 999"
+        max="9999999"
         [(ngModel)]="monthlyIncome"
       />
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_MONTHLY_SALARY_HINT' | translate }}</mat-error>
       <span matPrefix>€&nbsp;</span>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
@@ -69,15 +79,16 @@
         ><strong>{{ 'PROPERTY_AFFORTABILITY_MONTHLY_RENT' | translate }}</strong></mat-label
       >
       <input
+        name="monthlyRent"
         type="number"
         matInput
-        maxlength="7"
+        required
         placeholder="1500"
         min="1"
-        max="9 999 999"
+        max="9999999"
         [(ngModel)]="monthlyRent"
       />
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_MONTHLY_RENT' | translate }}</mat-error>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_MONTHLY_RENT_HINT' | translate }}</mat-error>
       <span matPrefix>€&nbsp;</span>
     </mat-form-field>
 
@@ -86,31 +97,33 @@
         ><strong>{{ 'PROPERTY_AFFORTABILITY_INTEREST_RATE' | translate }}</strong></mat-label
       >
       <input
+        name="interestRate"
         type="number"
         matInput
-        maxlength="10"
-        placeholder="1,5"
-        min="1"
-        max="10"
+        required
+        placeholder="1.5"
+        min="0.01"
+        max="30"
         [(ngModel)]="interestRate"
       />
       <span matPrefix>%&nbsp;</span>
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_INTEREST_RATE_HINT' | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
       <mat-label
         ><strong>{{ 'PROPERTY_AFFORTABILITY_MAINTENANCE_COST' | translate }}</strong></mat-label
       >
       <input
+        name="maintenanceCost"
         type="number"
         matInput
-        maxlength="10"
-        placeholder="1,5"
-        min="1"
+        required
+        placeholder="1.5"
+        min="0"
         max="10"
         [(ngModel)]="maintenanceCost"
       />
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_MAINTENANCE_COST_HINT' | translate }}</mat-error>
       <span matPrefix>%&nbsp;</span>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
@@ -118,15 +131,16 @@
         ><strong>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_TAX' | translate }}</strong></mat-label
       >
       <input
+        name="propertyTax"
         type="number"
         matInput
-        maxlength="10"
-        placeholder="1,5"
-        min="1"
+        required
+        placeholder="1.5"
+        min="0"
         max="10"
         [(ngModel)]="propertyTax"
       />
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_TAX_HINT' | translate }}</mat-error>
       <span matPrefix>€&nbsp;</span>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
@@ -134,15 +148,16 @@
         ><strong>{{ 'PROPERTY_AFFORTABILITY_EQUATY_RETURN' | translate }}</strong></mat-label
       >
       <input
+        name="historicalNominalEquityReturn"
         type="number"
         matInput
-        maxlength="10"
-        placeholder="1,5"
-        min="1"
-        max="10"
+        required
+        placeholder="1.5"
+        min="0.01"
+        max="35"
         [(ngModel)]="historicalNominalEquityReturn"
       />
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_EQUATY_RETURN_HINT' | translate }}</mat-error>
       <span matPrefix>%&nbsp;</span>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
@@ -150,27 +165,28 @@
         ><strong>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_RETURN' | translate }}</strong></mat-label
       >
       <input
+        name="historicalNominalPropertyReturn"
         type="number"
         matInput
-        maxlength="10"
-        placeholder="1,5"
-        min="1"
-        max="10"
+        required
+        placeholder="1.5"
+        min="0.01"
+        max="35"
         [(ngModel)]="historicalNominalPropertyReturn"
       />
       <span matPrefix>%&nbsp;</span>
-      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_PRICE' | translate }}</mat-error>
+      <mat-error>{{ 'PROPERTY_AFFORTABILITY_PROPERTY_RETURN_HINT' | translate }}</mat-error>
     </mat-form-field>
 
     <button
       mat-stroked-button
       color="primary"
-      matTooltip="Anschlussfinanzierung hinzufügen"
       (click)="onCalculateMonthlyPayment()"
+      [disabled]="propertyAffortabilityForm.invalid"
     >
       {{ 'PROPERTY_AFFORTABILITY_PRICE_TO_INCOME_BUTTON' | translate }}
     </button>
-  </div>
+  </form>
 
   <div class="conten-margin-top">
     <div class="conten-horizontal-allocation">

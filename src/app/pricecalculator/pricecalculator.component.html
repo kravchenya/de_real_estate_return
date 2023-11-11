@@ -1,137 +1,165 @@
-<div class="one-row-container" *ngFor="let creditData of creditDataList; let i = index">
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label
-      ><strong>{{ 'PRICE_CALCULATOR_START_DATE' | translate }}</strong></mat-label
-    >
-    <input
-      matInput
-      [matDatepicker]="dpStart"
-      [formControl]="creditData.startDate"
-      [min]="creditData.minStartDate"
-      [max]="creditData.maxEndDate"
-    />
-    <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
-    <mat-datepicker
-      #dpStart
-      startView="multi-year"
-      (yearSelected)="chosenStartYearHandler($event, i)"
-      (monthSelected)="chosenStartMonthHandler($event, i, dpStart)"
-      panelClass="month-picker"
-      (closed)="onClosed(i)"
-    >
-    </mat-datepicker>
-  </mat-form-field>
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label
-      ><strong>{{ 'PRICE_CALCULATOR_END_DATE' | translate }}</strong></mat-label
-    >
-    <input
-      matInput
-      [matDatepicker]="dpEnd"
-      [formControl]="creditData.endDate"
-      [min]="creditData.minEndDate"
-      [max]="creditData.maxEndDate"
-    />
-    <mat-datepicker-toggle matSuffix [for]="dpEnd"></mat-datepicker-toggle>
-    <mat-datepicker
-      #dpEnd
-      startView="multi-year"
-      (yearSelected)="chosenEndYearHandler($event, i)"
-      (monthSelected)="chosenEndMonthHandler($event, i, dpEnd)"
-      panelClass="month-picker"
-      (closed)="onClosed(i)"
-    >
-    </mat-datepicker>
-  </mat-form-field>
-  <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
-    <mat-label
-      ><strong>{{ 'PRICE_CALCULATOR_CLOSING_COST' | translate }}</strong></mat-label
-    >
-    <input
-      type="number"
-      matInput
-      maxlength="4"
-      placeholder="2,00"
-      min="0,1"
-      max="20"
-      [(ngModel)]="creditData.closingCost"
-    />
-    <mat-error>{{ 'PRICE_CALCULATOR_CLOSING_COST_HINT' | translate }}</mat-error>
-    <span matPrefix>€&nbsp;</span>
-  </mat-form-field>
-  <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
-    <mat-label
-      ><strong>{{ 'PRICE_CALCULATOR_ANNUAL_INTEREST_RATE' | translate }}</strong></mat-label
-    >
-    <input
-      type="number"
-      matInput
-      maxlength="4"
-      placeholder="2,00"
-      min="0,1"
-      max="20"
-      [(ngModel)]="creditData.annualPercentageRate"
-    />
-    <mat-error>{{ 'PRICE_CALCULATOR_ANNUAL_INTEREST_RATE_HINT' | translate }}</mat-error>
-    <span matPrefix>%&nbsp;</span>
-  </mat-form-field>
-  <mat-error *ngIf="isDateEndFormControllerInvalid[i]">{{
-    'PRICE_CALCULATOR_END_DATE_HINT' | translate
-  }}</mat-error>
-</div>
-<button
-  mat-stroked-button
-  color="primary"
-  matTooltip="Anschlussfinanzierung hinzufügen"
-  (click)="onAddAdditionalFinancing()"
->
-  {{ 'PRICE_CALCULATOR_BUTTON_ADD' | translate }}
-</button>
-<button
-  mat-stroked-button
-  color="primary"
-  matTooltip="Anschlussfinanzierung hinzufügen"
-  (click)="onDeleteAdditionalFinancing()"
-  [disabled]="creditDataList.length === 1"
->
-  {{ 'PRICE_CALCULATOR_BUTTON_DELETE' | translate }}
-</button>
-<div class="row">
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label
-      ><strong>{{ 'PRICE_CALCULATOR_CREDIT_SUM' | translate }}</strong></mat-label
-    >
-    <input type="number" matInput placeholder="{{ creditAmount }}" [(ngModel)]="creditAmount" />
-    <span matPrefix>€&nbsp;</span>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
-    <mat-label
-      ><strong>{{ 'PRICE_CALCULATOR_DOWNPAYMENT' | translate }}</strong></mat-label
-    >
-    <input
-      type="number"
-      matInput
-      maxlength="4"
-      placeholder="2,00"
-      min="0,1"
-      max="20"
-      [(ngModel)]="downPayment"
-    />
-    <mat-error>{{ 'PRICE_CALCULATOR_DOWNPAYMENT_HINT' | translate }} </mat-error>
-    <span matPrefix>€&nbsp;</span>
-  </mat-form-field>
-
+<form #creditDataForm="ngForm">
+  <div class="one-row-container" *ngFor="let creditData of creditDataList; let i = index">
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PRICE_CALCULATOR_START_DATE' | translate }}</strong></mat-label
+      >
+      <input
+        matInput
+        [matDatepicker]="dpStart"
+        [formControl]="creditData.startDate"
+        [min]="creditData.minStartDate"
+        [max]="creditData.maxEndDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
+      <mat-datepicker
+        #dpStart
+        startView="multi-year"
+        (yearSelected)="chosenStartYearHandler($event, i)"
+        (monthSelected)="chosenStartMonthHandler($event, i, dpStart)"
+        panelClass="month-picker"
+        (closed)="onClosed(i)"
+      >
+      </mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PRICE_CALCULATOR_END_DATE' | translate }}</strong></mat-label
+      >
+      <input
+        matInput
+        [matDatepicker]="dpEnd"
+        [formControl]="creditData.endDate"
+        [min]="creditData.minEndDate"
+        [max]="creditData.maxEndDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="dpEnd"></mat-datepicker-toggle>
+      <mat-datepicker
+        #dpEnd
+        startView="multi-year"
+        (yearSelected)="chosenEndYearHandler($event, i)"
+        (monthSelected)="chosenEndMonthHandler($event, i, dpEnd)"
+        panelClass="month-picker"
+        (closed)="onClosed(i)"
+      >
+      </mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PRICE_CALCULATOR_CLOSING_COST' | translate }}</strong></mat-label
+      >
+      <input
+        [name]="'closingCost' + i"
+        type="number"
+        matInput
+        placeholder="10000"
+        min="0"
+        max="9999999"
+        [(ngModel)]="creditData.closingCost"
+        required
+      />
+      <mat-error>{{ 'PRICE_CALCULATOR_CLOSING_COST_HINT' | translate }}</mat-error>
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PRICE_CALCULATOR_ANNUAL_INTEREST_RATE' | translate }}</strong></mat-label
+      >
+      <input
+        [name]="'annualPercentageRate' + i"
+        type="number"
+        matInput
+        placeholder="2.00"
+        step="0.01"
+        min="0.01"
+        max="20.0"
+        [(ngModel)]="creditData.annualPercentageRate"
+        required
+      />
+      <mat-error>{{ 'PRICE_CALCULATOR_ANNUAL_INTEREST_RATE_HINT' | translate }}</mat-error>
+      <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+    <mat-error *ngIf="isDateEndFormControllerInvalid[i]">{{
+      'PRICE_CALCULATOR_END_DATE_HINT' | translate
+    }}</mat-error>
+  </div>
+  <button mat-stroked-button color="primary" (click)="onAddAdditionalFinancing()">
+    {{ 'PRICE_CALCULATOR_BUTTON_ADD' | translate }}
+  </button>
   <button
     mat-stroked-button
     color="primary"
-    [title]="'PRICE_CALCULATOR_BUTTON_CALCULATE_CREDIT_COST_HINT' | translate"
-    (click)="onCalculateInflationAdjustedPrice()"
-    [disabled]="isDateEndFormControllerInvalid.indexOf(true) > -1"
+    (click)="onDeleteAdditionalFinancing()"
+    [disabled]="creditDataList.length === 1"
   >
-    {{ 'PRICE_CALCULATOR_BUTTON_CALCULATE_CREDIT_COST' | translate }}
+    {{ 'PRICE_CALCULATOR_BUTTON_DELETE' | translate }}
   </button>
-</div>
+  <div class="row">
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PRICE_CALCULATOR_CREDIT_SUM' | translate }}</strong></mat-label
+      >
+      <input
+        [name]="'creditAmount'"
+        type="number"
+        matInput
+        placeholder="100000"
+        min="1"
+        max="9999999"
+        [(ngModel)]="creditAmount"
+        required
+      />
+      <mat-error>{{ 'PRICE_CALCULATOR_CREDIT_SUM_HINT' | translate }} </mat-error>
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PRICE_CALCULATOR_DOWNPAYMENT' | translate }}</strong></mat-label
+      >
+      <input
+        [name]="'downPayment'"
+        type="number"
+        matInput
+        placeholder="20000"
+        min="0"
+        max="9999999"
+        [(ngModel)]="downPayment"
+        required
+      />
+      <mat-error>{{ 'PRICE_CALCULATOR_DOWNPAYMENT_HINT' | translate }} </mat-error>
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label
+        ><strong>{{ 'PRICE_CALCULATOR_REAL_ESTATE_MARKET_PRICE' | translate }}</strong></mat-label
+      >
+      <input
+        [name]="'marketPrice'"
+        type="number"
+        matInput
+        placeholder="300 000"
+        min="1"
+        max="9999999"
+        [(ngModel)]="marketPrice"
+        required
+      />
+      <mat-error>{{ 'PRICE_CALCULATOR_REAL_ESTATE_MARKET_PRICE_HINT' | translate }} </mat-error>
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      [title]="'PRICE_CALCULATOR_BUTTON_CALCULATE_CREDIT_COST_HINT' | translate"
+      (click)="onCalculateInflationAdjustedPrice()"
+      [disabled]="isDateEndFormControllerInvalid.indexOf(true) > -1 || creditDataForm.invalid"
+    >
+      {{ 'PRICE_CALCULATOR_BUTTON_CALCULATE_CREDIT_COST' | translate }}
+    </button>
+  </div>
+</form>
 
 <div class="row">
   <mat-form-field appearance="fill" floatLabel="always">
@@ -165,13 +193,6 @@
 </div>
 
 <div class="row">
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label
-      ><strong>{{ 'PRICE_CALCULATOR_REAL_ESTATE_MARKET_PRICE' | translate }}</strong></mat-label
-    >
-    <input type="number" matInput readonly [(ngModel)]="marketPrice" />
-    <span matPrefix>€&nbsp;</span>
-  </mat-form-field>
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>
       <strong>{{ 'PRICE_CALCULATOR_REAL_RETURN_ON_REAL_ESTATE' | translate }}</strong>

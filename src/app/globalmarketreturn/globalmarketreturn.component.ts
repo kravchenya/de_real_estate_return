@@ -165,9 +165,12 @@ export class GlobalMarketReturnComponent implements OnInit {
     );
   }
 
-  onFocusOutEvent(event: FocusEvent): void {
-    const newTransactionCost = +(event?.target as HTMLInputElement).value;
-    this.sharedService.updateCalculatedMsciData(newTransactionCost, this.totalExpenseRatio);
+  onBlur(event: FocusEvent): void {
+    const newTransactionCost = (event?.target as HTMLInputElement).value;
+    if (newTransactionCost.match(/[^$,.\d]/) || newTransactionCost === '') {
+      return;
+    }
+    this.sharedService.updateCalculatedMsciData(+newTransactionCost, this.totalExpenseRatio);
   }
 
   private calculateTer(): number {
